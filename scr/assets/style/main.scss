@@ -7,17 +7,19 @@
     list-style: none;
 }
 body{
+    font-family: $primary_font_family;
     box-sizing: border-box;
     background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbG9yfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;  
-    height: 700px;  
+    height: 700px;
 }
 .navbar-1{
     background-color: $black-nav;
     display: flex;
     justify-content: space-between;
+    padding: .25rem;
     // THE FIRST DIV
     .navbar-1-left{
         ul{
@@ -69,7 +71,6 @@ body{
         display: flex;
         align-items: center;
         li{
-            list-style: none;
             padding: .4rem;
             background-color: $li-background;
             margin: 0.2rem;
@@ -87,25 +88,39 @@ body{
         }
     }  
 }
+.show {display: block;}
 .navbar-2{
     background-color: $white-nav;
     display: flex;
     justify-content: space-between;
+    padding: .25rem;
     .navbar-2-left{
         display: flex;
         div{
+            .board-list{
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                right: 0;
+                z-index: 1;
+            }
             ul{
                 display: flex;
                 li:first-child{
-                    
+                    i,p,i{
+                        padding: .2rem;
+                    }
                 }
                 li{
-
                     padding: .4rem;
                     background-color: $li-background;
                     margin: 0.2rem;
                     border-radius: 7%;
                     color: #ffff;
+                    z-index: 1;
                     align-items: center;
                     height: 1rem;
                     display: flex;
@@ -118,6 +133,15 @@ body{
                 }
             }
         }
+        div:first-child{
+            ul:first-child{
+                li:nth-child(2){
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    padding: .5rem 1rem;
+                }
+            }
+        }
     }
     .navbar-2-right{
         display: flex;
@@ -125,6 +149,7 @@ body{
             ul{
                 display: flex;
                 li{
+                    z-index: 1;
                     padding: .4rem;
                     background-color: $li-background;
                     margin: 0.2rem;
@@ -166,6 +191,7 @@ body{
             margin-top: .5rem;
         }
         .add-task{
+            cursor: pointer;
             .add-task-1{
                 display: flex;
                 align-items: center;
@@ -174,6 +200,7 @@ body{
         }
     }
     .add-new-list{
+        cursor: pointer;
         display: flex;
         width: 12rem;
         background-color: $white-nav;

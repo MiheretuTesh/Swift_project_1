@@ -6,6 +6,7 @@
 }
 
 body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbG9yfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");
@@ -23,6 +24,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: .25rem;
 }
 
 .navbar-1 .navbar-1-left ul {
@@ -92,7 +94,6 @@ body {
 }
 
 .navbar-1 .navbar-1-right ul li {
-  list-style: none;
   padding: .4rem;
   background-color: rgba(196, 196, 196, 0.5);
   margin: 0.2rem;
@@ -117,6 +118,10 @@ body {
           align-items: center;
 }
 
+.show {
+  display: block;
+}
+
 .navbar-2 {
   background-color: rgba(255, 255, 255, 0.3);
   display: -webkit-box;
@@ -125,6 +130,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: .25rem;
 }
 
 .navbar-2 .navbar-2-left {
@@ -133,10 +139,26 @@ body {
   display: flex;
 }
 
+.navbar-2 .navbar-2-left div .board-list {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 0;
+  z-index: 1;
+}
+
 .navbar-2 .navbar-2-left div ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.navbar-2 .navbar-2-left div ul li:first-child i, .navbar-2 .navbar-2-left div ul li:first-child p, .navbar-2 .navbar-2-left div ul li:first-child i {
+  padding: .2rem;
 }
 
 .navbar-2 .navbar-2-left div ul li {
@@ -145,6 +167,7 @@ body {
   margin: 0.2rem;
   border-radius: 7%;
   color: #ffff;
+  z-index: 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -165,6 +188,12 @@ body {
           align-items: center;
 }
 
+.navbar-2 .navbar-2-left div:first-child ul:first-child li:nth-child(2) {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: .5rem 1rem;
+}
+
 .navbar-2 .navbar-2-right {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -178,6 +207,7 @@ body {
 }
 
 .navbar-2 .navbar-2-right div ul li {
+  z-index: 1;
   padding: .4rem;
   background-color: rgba(196, 196, 196, 0.5);
   margin: 0.2rem;
@@ -226,6 +256,10 @@ body {
   margin-top: .5rem;
 }
 
+#wrapper .container .add-task {
+  cursor: pointer;
+}
+
 #wrapper .container .add-task .add-task-1 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -236,6 +270,7 @@ body {
 }
 
 #wrapper .add-new-list {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
