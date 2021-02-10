@@ -4,10 +4,220 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/style/main.css">
     <title>Document</title>
 </head>
-<body>
-    
+<body> 
+    <nav id="nav" class="top-nav">
+        <div class="navbar-1">
+            <div class="navbar-1-left">
+                <ul>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <svg width="20" height="20" role="presentation" focusable="false" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a1 1 0 011-1h2a1 1 0 
+                                011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 6a1 1 0 011-1h2a1 1 0 011 1v2a1 
+                                1 0 01-1 1H5a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 
+                                001-1V5a1 1 0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 
+                                1h-2a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1V5a1 1 
+                                0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zM5 
+                                16a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H5zm5 1a1 1 0 011-1h2a1 1 0 
+                                011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zm7-1a1 1 0 00-1 1v2a1 1 0 001 
+                                1h2a1 1 0 001-1v-2a1 1 0 00-1-1h-2z" fill="currentcolor">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-item board">
+                            <i class="fa fa-clipboard"></i>
+                            <p>Boards</p>
+                        </a>
+                    </li>
+                    <li class="navbar-item navbar-item-search">
+                        <input type="text" class="navbar-input">
+                        <i class="search-area fa fa-search "></i>
+                       <!-- <span><svg class="search-svg" width="20" height="20" role="presentation" focusable="false" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a1 1 0 011-1h2a1 1 0 
+                                011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 6a1 1 0 011-1h2a1 1 0 011 1v2a1 
+                                1 0 01-1 1H5a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 
+                                001-1V5a1 1 0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 
+                                1h-2a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1V5a1 1 
+                                0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zM5 
+                                16a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H5zm5 1a1 1 0 011-1h2a1 1 0 
+                                011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zm7-1a1 1 0 00-1 1v2a1 1 0 001 
+                                1h2a1 1 0 001-1v-2a1 1 0 00-1-1h-2z" fill="currentcolor">
+                                </path>
+                            </svg> </span> -->
+                        <!-- <i class="fa fa-close"></i> -->
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-1-center">
+                
+            </div>
+            <div class="navbar-1-right">
+                <ul>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-item">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                    </li>
+                    <li class="navbar-item login">
+                        <a href="" class="navbar-link">
+                            <i class="fa fa-user"></i>
+                                <!-- <p>MT</p> -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-2">
+            <div class="navbar-2-left">
+                <div>
+                    <ul>
+                        <li class="navbar-item">
+                            <a href="" class="navbar-link">
+                            <i class="fa fa-bars"></i>
+                            <p class="bord">Board</p>
+                            <i class="fa fa-angle-down"></i>
+                            </a>
+                        </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <p>Project Management</p>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-item">
+                            <i class="far fa-star"></i>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <div>
+                    <ul>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <p>NoteBook Coders</p>
+                        </a>
+                    </li>
+                    <li class="navbar-item private">
+                        <a href="" class="navbar-link">
+                            <p>Private</p>
+                        </a>
+                    </li> 
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link login">
+                            <p>MT</p>
+                        </a>
+                        <a href="" class="navbar-link login">
+                            <p>MT</p>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <p>Invite</p>
+                        </a>
+                    </li>  
+                </ul>
+                </div>
+            </div>
+            <div class="navbar-2-right">
+                <div>
+                    <ul class="navbar-right">
+                        <li class="navbar-item">
+                            <a href="" class="navbar-link">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="" class="navbar-link">
+                                <p>
+                                    Butler
+                                </p>
+                            </a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="" class="navbar-link">   
+                                <p>
+                                    ... Show Menu
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main id="wrapper">
+        <div class="container">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        Project Resource
+                    </p>
+                </div>
+                <div class="inner">
+                    <div class="inner-list">
+                        <div class="inner-top">
+
+                        </div>
+                        <p class="inner-text">
+                            Lorem ipsum dolor sit amet,
+                             consectetur adipisicing elit. 
+                             Suscipit laudantium quod harum 
+                             commodi recusandae ea facilis 
+                             expedita minima rem!
+                        </p>
+                        <div class="inner-bottom">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="inner">
+                    <div class="inner-list">
+                        <div class="inner-top">
+
+                        </div>
+                        <p class="inner-text">
+                            Lorem ipsum dolor sit amet,
+                             consectetur adipisicing elit. 
+                             Suscipit laudantium quod harum 
+                             commodi recusandae ea facilis 
+                             expedita minima rem!
+                        </p>
+                        <div class="inner-bottom">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add-task">
+                <div class="add-task-1">
+                   <i class="fa fa-plus" style="padding: .5rem;"></i>
+                    <p>Add a card</p>
+                </div>
+            </div>
+        </div>
+        <div class="add-new-list">
+            <i class="fa fa-plus" style="margin-right: .5rem;"></i>
+            <p>Add another list</p>
+        </div>
+    </main>
 </body>
 </html>
