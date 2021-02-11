@@ -4,10 +4,20 @@ let ui = new UI();
 
 let wrapper = document.querySelector('#wrapper');
 
+
+
+
 if(wrapper){
     wrapper.addEventListener('click', e => {
-        if(e.target.className === 'add-new-list' || e.target.parentElement.className === 'add-new-list' || e.target.parentElement.parentElement.className === 'add-new-list'){
+        if(ui.isAChild(e,'add-new-list')){
             ui.addList(e);
+        }else if(ui.isAChild(e, 'add-task')){
+            ui.addCard(e);
+        }else if(e.target.className === 'confirm-add-task'){
+            ui.addCardConfirm(e);
+        }else if(ui.isAChild(e, 'cancel-add-task')){
+            ui.addCardCancel(e);
         }
+        
     })
 }

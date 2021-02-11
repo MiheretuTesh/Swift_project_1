@@ -3,20 +3,78 @@ export default class UI{
         this.addListLink = document.querySelector('.add-new-list');
     }
 
-
-    addCardConfirm(){
-
+    isAChild = (e, className) => {
+        if(e.target.className === className || e.target.parentElement.className === className || e.target.parentElement.parentElement.className === className)
+            return true;
+        return false;    
     }
 
-    addCardCancel(){
+    addCardConfirm(e){
+        let target = e.target.parentElement;
+        let data = e.target.previousElementSibling.value;
 
-    }
-
-    addCard(){
         let html = `
-            <div class="add-card-dialog">
+        <div class="inner">
+        <div class="inner-list">
+            <div class="inner-top">
+            </div>
+            <p class="inner-text">
+                ${data}
+            </p>
+            <div class="inner-bottom">
+
+            </div>
+        </div>
+    </div>
+        `;
+    
+
+        
+        target.nextElementSibling.style.display = 'block';
+        target.insertAdjacentHTML('beforebegin', html);
+        target.style.display = "none";
+    }
+
+
+    
+
+    addCardCancel(e){
+        let target = e.target;
+        if(target.tagName === 'svg'){
+            target = target.parentElement;
+        }else if(target.tagName === 'path'){
+            target = target.parentElement.parentElement;
+        }
+
+        target = target.parentElement;
+
+        target.nextElementSibling.style.display = 'block';
+        target.style.display = "none";
+    }
+
+    addCard(e){
+        let html = `
+            <div class="add-task-dialog">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <a class="confirm-add-task">Add Task</a>
+                <a class='cancel-add-task'><i class="fa fa-times"></i></a>
             </div>
         `
+
+        let target;
+
+    
+        if(e.target.className === 'add-task'){
+            target = e.target;
+        }else if(e.target.parentElement.className === 'add-task'){
+            target = e.target.parentElement
+        }else if(e.target.parentElement.parentElement.className === 'add-task'){
+            target = e.target.parentElement.parentElement
+        }
+
+        target.style.display = 'none';
+        target.insertAdjacentHTML('beforebegin', html);
+        
     }
 
 
@@ -25,8 +83,8 @@ export default class UI{
             <div class='container'>
                 <div class="inner-container">
                 <div class="top-container">
-                    <p>
-                        Project Resource
+                    <p contenteditable="true">
+                        New List Group
                     </p>
                 </div>
                 
