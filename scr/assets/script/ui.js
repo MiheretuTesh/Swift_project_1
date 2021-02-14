@@ -14,7 +14,7 @@ export default class UI{
         let data = e.target.previousElementSibling.value;
 
         let html = `
-        <div class="inner">
+        <div  class="inner">
         <div class="inner-list">
             <div class="inner-top">
             </div>
@@ -27,16 +27,10 @@ export default class UI{
         </div>
     </div>
         `;
-    
-
-        
         target.nextElementSibling.style.display = 'block';
         target.insertAdjacentHTML('beforebegin', html);
         target.style.display = "none";
     }
-
-
-    
 
     addCardCancel(e){
         let target = e.target;
@@ -55,9 +49,9 @@ export default class UI{
     addCard(e){
         let html = `
             <div class="add-task-dialog">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <a class="confirm-add-task">Add Task</a>
-                <a class='cancel-add-task'><i class="fa fa-times"></i></a>
+                <textarea name="" id="" cols="30" rows="8"></textarea>
+                <a class="confirm-add-task" style="margin-top: 10px">Add Task</a>
+                <a class='cancel-add-task' style="margin-top: 10px"><i class="fas fa-times"></i></a>
             </div>
         `
 
@@ -80,7 +74,7 @@ export default class UI{
 
     addList(e){
         let html = ` 
-            <div class='container'>
+            <div class='container-top'>
                 <div class="inner-container">
                 <div class="top-container">
                     <p contenteditable="true">

@@ -37,7 +37,7 @@ body {
 }
 
 .navbar-1 .navbar-1-left ul li {
-  padding: .4rem;
+  padding: .4rem !important;
   background-color: rgba(196, 196, 196, 0.5);
   margin: 0.2rem;
   border-radius: 7%;
@@ -45,7 +45,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 1rem;
+  height: 1rem !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,16 +54,16 @@ body {
 
 .navbar-1 .navbar-1-left ul li a {
   color: #ffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .navbar-1 .navbar-1-left ul .board i, .navbar-1 .navbar-1-left ul p {
-  margin-left: .2rem;
+  margin-left: .2rem !important;
 }
 
 .navbar-1 .navbar-1-left ul .navbar-item-search input[type="text"] {
@@ -239,7 +239,7 @@ body {
   display: flex;
 }
 
-#wrapper .container {
+#wrapper .container-top {
   width: 20rem;
   background-color: #EBECF0;
   padding: .5rem;
@@ -250,17 +250,27 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#wrapper .container .inner {
+#wrapper .container-top .inner {
   background-color: #fff;
   padding: 1rem;
   margin-top: .5rem;
-}
-
-#wrapper .container .add-task {
+  -webkit-box-shadow: 0px 0px 10px 0px #d4d3d3;
+          box-shadow: 0px 0px 10px 0px #d4d3d3;
+  border-radius: .3rem;
   cursor: pointer;
 }
 
-#wrapper .container .add-task .add-task-1 {
+#wrapper .container-top .add-task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+#wrapper .container-top .add-task .add-task-1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -286,5 +296,33 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.add-task-dialog textarea {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: .5rem;
+  border: none;
+  outline: none;
+  row-gap: 2;
+  resize: none;
+  height: 5rem;
+  width: 100%;
+  margin-top: .5rem;
+  -webkit-box-shadow: 0px 0px 10px 0px #d4d3d3;
+          box-shadow: 0px 0px 10px 0px #d4d3d3;
+  border-radius: .3rem;
+  color: #203b6b;
+  font-size: 16px;
+}
+
+.add-task-dialog .confirm-add-task {
+  background-color: #3ddb45;
+  width: 5rem;
+  padding: .5rem;
+  border-radius: 5px;
+}
+
+.add-task-dialog a {
+  margin-top: 10rem;
 }
 /*# sourceMappingURL=main.css.map */
