@@ -14,7 +14,7 @@ export default class UI{
         let data = e.target.previousElementSibling.value;
 
         let html = `
-        <div  class="inner">
+        <div class="inner">
         <div class="inner-list">
             <div class="inner-top">
             </div>

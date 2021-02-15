@@ -13,7 +13,8 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 700px;
+  max-height: 500px;
+  overflow-y: hidden;
 }
 
 .navbar-1 {
@@ -233,21 +234,51 @@ body {
           align-items: center;
 }
 
+.container-top::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.container-top::-webkit-scrollbar-track {
+  background: #EBECF0;
+}
+
+/* Handle */
+.container-top::-webkit-scrollbar-thumb {
+  background: #c0bbbb;
+}
+
+/* Handle on hover */
+.container-top::-webkit-scrollbar-thumb:hover {
+  background: #dad6d6;
+}
+
+#wrapper::-webkit-scrollbar {
+  width: 10rem;
+}
+
 #wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 #wrapper .container-top {
-  width: 20rem;
+  width: 17rem;
   background-color: #EBECF0;
   padding: .5rem;
+  min-height: 10px;
   border-radius: 5px;
   margin-left: 1rem;
   margin-top: 1rem;
   color: #203b6b;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-height: 440px;
+  min-width: 15rem;
+  overflow-y: scroll;
+  bottom: 0;
 }
 
 #wrapper .container-top .inner {
@@ -258,6 +289,7 @@ body {
           box-shadow: 0px 0px 10px 0px #d4d3d3;
   border-radius: .3rem;
   cursor: pointer;
+  font-size: 14px;
 }
 
 #wrapper .container-top .add-task {
@@ -296,6 +328,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 14px;
 }
 
 .add-task-dialog textarea {
@@ -304,6 +337,7 @@ body {
   border: none;
   outline: none;
   row-gap: 2;
+  padding: .5rem;
   resize: none;
   height: 5rem;
   width: 100%;
@@ -312,7 +346,7 @@ body {
           box-shadow: 0px 0px 10px 0px #d4d3d3;
   border-radius: .3rem;
   color: #203b6b;
-  font-size: 16px;
+  font-size: 14px !important;
 }
 
 .add-task-dialog .confirm-add-task {
@@ -320,9 +354,164 @@ body {
   width: 5rem;
   padding: .5rem;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 .add-task-dialog a {
   margin-top: 10rem;
+}
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  height: 80%;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  -webkit-transition: 10s ease-in-out;
+  transition: 10s ease-in-out;
+}
+
+.modal-view {
+  background-color: #F4F5F7;
+  margin: auto;
+  margin-top: -5rem;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 90%;
+}
+
+/* Modal Content */
+.modal-head {
+  padding: 10px;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-content {
+  margin: auto;
+  color: black;
+  padding: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-inner-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal-inner-content .modal-left {
+  width: 100%;
+}
+
+.modal-inner-content .modal-left .modal-txt {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #172B4D;
+  font-size: 14px;
+}
+
+.modal-inner-content .modal-left .modal-txt:focus {
+  background-color: #fff !important;
+  cursor: auto;
+  border: 5px solid #4d99cc;
+}
+
+.modal-inner-content .modal-left .modal-text-editor {
+  margin-top: 1rem;
+}
+
+.modal-inner-content .modal-left .modal-text-editor a {
+  background-color: #3ddb45;
+  padding: .2rem .5rem;
+  border-radius: 3px;
+  margin-right: .5rem;
+}
+
+.modal-inner-content .modal-right .modal-settings .modal-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: black;
+  background-color: #EAECEF;
+  color: #172b4d;
+  padding: 0rem .5rem;
+  margin: .5rem;
+  font-size: 14px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 3px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-inner-content .modal-right .modal-settings .modal-btn i, .modal-inner-content .modal-right .modal-settings .modal-btn p {
+  padding: .5rem;
+  width: 100%;
+}
+
+.modal-inner-content .modal-right .modal-settings .modal-btn p {
+  padding-right: 2rem;
+  -ms-flex-preferred-size: 2;
+      flex-basis: 2;
+}
+
+.modal-footer .modal-footer-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-footer .modal-footer-heading i, .modal-footer .modal-footer-heading p {
+  padding: .5rem;
+}
+
+.modal-footer .modal-footer-form input {
+  border: 1px solid #B0B8C3;
+  border-radius: 5px;
+}
+
+.modal-footer .modal-footer-form input:focus {
+  outline: none;
+  border: 0px solid #B0B8C3 !important;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=main.css.map */
