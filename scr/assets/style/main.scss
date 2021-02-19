@@ -214,3 +214,11 @@ body{
         align-items: center;
     }
 }
+
+
+
+.dragging{
+    transform: scale(0.85);
+    cursor: grab;
+}
+
