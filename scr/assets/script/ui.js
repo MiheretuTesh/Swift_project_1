@@ -1,6 +1,7 @@
 export default class UI{
     constructor(){
         this.addListLink = document.querySelector('.add-new-list');
+       
     }
 
     isAChild = (e, className) => {
@@ -14,7 +15,7 @@ export default class UI{
         let data = e.target.previousElementSibling.value;
 
         let html = `
-        <div class="inner">
+        <div class="inner draggable" draggable="true">
         <div class="inner-list">
             <div class="inner-top">
             </div>
@@ -99,4 +100,7 @@ export default class UI{
 
         this.addListLink.insertAdjacentHTML('beforebegin', html);
     }
+
+
+
 }
