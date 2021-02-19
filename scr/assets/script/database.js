@@ -27,7 +27,7 @@ export default class Database {
         .then (function(){
             return this.db.users;
         }).then(function () {
-            console.log("Account created successfully!")
+            console.log("Account created successfully!")        
             location.reload();  
         }).catch(function(error) {   
            console.log("Check out this error: " + error);
@@ -40,16 +40,16 @@ export default class Database {
         let count = 0;
         this.db.users.where('username').equalsIgnoreCase(usernameInput).each(user => {
             if (user.password == passwordInput) {
-                console.log('login success')
+                sessionStorage.setItem("currentUser", usernameInput)
+                return true
             }
             else {
-                console.log(user.password + ' ' + passwordInput)
-                console.log("incorrect username or password try again")
+                return false
             }
         })
 
         //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
-        sessionStorage.setItem("currentUser", usernameInput)
+        
     }
     
 
