@@ -1,36 +1,40 @@
 export default class UI{
     constructor(){
         this.addListLink = document.querySelector('.add-new-list');
+        this.todos = document.querySelector('.todo-group');
     }
 
-    isAChild = (e, className) => {
-        if(e.target.className === className || e.target.parentElement.className === className || e.target.parentElement.parentElement.className === className)
-            return true;
-        return false;    
-    }
-
+   
     addCardConfirm(e){
-        let target = e.target.parentElement;
-        let data = e.target.previousElementSibling.value;
-
+        
         let html = `
-        <div class="inner">
+        <div class="inner draggable" draggable="true">
         <div class="inner-list">
             <div class="inner-top">
             </div>
-            <p class="inner-text">
-                ${data}
-            </p>
-            <div class="inner-bottom">
+                <p class="inner-text">
+                    ${data}
+                </p>
 
+                <div class="inner-bottom">
+
+                </div>
             </div>
         </div>
-    </div>
         `;
-        target.nextElementSibling.style.display = 'block';
-        target.insertAdjacentHTML('beforebegin', html);
-        target.style.display = "none";
+
+        let card = document.createElement('div');
+        card.classList.add('inner')
+        card.classList.add('draggable')
+        card.setAttribute('draggable', 'true')
+    
+        
+        
+        
     }
+
+
+    
 
     addCardCancel(e){
         let target = e.target;
@@ -49,9 +53,9 @@ export default class UI{
     addCard(e){
         let html = `
             <div class="add-task-dialog">
-                <textarea name="" id="" cols="30" rows="8"></textarea>
-                <a class="confirm-add-task" style="margin-top: 10px">Add Task</a>
-                <a class='cancel-add-task' style="margin-top: 10px"><i class="fas fa-times"></i></a>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <a class="confirm-add-task">Add Task</a>
+                <a class='cancel-add-task'><i class="fa fa-times"></i></a>
             </div>
         `
 
@@ -74,7 +78,7 @@ export default class UI{
 
     addList(e){
         let html = ` 
-            <div class='container-top'>
+            <div class='container'>
                 <div class="inner-container">
                 <div class="top-container">
                     <p contenteditable="true">
@@ -93,4 +97,7 @@ export default class UI{
 
         this.addListLink.insertAdjacentHTML('beforebegin', html);
     }
+
+
+
 }
