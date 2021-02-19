@@ -8,13 +8,19 @@
 }
 body{
     font-family: $primary_font_family;
-    box-sizing: border-box;
-    background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbG9yfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;  
-    max-height: 500px;
+    
     overflow-y: hidden;
+}
+.page-1{
+        background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbG9yfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");
+        box-sizing: border-box;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;  
+        height: 800px;
+}
+.page-2{
+    background-color: #fff !important;
 }
 .navbar-1{
     background-color: $black-nav;
@@ -285,7 +291,7 @@ body{
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
-    height: 80%;
+    // height: 80%;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
@@ -296,6 +302,8 @@ body{
   }
   .modal-view{
     background-color: #F4F5F7;
+    margin: auto;
+    // position: absolute; /* Stay in place */
     margin: auto;
     margin-top: -5rem;
     padding: 10px;
