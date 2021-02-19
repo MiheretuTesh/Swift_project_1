@@ -609,17 +609,17 @@ body {
   padding: .5rem;
 }
 
-.page-2 .list_of_projects .member_project {
+.page-2 .list-boards .list_of_projects .member_project {
   display: -ms-grid;
   display: grid;
 }
 
-.list-members {
+.page-2 .list-boards .list_of_projects .member_project .list-members {
   margin: auto;
   width: 50%;
 }
 
-.board {
+.page-2 .list-boards .list_of_projects .member_project .boards {
   height: 6em;
   background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
   background-size: cover;
@@ -629,7 +629,7 @@ body {
   cursor: pointer;
 }
 
-.board p {
+.page-2 .list-boards .list_of_projects .member_project .boards p {
   font-size: 1.3rem;
   font-weight: 500;
   padding: .5rem;
