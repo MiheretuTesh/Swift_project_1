@@ -521,4 +521,117 @@ body {
   border: 0px solid #B0B8C3 !important;
   border-radius: 5px;
 }
+
+.page-2 .contents .contents_nav {
+  height: 10rem;
+  background-color: #F4F5F7;
+  border: 1px solid #DFE1E6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.page-2 .contents .contents_nav ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (100px)[3];
+      grid-template-columns: repeat(3, 100px);
+}
+
+.page-2 .contents .contents_nav ul .nav-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a {
+  height: 100%;
+  background-color: #DFE1E6;
+  color: #172B4D;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .6rem;
+  margin-bottom: 0rem;
+  border: 1px solid #DFE1E6;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a:hover {
+  background-color: #DFE1E6;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a:focus {
+  background-color: #ffffff;
+  border-bottom: #fff;
+  margin-bottom: -.05rem;
+}
+
+.page-2 .list-boards {
+  margin-top: 3rem !important;
+  width: 75%;
+  margin: auto;
+  color: #fff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (250px)[4];
+      grid-template-columns: repeat(4, 250px);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.page-2 .list-boards .boards {
+  height: 6em;
+  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.page-2 .list-boards .boards p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: .5rem;
+}
+
+.page-2 .list_of_projects .member_project {
+  display: -ms-grid;
+  display: grid;
+}
+
+.list-members {
+  margin: auto;
+  width: 50%;
+}
+
+.board {
+  height: 6em;
+  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.board p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: .5rem;
+}
 /*# sourceMappingURL=main.css.map */
