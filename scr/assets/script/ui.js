@@ -1,12 +1,15 @@
 export default class UI{
     constructor(){
-        this.addListLink = document.querySelector('.add-new-list');
+        this.addTaskBtn = document.querySelector('.add-task');
         this.todos = document.querySelector('.todo-group');
+        this.modal = document.querySelector('#task-adding-modal');
     }
 
    
 
-
+    addTask(){
+        this.modal.style.display = 'block';
+    }
 
     
 

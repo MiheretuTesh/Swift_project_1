@@ -2,17 +2,23 @@ import UI from './ui.js';
 
 let draggables = document.querySelectorAll('.draggable');
 let wrapper = document.querySelector('#wrapper');
+let addTaskBtn = document.querySelector('.add-task');
 
 
 let ui = new UI();
 
 
+if(addTaskBtn){
+    console.log('fadkfalskfj')
+    addTaskBtn.addEventListener('click', e => ui.addTask());
+}
+
 if(wrapper){
     wrapper.addEventListener('click', e => {
-        if(ui.isAChild(e,'add-new-list')){
+        if(e.target.classList.contains('add-new-list')){
             ui.addList(e);
             
-        }else if(e.target.classList.contains(''))){
+        }else if(e.target.classList.contains('')){
             ui.addCard(e);
         }else if(e.target.classList.contains('')){
             ui.addCardConfirm(e);
