@@ -12,11 +12,11 @@ if(wrapper){
         if(ui.isAChild(e,'add-new-list')){
             ui.addList(e);
             
-        }else if(ui.isAChild(e, 'add-task')){
+        }else if(e.target.classList.contains(''))){
             ui.addCard(e);
-        }else if(e.target.className === 'confirm-add-task'){
+        }else if(e.target.classList.contains('')){
             ui.addCardConfirm(e);
-        }else if(ui.isAChild(e, 'cancel-add-task')){
+        }else if(e.target.classList.contains('')){
             ui.addCardCancel(e);
         }
         
