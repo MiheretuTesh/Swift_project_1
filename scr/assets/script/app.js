@@ -7,6 +7,26 @@ let wrapper = document.querySelector('#wrapper');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if(wrapper){
     wrapper.addEventListener('click', e => {
         if(ui.isAChild(e,'add-new-list')){
