@@ -6,29 +6,67 @@
 // I can add filter if you want. You guys design a filter checkbox and let me know. I'll write queries based on that
 // if you guys feel like the DB operations are sort of buggy, tell me
 
-var db = new Dexie("swiftDB");
 
-//create database
-db.version(1).stores({
-    users: '++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks',
-    project: '++id, name, managedBy, hasMembers, deadline, description, status',
-    task: '++id, name, doneBy, assignedBy, underProject, tag, deadline, description, status' //tag: b, t, i, d
-});
-db.open();
+export default class Database {
+
+    constructor(){
+            var db = new Dexie("swiftDB");
+    db.version(1).stores({
+        users: '++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks',
+        project: '++id, name, managedBy, hasMembers, deadline, description, status',
+        task: '++id, name, doneBy, assignedBy, underProject, tag, deadline, description, status' //tag: b, t, i, d
+    });
+    db.open();
+    }
+
+    //create account in the database
+     createAccount (fullName, username, password, birthDay) {
+        db.users.put({fullName: fullName.toLowerCase(), username: username.toLowerCase(), password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
+            return db.users;
+        }).then(function () {
+            console.log("Account created successfully!")
+            location.reload();
+        }).catch(function(error) {   
+           alert ("Check this error out: " + error);
+        });
+    }
+
+
+}//last brace
+
+
+
+
+function login(){
+    //get username and password inputs
+    const usernameInput = document.querySelector("#username").value
+    const passwordInput = document.querySelector("#password").value
+    //check if account exitsts
+    db.users.where({username: usernameInput, password:passwordInput})   
+    
+    //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
+    sessionStorage.setItem("currentUser", usernameInput)
+}
+
 
 function createAccount () {
-    // get username and password and attach an eveny listener
+    // get username and password and attach an event listener
     const fullName = document.querySelector("#fullNameID").value
     const username = document.querySelector("#unameID").value
     const password = document.querySelector("#passID").value
     const birthDay = document.querySelector("#birthDay").value
+    
+    //
+    //convert all inputs into lower case here. 
+    //
+
     // add account to database
     db.users.put({fullName: fullName, username: username, password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
         return db.users;
     }).then(function () {
         console.log("Account created successfully!")
         location.reload();
-    }).catch(function(error) {
+    }).catch(function(error) {   
        alert ("Check this error out: " + error);
     });
 }
@@ -40,6 +78,10 @@ function createProject () {
     const projectMembers = ['sura', 'segno', 'mere', 'kaleab']
     const Deadline = document.querySelector("#projectDeadLine").value
     const description = document.querySelector("#projectDescription").value
+
+    //
+    //convert all inputs into lower case here. 
+    //
 
     db.project.put({name: projectName, manageBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
         return db.users;
@@ -71,6 +113,14 @@ function createTask () {
     });
 }
 
+
+function getProjects() {
+ db.project.each( project
+
+ )
+}
+
+
 function getUsers(){
     db.users.each( user => {
         const ul = document.querySelector("#listUsers")
@@ -90,11 +140,7 @@ function getTasks() {
 //     })
 // }
 
-//Create Account    
-const registerBtn = document.querySelector("#registerBtn")
-if (registerBtn) {
-    registerBtn.addEventListener('click', createAccount)
-}
+
 //getUsers
 const getUsersBtn = document.querySelector("#getUsersBtn")
 if (getUsersBtn){
