@@ -8,14 +8,14 @@ const password_register = document.querySelector("#passID")
 const birthDay = document.querySelector("#birthDay")
 //Log in
 const login = document.querySelector("#login")
-const username = document.querySelector("#username").value
-const password = document.querySelector("#password").value
+const username = document.querySelector("#username")
+const password = document.querySelector("#password")
 
 
 //login
 login.addEventListener('submit', (e) => {
     e.preventDefault();
-    DB.login(username, password)
+    DB.login(username.value, password.value)
 })
 //create account
 register.addEventListener('submit', (e) => {

@@ -10,66 +10,51 @@
 export default class Database {
 
     constructor(){
-            var db = new Dexie("swiftDB");
-    db.version(1).stores({
-        users: '++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks',
-        project: '++id, name, managedBy, hasMembers, deadline, description, status',
-        task: '++id, name, doneBy, assignedBy, underProject, tag, deadline, description, status' //tag: b, t, i, d
-    });
-    db.open();
+        this.db = new Dexie("swiftDB");
+
+        this.db.version(1).stores({
+            users: '++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks',
+            project: '++id, name, managedBy, hasMembers, deadline, description, status',
+            task: '++id, name, doneBy, assignedBy, underProject, tag, deadline, description, status' //tag: b, t, i, d
+        });
+
+        this.db.open();
     }
 
     //create account in the database
      createAccount (fullName, username, password, birthDay) {
-        db.users.put({fullName: fullName.toLowerCase(), username: username.toLowerCase(), password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
-            return db.users;
+        this.db.users.put({fullName: fullName.toLowerCase(), username: username.toLowerCase(), password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] })
+        .then (function(){
+            return this.db.users;
         }).then(function () {
             console.log("Account created successfully!")
-            location.reload();
+            location.reload();  
         }).catch(function(error) {   
-           alert ("Check this error out: " + error);
+           console.log("Check out this error: " + error);
         });
     }
+    
 
+     login(usernameInput, passwordInput){
+        //check if account exitsts
+        let count = 0;
+        this.db.users.where('username').equalsIgnoreCase(usernameInput).each(user => {
+            if (user.password == passwordInput) {
+                console.log('login success')
+            }
+            else {
+                console.log(user.password + ' ' + passwordInput)
+                console.log("incorrect username or password try again")
+            }
+        })
+
+        //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
+        sessionStorage.setItem("currentUser", usernameInput)
+    }
+    
 
 }//last brace
 
-
-
-
-function login(){
-    //get username and password inputs
-    const usernameInput = document.querySelector("#username").value
-    const passwordInput = document.querySelector("#password").value
-    //check if account exitsts
-    db.users.where({username: usernameInput, password:passwordInput})   
-    
-    //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
-    sessionStorage.setItem("currentUser", usernameInput)
-}
-
-
-function createAccount () {
-    // get username and password and attach an event listener
-    const fullName = document.querySelector("#fullNameID").value
-    const username = document.querySelector("#unameID").value
-    const password = document.querySelector("#passID").value
-    const birthDay = document.querySelector("#birthDay").value
-    
-    //
-    //convert all inputs into lower case here. 
-    //
-
-    // add account to database
-    db.users.put({fullName: fullName, username: username, password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
-        return db.users;
-    }).then(function () {
-        console.log("Account created successfully!")
-        location.reload();
-    }).catch(function(error) {   
-       alert ("Check this error out: " + error);
-    });
-}
 
 function createProject () {
     // get project details form HTML document
@@ -174,3 +159,37 @@ if (getTasksBtn){
 
 
 
+
+function login(){
+    //get username and password inputs
+    const usernameInput = document.querySelector("#username").value
+    const passwordInput = document.querySelector("#password").value
+    //check if account exitsts
+    db.users.where({username: usernameInput, password:passwordInput})   
+    
+    //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
+    sessionStorage.setItem("currentUser", usernameInput)
+}
+
+
+function createAccount () {
+    // get username and password and attach an event listener
+    const fullName = document.querySelector("#fullNameID").value
+    const username = document.querySelector("#unameID").value
+    const password = document.querySelector("#passID").value
+    const birthDay = document.querySelector("#birthDay").value
+    
+    //
+    //convert all inputs into lower case here. 
+    //
+
+    // add account to database
+    db.users.put({fullName: fullName, username: username, password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
+        return db.users;
+    }).then(function () {
+        console.log("Account created successfully!")
+        location.reload();
+    }).catch(function(error) {   
+       alert ("Check this error out: " + error);
+    });
+}
