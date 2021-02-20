@@ -44,7 +44,8 @@ export default class Database {
     }
     //create project
     async createProject (projectName, projectManager, projectMembers, Deadline, description) {
-       await this.db.project.put({name: projectName.toLowerCase(), managedBy:projectManager.toLowerCase(), hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
+        this.addMemberToProject("sample", 'usernameInput')
+       await this.db.project.put({name: projectName.toLowerCase(), managedBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
             return db.users;
         }).then(function () {
             console.log("Project created successfully!")
@@ -67,7 +68,7 @@ export default class Database {
         }
 
     //create tasks
-     async createTask (name, doneBy, assignedBy, underProject, tag, Deadline, description) {
+     async createTask (taskName, doneBy, assignedBy, underProject, tag, Deadline, description) {
         this.db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underProject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
             return db.users;
         }).then(function (users) {
@@ -86,52 +87,60 @@ export default class Database {
     return usersList
     }
     
-    //get a user
+    //get user
     async getUser(usernameInput){
-        foundUser = false;
         let userInfo;
-        await this.db.users.each(user => {
-            if (user.username == usernameInput){
-                userInfo = {
-                    "username": user.username, 
-                    "fullName": user.fullName, 
-                    "password": user.password,
-                    "birthDay": user.birthDay,
-                    "managerOf": user.managerOf,
-                    "memberOf": user.memberOf, 
-                    "hasTasks": user.hasTasks
-                }
-                foundUser = true
-            }
+        await this.db.users.get({username:usernameInput})
+        .then((user) => userInfo = {
+            "username": user.username, 
+            "fullName": user.fullName, 
+            "password": user.password,
+            "birthDay": user.birthDay,
+            "managerOf": user.managerOf,
+            "memberOf": user.memberOf, 
+            "hasTasks": user.hasTasks
         })
-        if (foundUser) { return userInfo }
-        return foundUser
+        .catch (function (error){
+            console.log('error performing get User operation')
+          });
     }
-
+    // get project
     async getProject(projectNameInput){
-        foundProject = false;
         let projectInfo;
-        await this.db.users.each(project => {
-            if (project.name == projectNameInput){ 
-                projectInfo = {  
-                    "name":project.name ,
-                    "managedBy":project.managedBy ,
-                    "hasMembers":project.hasMembers ,
-                    "deadline":project.deadline ,
-                    "description":project.description ,
-                    "status":project.status ,
-                }
-                foundProject = true
+        await this.db.project.get({name:projectNameInput})
+        .then((project) => {
+            projectInfo = {
+                "name":project.name ,
+                "managedBy":project.managedBy ,
+                "hasMembers":project.hasMembers ,
+                "deadline":project.deadline ,
+                "description":project.description ,
+                "status":project.status ,
             }
         })
-        if (foundProject) {return projectInfo}
-        return foundProject
     }
+    //add a member to a project consists of two operations: 1. Adding the project to the list of projects that user is a member of
+    //2.Addin the user the list of users that project has as it's members
 
-
-
-    async addMember(usernameInput, projectNameInput){
-        
+    //Operation 1
+    async addMemberToProject(projectNameInput, usernameInput){
+        //fetch list containing members of that project
+        let projectMembers;
+        await this.db.project.get({name: projectNameInput})
+        .then((project) => {
+           projectMembers = project.hasMembers;
+           return projectMembers
+        })
+        .then((projectMembers) => {
+            projectMembers.push(usernameInput);
+            return projectMembers
+        })
+        .then((projectMembers) => {
+            this.db.project.where("name").equals(projectNameInput).modify({hasMembers: projectMembers});
+        })
+        .catch(function (error){
+            console.log(`Lo and Behold! Yet another error: ${error}`)
+        })
     }
 
     
@@ -148,7 +157,18 @@ export default class Database {
     // delete project
     // drop task
     // progress
+    // deadline should not be set in the past only into the future
+
+
+    // .then((projectMembers) => {
+    //     for (let i=0; i<projectMembers.length; i++){
+    //         if (projectMembers[i] == usernameInput) {
+    //             projectMembers = projectMembers.splice(i, 1);
+    //             i--;
+    //         }
+    //     }
+    // }) 
+
+
 
 }//end of curly brace
-
-
