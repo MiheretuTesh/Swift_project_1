@@ -77,7 +77,7 @@ export default class Database {
            alert ("Check this error out: " + error);
         });
     }
-    
+    //get users
     async getUsers(){
         let usersList = [];
         await this.db.users.each( user => {
@@ -86,6 +86,10 @@ export default class Database {
     return usersList
     }
     
+
+
+
+
 
 }//end of curly brace
 
