@@ -50,6 +50,26 @@ if(cardModalSave){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if(wrapper){
     wrapper.addEventListener('click', e => {
         if(e.target.classList.contains('add-new-list')){

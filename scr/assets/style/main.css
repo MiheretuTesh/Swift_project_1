@@ -534,4 +534,231 @@ body {
   border: 0px solid #B0B8C3 !important;
   border-radius: 5px;
 }
+
+.page-2 .contents .contents_nav {
+  height: 10rem;
+  background-color: #F4F5F7;
+  border: 1px solid #DFE1E6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.page-2 .contents .contents_nav ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (100px)[3];
+      grid-template-columns: repeat(3, 100px);
+}
+
+.page-2 .contents .contents_nav ul .nav-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a {
+  height: 100%;
+  background-color: #DFE1E6;
+  color: #172B4D;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .6rem;
+  margin-bottom: 0rem;
+  border: 1px solid #DFE1E6;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a:hover {
+  background-color: #DFE1E6;
+}
+
+.page-2 .contents .contents_nav ul .nav-li .nav-a:focus {
+  background-color: #ffffff;
+  border-bottom: #fff;
+  margin-bottom: -.05rem;
+}
+
+.page-2 .contents .list-boards {
+  margin-top: 3rem !important;
+  width: 75%;
+  margin: auto;
+  color: #fff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (250px)[4];
+      grid-template-columns: repeat(4, 250px);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.page-2 .contents .list-boards .boards {
+  height: 6em;
+  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.page-2 .contents .list-boards .boards p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: .5rem;
+}
+
+.page-2 .contents .list-boards .list_of_projects .member_project {
+  display: -ms-grid;
+  display: grid;
+}
+
+.page-2 .contents .list-boards .list_of_projects .member_project .boards {
+  height: 6em;
+  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.page-2 .contents .list-boards .list_of_projects .member_project .boards p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: .5rem;
+}
+
+.page-2 .contents .list-members {
+  margin: auto;
+  margin-top: 5rem;
+  width: 70%;
+}
+
+.page-2 .contents .list-members .list_of_projects {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.page-2 .contents .list-members .list_of_projects .board-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.new-board {
+  height: 6em;
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  background-color: rgba(240, 233, 233, 0.3);
+  cursor: pointer;
+}
+
+.new-board p {
+  font-size: 1.3rem !important;
+  font-weight: 500;
+  padding: .5rem;
+}
+
+.modal-1 {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-top: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  width: 100%;
+  margin: auto;
+}
+
+.modal-container .modal-inner-1 {
+  background-color: #fff;
+  margin-top: 1rem;
+  height: 10rem;
+  width: 20rem !important;
+  max-width: 25rem;
+  padding: 1rem;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal-container .modal-close {
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.modal-container .modal-inner-1 h1 {
+  font-size: 1rem;
+  color: #000;
+}
+
+.modal-container .modal-inner-1 input[type="text"] {
+  margin-top: 2rem;
+  background-color: transparent;
+  padding: .3rem .3rem;
+  border-radius: 5px;
+  border: none;
+  width: 20rem;
+  margin-right: .5rem;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  outline: none;
+}
+
+.modal-container .modal-inner-1 input[type="text"]:focus {
+  background-color: #e8e4e4 !important;
+  border: none;
+}
+
+.modal-container .modal-inner-1 .btn-project {
+  margin-top: 2rem;
+  outline: none;
+  padding: .5rem;
+}
 /*# sourceMappingURL=main.css.map */
