@@ -67,8 +67,13 @@ export default class Database {
         }
 
     //create tasks
+<<<<<<< Updated upstream
      async createTask () {
         await this.db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underPorject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
+=======
+     createTask () {
+        db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underPorject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
+>>>>>>> Stashed changes
             return db.users;
         }).then(function (users) {
             console.log("Task created successfully!")

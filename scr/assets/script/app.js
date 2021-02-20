@@ -23,15 +23,24 @@ const listProject = document.querySelector("#listProject")
     const projectMembers = document.querySelector("#projectMembers")
     const Deadline = document.querySelector("#projectDeadLine")
     const description = document.querySelector("#projectDescription")
-//create tasks
-
-
+//create task
+const getTaskBtn = document.querySelector("#getTaskBtn")
+const createTaskBtn = document.querySelector("#createTaskBtn")
+const listTask = document.querySelector("#listTask")
+    //task details
+    const taskName = document.querySelector("#taskName")
+    const doneBy  = document.querySelector("#doneBy")
+    const assignedBy = document.querySelector("#assignedBy")
+    const underPorject = document.querySelector("#underPorject")
+    const tag = document.querySelector("#tag")
+    const taskDeadline = document.querySelector("#taskDeadline")
+    const taskDescription = document.querySelector("#taskDescription")
 
 //create account
 if (createAccountBtn){
-    createAccountBtn.addEventListener('submit', (e) => {
+    createAccountBtn.addEventListener('submit', async (e) => {
         e.preventDefault();
-        DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
+        let  accountCreationBool = await DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
     })}
 //login
 if (login){
@@ -64,19 +73,19 @@ if (getUsersBtn){
 
 //create project
 if (createProjectBtn){
-    createProjectBtn.addEventListener('click', (e) => {
+    createProjectBtn.addEventListener('click', async (e) => {
         console.log('event fired')
         e.preventDefault();
-        let accountCreationBool = DB.createProject(projectName.value, projectManager.value, projectMembers.value, Deadline.value, description.value);
+        let projectCreationBool = await DB.createProject(projectName.value, projectManager.value, projectMembers.value, Deadline.value, description.value);
         // use accountCreationBool here, or pass it to another function 
 })}
-
 //get Projects
 getProjectBtn.addEventListener('click', (e) => {
     console.log('event fired')
     e.preventDefault();
-    DB.getProjects().then(projects => {
-    projects.forEach((project) =>  {
+    DB.getProjects().then(data => {
+    data[0].forEach((datum) =>  {
+        //modify the code below to paint the UI
         var li = document.createElement('li')
         li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
         listProject.appendChild(li)
@@ -84,3 +93,11 @@ getProjectBtn.addEventListener('click', (e) => {
     });
 
 })       
+//create project
+if (createTaskBtn){
+    createTaskBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        let taskCreationBool = 
+    })
+}
