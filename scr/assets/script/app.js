@@ -26,30 +26,68 @@ const getUsersBtn = document.querySelector("#getUsersBtn")
 const listUser = document.querySelector("#listUser")
 //createProject and getProject
 const getProjectBtn = document.querySelector("#getProjectBtn")
-const createProjectBtn = document.querySelector("#createProjectBtn")
+const createProjectBtn = document.querySelector(".new-board")
 const listProject = document.querySelector("#listProject")
-    //project details
-    const projectName = document.querySelector("#projectName")
-    const projectMembers = document.querySelector("#projectMembers")
-    const Deadline = document.querySelector("#projectDeadLine")
-    const description = document.querySelector("#projectDescription")
+const projectForm = document.querySelector('.addProjectForm');
 //create task
 const getTaskBtn = document.querySelector("#getTaskBtn")
 const createTaskBtn = document.querySelector("#createTaskBtn")
 const listTask = document.querySelector("#listTask")
-    //task details
-    const taskName = document.querySelector("#taskName")
-    const doneBy  = document.querySelector("#doneBy")
-    const assignedBy = document.querySelector("#assignedBy")
-    const underPorject = document.querySelector("#underPorject")
-    const tag = document.querySelector("#tag")
-    const taskDeadline = document.querySelector("#taskDeadline")
-    const taskDescription = document.querySelector("#taskDescription")
+//task details
+const taskName = document.querySelector("#taskName")
+const doneBy  = document.querySelector("#doneBy")
+const assignedBy = document.querySelector("#assignedBy")
+const underPorject = document.querySelector("#underPorject")
+const tag = document.querySelector("#tag")
+const taskDeadline = document.querySelector("#taskDeadline")
+const taskDescription = document.querySelector("#taskDescription")
 
 
+if(projectForm){
+    projectForm.addEventListener('submit', e => {
+        e.preventDefault();
+        
+
+        let inputs = [... e.explicitOriginalTarget];
+        
+        const [projectName, deadline]= [...inputs];
+        const description = inputs[inputs.length-2];
+        let userNames = inputs.slice(2, inputs.length-2)
+        userNames = userNames.filter(user => user.checked).map(user => user.value);
+        
+        console.log('Project Name', projectName.value)
+        console.log('Deadline ', deadline.value);
+        console.log('Description ', description.value)
+        console.log('Users Added ', userNames);
+
+        DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), 
+                        userNames, deadline.value, description.value)
+                        .then(() => {
+                            DB.getProjects()
+                                .then(projects => ui.hideAddProject(projects));
+                        });
+
+    });
+
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        e.preventDefault();
+        DB.getProjects()
+            .then(projects => ui.displayProjects(projects));
+    });
+}
+
+if(createProjectBtn){
+    createProjectBtn.addEventListener('click', e => {
+        e.preventDefault();
+        DB.getUsers().then(users => {
+            ui.addProject(users)
+        });
+    });
+}
 
 if(addTaskBtn){
-    console.log('fadkfalskfj')
+    console.log('Creating task ... ');
     addTaskBtn.addEventListener('click', e => ui.addTask());
 }
 
@@ -58,9 +96,11 @@ if(cardModalSave){
     cardModalSave.addEventListener('click', e => {
         e.preventDefault();
         ui.addCard(cardModalTitle.textContent);
+        ui.hideAddTask()
     })
-}
+    
 
+}
 
 
 if(wrapper){
@@ -124,9 +164,9 @@ let getDragAfterElement = (container, y) => {
 
 //create account
 if (createAccountBtn){
-    createAccountBtn.addEventListener('submit', async (e) => {
+    createAccountBtn.addEventListener('submit', (e) => {
         e.preventDefault();
-        let  accountCreationBool = await DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
+        DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
     })}
 //login
 if (login){
@@ -150,26 +190,28 @@ if (getUsersBtn){
 
 //create project
 if (createProjectBtn){
-    createProjectBtn.addEventListener('click', async (e) => {
+    createProjectBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
-        let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
+        // let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
         // use accountCreationBool here, or pass it to another function 
 })}
-//get Projects
-getProjectBtn.addEventListener('click', (e) => {
-    console.log('event fired')
-    e.preventDefault();
-    DB.getProjects().then(data => {
-    data[0].forEach((datum) =>  {
-        //modify the code below to paint the UI
-        var li = document.createElement('li')
-        li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
-        listProject.appendChild(li)
-    })
-    });
 
-})       
+//get Projects
+if(getProjectBtn){
+    getProjectBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        DB.getProjects().then(projects => {
+        projects.forEach((project) =>  {
+            var li = document.createElement('li')
+            li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
+            listProject.appendChild(li)
+        })
+        });
+    
+    })    
+}   
 //create project
 if (createTaskBtn){
     createTaskBtn.addEventListener('click', (e) => {
