@@ -46,7 +46,8 @@ const taskDescription = document.querySelector("#taskDescription")
 if(projectForm){
     projectForm.addEventListener('submit', e => {
         e.preventDefault();
-        ui.hideAddProject();
+        
+
         let inputs = [... e.explicitOriginalTarget];
         
         const [projectName, deadline]= [...inputs];
@@ -60,8 +61,19 @@ if(projectForm){
         console.log('Users Added ', userNames);
 
         DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), 
-                        userNames, deadline.value, description.value);
+                        userNames, deadline.value, description.value)
+                        .then(() => {
+                            DB.getProjects()
+                                .then(projects => ui.hideAddProject(projects));
+                        });
 
+    });
+
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        e.preventDefault();
+        DB.getProjects()
+            .then(projects => ui.displayProjects(projects));
     });
 }
 

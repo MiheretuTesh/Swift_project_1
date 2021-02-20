@@ -68,14 +68,14 @@ export default class Database {
         console.log('got here')
         let projectList = []
         await this.db.project.each( project => {
-           projectList.push([project.name, 
-                            project.managedBy, 
-                            project.hasMembers, 
-                            project.deadline, 
-                            project.Description, 
-                            project.status])
+           projectList.push({'name': project.name, 
+                            'managedBy': project.managedBy, 
+                            'members': project.hasMembers, 
+                            'deadline': project.deadline, 
+                            'description': project.Description, 
+                            'status': project.status})
                             })
-        return projectList
+        return projectList;
         }
 
     //create tasks

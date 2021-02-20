@@ -6,6 +6,7 @@ export default class UI{
         this.projectModal = document.querySelector('#project-adding-modal');
         this.login = document.querySelector('#login');
         this.submitButtonProject = document.querySelector('.submitProjectBtn');
+        this.boardsContainer = document.querySelector('.list-boards');
     }
 
    
@@ -18,16 +19,17 @@ export default class UI{
         this.taskModal.style.display = 'none';
     }
 
-    hideAddProject(){
-        this.submitButtonProject.disabled = 'true';
-        this.projectModal.querySelector('.spinner').style.display = 'block' 
+    hideAddProject(projects){
+        this.submitButtonProject.disabled = 'true'; 
+        this.projectModal.querySelector('.spinner').style.display = 'block'; 
+        // location.reload()
 
         setTimeout(() => {
+            this.submitButtonProject.removeAttribute('disabled');
             this.projectModal.style.display = 'none'; 
-            this.projectModal.querySelector('.spinner').style.display = 'none' 
-            location.reload();
-
-        }, 2000)
+            this.projectModal.querySelector('.spinner').style.display = 'none'
+            this.displayProjects(projects); 
+        }, 1000)
 
     }
 
@@ -38,6 +40,20 @@ export default class UI{
     }
 
     
+    displayProjects(projects){
+        let html = ``;
+        projects.forEach(project => {
+            html += `<div class="boards">
+            <p>${project.name}</p>
+            <p class="bttom-block-description">${project.description}</p>
+        </div>`
+        });
+
+        
+        this.boardsContainer.querySelector('.new-board').insertAdjacentHTML('beforebegin',html);
+
+    }
+
 
     addCard(title){
         let html = `
@@ -72,7 +88,7 @@ export default class UI{
             fail.style.color = 'green';
             fail.textContent = successMsg;
             this.login.querySelector('.spinner').style.display = 'block'; 
-            setTimeout(() => window.open('dash_board.html', "_blank"), 2000)
+            setTimeout(() => window.open('dash_board.html', "_blank"), 1000)
 
         }else{
             fail.style.background = '#ffe0e0';
