@@ -8,10 +8,13 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script type='module' src="./assets/script/app.js" defer></script>
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="./assets/style/main.css">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
     <div class="page-2">
@@ -106,7 +109,13 @@
         <div id="project-adding-modal" class="modal">
             <div class="modal-view">
                 <div class="modal-head">
-                    <h2 class="modal-heading" style="width: 100%;">Add New Project</h2>
+                    <h2 class="modal-heading" style="width: 100%;">Add New Project
+                        <span class="projectManager modal-heading" style="font-size: 0.5em; color: green;">
+
+                        </span>
+                    </h2>
+                    
+                    
                     <span class="close">&times;</span>
                 </div>
 
@@ -127,7 +136,10 @@
                             <label class="modalLabel" for="deadlineForm">Description: </label><br>
                             <textarea cols="50" rows="10"></textarea><br><br>
 
-                            <input type="submit" value="Add">
+                            <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
+
+                            
+                            <input class="submitProjectBtn" type="submit" value="Add">
                         </form>
                         
                         

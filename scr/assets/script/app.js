@@ -46,13 +46,21 @@ const taskDescription = document.querySelector("#taskDescription")
 if(projectForm){
     projectForm.addEventListener('submit', e => {
         e.preventDefault();
+        ui.hideAddProject();
         let inputs = [... e.explicitOriginalTarget];
-        // const projectName, projectMembers, deadline, description;
-        // let accountCreationBool = 
-        DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), 
-                        projectMembers.value, deadline.value, description.value);
-
         
+        const [projectName, deadline]= [...inputs];
+        const description = inputs[inputs.length-2];
+        let userNames = inputs.slice(2, inputs.length-2)
+        userNames = userNames.filter(user => user.checked).map(user => user.value);
+        
+        console.log('Project Name', projectName.value)
+        console.log('Deadline ', deadline.value);
+        console.log('Description ', description.value)
+        console.log('Users Added ', userNames);
+
+        DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), 
+                        userNames, deadline.value, description.value);
 
     });
 }
@@ -76,7 +84,10 @@ if(cardModalSave){
     cardModalSave.addEventListener('click', e => {
         e.preventDefault();
         ui.addCard(cardModalTitle.textContent);
+        ui.hideAddTask()
     })
+    
+
 }
 
 

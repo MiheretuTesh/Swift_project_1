@@ -5,6 +5,7 @@ export default class UI{
         this.taskModal = document.querySelector('#task-adding-modal');
         this.projectModal = document.querySelector('#project-adding-modal');
         this.login = document.querySelector('#login');
+        this.submitButtonProject = document.querySelector('.submitProjectBtn');
     }
 
    
@@ -13,7 +14,25 @@ export default class UI{
         this.taskModal.style.display = 'block';
     }
 
+    hideAddTask(){
+        this.taskModal.style.display = 'none';
+    }
+
+    hideAddProject(){
+        this.submitButtonProject.disabled = 'true';
+        this.projectModal.querySelector('.spinner').style.display = 'block' 
+
+        setTimeout(() => {
+            this.projectModal.style.display = 'none'; 
+            this.projectModal.querySelector('.spinner').style.display = 'none' 
+            location.reload();
+
+        }, 2000)
+
+    }
+
     addProject(listOfUsers){
+        this.projectModal.querySelector('.projectManager').textContent = `(managed by ${sessionStorage.getItem('currentUser')})`;
         this.projectModal.style.display = 'block';
         this.generateCheckbox(listOfUsers);
     }
