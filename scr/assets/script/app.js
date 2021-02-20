@@ -10,6 +10,9 @@ const birthDay = document.querySelector("#birthDay")
 const login = document.querySelector("#login")
 const username = document.querySelector("#username")
 const password = document.querySelector("#password")
+//get users
+const getUsersBtn = document.querySelector("#getUsersBtn")
+const listUser = document.querySelector("#listUser")
 //createProject and getProject
 const getProjectBtn = document.querySelector("#getProjectBtn")
 const createProjectBtn = document.querySelector("#createProjectBtn")
@@ -39,6 +42,25 @@ login.addEventListener('submit', (e) => {
     })
     
 })}
+//get users
+if (getUsersBtn){
+    let usersList = []
+    getUsersBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        DB.getUsers().then(users => {
+            users.forEach(user => {
+                var li = document.createElement('li')
+                li.innerHTML = `${user[0]} ${user[1]} ${user[2]} ${user[3]} ${user[4]} ${user[5]} ${user[6]}`
+                listUser.appendChild(li)
+            })
+
+        })            
+    })
+}
+
+
+
 //create project
 if (createProjectBtn){
     createProjectBtn.addEventListener('click', (e) => {
@@ -52,10 +74,10 @@ if (createProjectBtn){
 getProjectBtn.addEventListener('click', (e) => {
     console.log('event fired')
     e.preventDefault();
-    DB.getProjects().then(data => {
-    data.forEach((datum) =>  {
+    DB.getProjects().then(projects => {
+    projects.forEach((project) =>  {
         var li = document.createElement('li')
-        li.innerHTML = `${datum[0]} & ${datum[1]} & ${datum[2]} & ${datum[3]} & ${datum[4]} & ${datum[5]}`
+        li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
         listProject.appendChild(li)
     })
     });
