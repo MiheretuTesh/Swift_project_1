@@ -6,6 +6,7 @@ export default class UI{
         this.projectModal = document.querySelector('#project-adding-modal');
         this.login = document.querySelector('#login');
         this.submitButtonProject = document.querySelector('.submitProjectBtn');
+        this.boardsContainer = document.querySelector('.list-boards');
     }
 
    
@@ -18,16 +19,17 @@ export default class UI{
         this.taskModal.style.display = 'none';
     }
 
-    hideAddProject(){
-        this.submitButtonProject.disabled = 'true';
-        this.projectModal.querySelector('.spinner').style.display = 'block' 
+    hideAddProject(projects){
+        this.submitButtonProject.disabled = 'true'; 
+        this.projectModal.querySelector('.spinner').style.display = 'block'; 
+        // location.reload()
 
         setTimeout(() => {
+            this.submitButtonProject.removeAttribute('disabled');
             this.projectModal.style.display = 'none'; 
-            this.projectModal.querySelector('.spinner').style.display = 'none' 
-            location.reload();
-
-        }, 2000)
+            this.projectModal.querySelector('.spinner').style.display = 'none'
+            this.displayProjects(projects); 
+        }, 1000)
 
     }
 
@@ -38,6 +40,17 @@ export default class UI{
     }
 
     
+    displayProjects(projects){
+        let html = ``;
+        projects.forEach(project => {
+            html += `<div class="boards">
+            <p>${project.name}</p>
+        </div>`
+        });
+        this.boardsContainer.querySelector('.new-board').insertAdjacentHTML('beforebegin',html);
+
+    }
+
 
     addCard(title){
         let html = `
