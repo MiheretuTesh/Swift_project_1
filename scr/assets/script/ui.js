@@ -45,8 +45,11 @@ export default class UI{
         projects.forEach(project => {
             html += `<div class="boards">
             <p>${project.name}</p>
+            <p class="bttom-block-description">${project.description}</p>
         </div>`
         });
+
+        
         this.boardsContainer.querySelector('.new-board').insertAdjacentHTML('beforebegin',html);
 
     }
