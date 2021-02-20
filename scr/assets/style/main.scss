@@ -411,3 +411,184 @@ body{
         }
     }
   }
+
+  .page-2{
+      .contents{
+          .contents_nav{
+            height: 10rem;
+            background-color: #F4F5F7;
+            border: 1px solid #DFE1E6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;            
+              ul{
+                display: grid;
+                grid-template-columns: repeat(3, 100px);
+                // grid-column-gap: 20px;
+                
+                .nav-li{
+                    display: flex;
+                    align-items: flex-end;
+                    // padding-left: 1rem;
+                    // padding-right: 1rem;
+                    .nav-a{
+                        height: 100%;
+                        background-color: #DFE1E6;
+                        color: #172B4D;
+                        font-size: 14px;
+                        font-weight: 700;
+                        font-family: $primary_font_family;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+                        padding-top: .6rem;
+                        margin-bottom:0rem;
+                        border: 1px solid #DFE1E6;
+                    }
+                    .nav-a:hover{
+                        background-color: #DFE1E6;
+                    }
+                    .nav-a:focus{
+                        background-color: #ffffff;
+                        border-bottom: #fff;
+                        margin-bottom: -.05rem;
+                    }
+                }
+              }
+          }
+      .list-boards{
+            margin-top: 3rem !important;
+            width: 75%;
+            margin: auto;
+            color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 250px);
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+            justify-content: center;
+            .boards{
+                height: 6em;
+                background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+                background-size: cover;
+                background-position: center center;
+                background-blend-mode: multiply;
+                background-color: rgba($color: #000000, $alpha: 0.3);
+                cursor: pointer;
+                p{
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    padding: .5rem;
+                }
+            }
+            .list_of_projects{
+                .member_project{
+                    display: grid;
+                    
+                      .boards{
+                          height: 6em;
+                          background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+                          background-size: cover;
+                          background-position: center center;
+                          background-blend-mode: multiply;
+                          background-color: rgba($color: #000000, $alpha: 0.3);
+                          cursor: pointer;
+                          p{
+                              font-size: 1.3rem;
+                              font-weight: 500;
+                              padding: .5rem;
+                          }
+                      }
+                     
+                      
+                }
+            }
+      }
+      .list-members{
+        margin: auto;
+        margin-top: 5rem;
+         width: 70%;
+    .list_of_projects{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .board-name{
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }}
+    }   
+      }
+      .new-board{
+        height: 6em;
+        background-size: cover;
+        background-position: center center;
+        background-blend-mode: multiply;
+        background-color: rgba($color: #f0e9e9, $alpha: 0.3);
+        cursor: pointer;   
+        p{
+            font-size: 1.3rem !important;
+            font-weight: 500;
+            padding: .5rem;
+      }
+    }
+.modal-1{
+    display: none;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    transition: opacity 0.3s ease-in-out;
+}
+.modal-container{
+    display: flex;
+    align-self: center;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    margin: auto;
+    .modal-inner-1{
+        background-color: #fff;
+        margin-top: 1rem;
+        height: 10rem;
+        width: 20rem !important;
+        max-width: 25rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba($color: #000000, $alpha: 0.2);
+    }
+    .modal-close{
+        color: #000;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .modal-inner-1{
+        h1{
+            font-size: 1rem;
+            color: #000;
+        }
+        input[type="text"]{
+            margin-top: 2rem;
+            background-color: transparent;
+            padding: .3rem .3rem;
+            // margin-top: 0px;
+            border-radius: 5px;
+            border: none;
+            width: 20rem;
+            margin-right: .5rem;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            outline: none;
+        }
+        input[type="text"]:focus{
+            background-color: rgb(232, 228, 228) !important;
+            border: none;
+        }
+        .btn-project{
+            margin-top: 2rem;
+            outline: none;
+            padding: .5rem;
+        }
+    }
+}
