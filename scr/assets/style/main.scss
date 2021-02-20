@@ -287,9 +287,6 @@ body{
     a{
         margin-top: 10rem;
     }
-    .cancel-add-task .fas{
-        
-    }
 }
 
 
@@ -297,6 +294,9 @@ body{
 .dragging{
     transform: scale(0.85);
     cursor: grab;
+    // transform: rotateZ(10deg);
+    transform: rotateZ(10deg)
+
 }
 
 // MODALS
@@ -613,7 +613,10 @@ body{
         }
     }
 }
+<<<<<<< HEAD
 
 .dark-mode{
     
 }
+=======
+>>>>>>> Swift_project_1/Physix

@@ -379,6 +379,8 @@ body {
           transform: scale(0.85);
   cursor: -webkit-grab;
   cursor: grab;
+  -webkit-transform: rotateZ(10deg);
+          transform: rotateZ(10deg);
 }
 
 .modal {

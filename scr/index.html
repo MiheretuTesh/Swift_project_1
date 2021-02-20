@@ -8,6 +8,7 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="./assets/style/main.css">
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script type='module' src="./assets/script/app.js" defer></script>
@@ -276,7 +277,11 @@
         var closeModal = document.getElementById("task-adding-modal");
         
         // Get the <span> element that closes the modal
+<<<<<<< HEAD
         var span = document.getElementsByClassName("close");
+=======
+        var closeModal = document.getElementsByClassName("close")[0];
+>>>>>>> Swift_project_1/Physix
         
         
         // When the user clicks on <span> (x), close the modal
