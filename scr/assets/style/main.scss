@@ -1,5 +1,6 @@
 @import "./_colors";
 @import "./_font";
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -9,7 +10,6 @@
 body{
     font-family: $primary_font_family;
     
-    overflow-y: hidden;
 }
 .page-1{
         background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbG9yfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");
@@ -18,6 +18,8 @@ body{
         background-size: cover;
         background-repeat: no-repeat;  
         height: 1800px;
+        overflow-y: hidden;
+
 }
 .page-2{
     background-color: #fff !important;
@@ -441,7 +443,8 @@ body{
       .contents{
           .contents_nav{
             height: 10rem;
-            background-color: #F4F5F7;
+            background-image: url("");
+            // background-color: #F4F5F7;
             border: 1px solid #DFE1E6;
             display: flex;
             justify-content: center;
@@ -486,44 +489,50 @@ body{
             margin: auto;
             color: #fff;
             display: grid;
-            grid-template-columns: repeat(4, 250px);
+            grid-template-columns: repeat(4, 300px);
             grid-column-gap: 20px;
             grid-row-gap: 20px;
             justify-content: center;
             .boards{
-                height: 6em;
-                background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+                box-shadow: 10px 10px 20px rgba(0,0,0,0.5); 
+                height: 8em;
+                display: flex;
+                align-content: space-between;
+                justify-content: space-between;
+                flex-direction: column;
+                background-image: url("https://images.unsplash.com/photo-1508615121316-fe792af62a63?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fGdyYWRpZW50JTIwY29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
                 background-size: cover;
                 background-position: center center;
                 background-blend-mode: multiply;
                 background-color: rgba($color: #000000, $alpha: 0.3);
                 cursor: pointer;
-                p{
+                transition: 0.5s ease-in-out;
+                
+                p:first-child{
                     font-size: 1.3rem;
                     font-weight: 500;
                     padding: .5rem;
                 }
+                .bttom-block-description{
+                    background-color: rgba($color: #000000, $alpha: 0.5);
+                    height: 30px;
+                    padding: .5rem;
+                    font-family: "Akaya Kanadaka";
+
+                }
             }
-            .list_of_projects{
-                .member_project{
-                    display: grid;
+            .boards:hover{
+                box-shadow: 10px 10px 20px rgba(0,0,0,0.3); 
+                transform: scale(1.05);
+                
+            }
+            // .list_of_projects{
+            //     .member_project{
+            //         display: grid;
                     
-                      .boards{
-                          height: 6em;
-                          background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
-                          background-size: cover;
-                          background-position: center center;
-                          background-blend-mode: multiply;
-                          background-color: rgba($color: #000000, $alpha: 0.3);
-                          cursor: pointer;
-                          p{
-                              font-size: 1.3rem;
-                              font-weight: 500;
-                              padding: .5rem;
-                          }
-                      }
                      
-                      
+            //               }
+            //           }   
                 }
             }
       }
@@ -540,20 +549,24 @@ body{
             font-weight: 700;
         }
     }}
-    }   
-      }
       .new-board{
         height: 6em;
         background-size: cover;
         background-position: center center;
         background-blend-mode: multiply;
-        background-color: rgba($color: #f0e9e9, $alpha: 0.3);
-        cursor: pointer;   
+        background-color: rgba($color: #F5F6F7, $alpha:1);
+        color: #172b4d;
+
+        cursor: pointer; 
+        border: none;
         p{
             font-size: 1.3rem !important;
             font-weight: 500;
             padding: .5rem;
-      }
+      } 
+    }
+    .new-board:focus{
+        outline: none;
     }
 .modal-1{
     display: none;
@@ -602,8 +615,8 @@ body{
             border: none;
             width: 20rem;
             margin-right: .5rem;
-            -webkit-transition: all .5s;
-            -moz-transition: all .5s;
+            // -webkit-transition: all .5s;
+            // -moz-transition: all .5s;
             outline: none;
         }
         input[type="text"]:focus{
@@ -617,3 +630,65 @@ body{
         }
     }
 }
+
+.dark-mode{
+    
+}
+
+// Slide view
+
+// .slider{
+//     width: 800px;
+//     height: 500px;
+//     // border-radius: 10px;
+//     overflow: hidden;
+//     .slides{
+//         width: 500px;
+//         height: 500px;
+//         display: flex;
+//         input{ 
+//             display: none;
+//         }
+//         .slide{
+//             widows: 20%;
+//             transition: 2s;
+//             img{
+//                 width: 800px;
+//                 height: 500px;
+//             } 
+//         }
+//     }
+//     .navigation-manual{
+//         position: absolute;
+//         width: 800px;
+//         margin-top: -40px;
+//         display: flex;
+//         justify-content: center;
+//         .manual-btn{
+//             border: 2px solid #4d99cc;
+//             padding: 5px;
+//             border-radius: 10px;
+//             cursor: pointer;
+//             transition: 1s;
+//         }
+//         .manual-btn:not(:last-child){
+//             margin-right: 40px;
+//         }
+//         .manual-btn:hover{
+//             background: #40D3DC;
+//         }
+//     }
+// }
+
+// #radio1:checked ~ .first{
+//     margin-left: 0px;
+// }
+// #radio2:checked ~ .first{
+//     margin-left: -160%;
+// }
+// #radio3:checked ~ .first{
+//     margin-left: -320%;
+// }
+// #radio4:checked ~ .first{
+//     margin-left: -480%;
+// }
