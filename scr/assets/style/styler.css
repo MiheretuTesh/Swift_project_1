@@ -3,6 +3,13 @@
     padding: 0;
 }
 
+.login_message{
+    margin-top: 1em;
+    font-family: sans-serif, serif;
+    display: none;
+    
+}
+
 .hero{
     height: 100%;
     width: 100%;

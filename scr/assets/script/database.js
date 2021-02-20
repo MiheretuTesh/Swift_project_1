@@ -18,6 +18,7 @@ export default class Database {
 
     //create account in the database
      createAccount (fullName, username, password, birthDay) {
+         console.log(fullName, username, password, birthDay)
         this.db.users.put({fullName: fullName.toLowerCase(), username: username.toLowerCase(), password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] })
         .then (function(){
             return this.db.users;
@@ -30,20 +31,21 @@ export default class Database {
     }
     
     //verfiy eistence of account and return a boolean
-     login(usernameInput, passwordInput){
-        this.db.users.each(user =>{
-            console.log(user.username + 'hi'+ usernameInput)
+    async login(usernameInput, passwordInput){
+        let found = false;
+        await this.db.users.each(user =>{
             if (user.username == usernameInput && user.password == passwordInput){
                 console.log('success')
-                sessionStorage.setItem("currentUser", usernameInput)
-                return true
+                found =  true;
+                sessionStorage.setItem("currentUser", usernameInput);
             }
-            else {
-                console.log('incorrect credentials')
-                return false
-            }
-        })
+        });
+
+        return found;
+        
     }
+
+
     //create project
       createProject (projectName, projectManager, projectMembers, Deadline, description) {
         this.db.project.put({name: projectName, manageBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){

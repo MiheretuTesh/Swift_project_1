@@ -1,6 +1,8 @@
 import UI from './ui.js';
+import Database from './database.js';
+const DB = new Database(),
+      ui = new UI();
 
-let draggables = document.querySelectorAll('.draggable');
 let wrapper = document.querySelector('#wrapper');
 let addTaskBtn = document.querySelector('.add-task');
 
@@ -9,7 +11,29 @@ let cardModalDescription = document.querySelector('.modal-txt');
 let cardModalSave = document.querySelector('.modal-save');
 
 
-let ui = new UI();
+//Create Account    
+const register = document.querySelector("#register")
+const fullName = document.querySelector("#fullNameID")
+const uname_register = document.querySelector("#unameID")
+const password_register = document.querySelector("#passID")
+const birthDay = document.querySelector("#birthDay")
+//Log in
+const login = document.querySelector("#login")
+const username = document.querySelector("#username")
+const password = document.querySelector("#password")
+//createProject and getProject
+const getProjectBtn = document.querySelector("#getProjectBtn")
+const listProject = document.querySelector("#listProject")
+
+//project details
+const projectName = document.querySelector("#projectName")
+const projectManager  = document.querySelector("#projectManager")
+const projectMembers = ['sura', 'segno', 'mere', 'kaleab']
+const Deadline = document.querySelector("#projectDeadLine")
+const description = document.querySelector("#projectDescription")
+
+
+
 
 
 if(addTaskBtn){
@@ -18,22 +42,12 @@ if(addTaskBtn){
 }
 
 
-cardModalSave.addEventListener('click', e => {
-    e.preventDefault();
-    ui.addCard(cardModalTitle.textContent);
-})
-
-
-
-
-
-
-
-
-
-
-
-
+if(cardModalSave){
+    cardModalSave.addEventListener('click', e => {
+        e.preventDefault();
+        ui.addCard(cardModalTitle.textContent);
+    })
+}
 
 
 if(wrapper){
@@ -78,9 +92,6 @@ if(wrapper){
 }
 
 
-
-
-
 let getDragAfterElement = (container, y) => {
     const draggableElements = [... container.querySelectorAll('.draggable:not(.dragging)')];
     
@@ -95,43 +106,26 @@ let getDragAfterElement = (container, y) => {
         }
     }, { offSet: Number.NEGATIVE_INFINITY }).element;
 }
-import Database from './database.js';
-const DB = new Database()
-//Create Account    
-const register = document.querySelector("#register")
-const fullName = document.querySelector("#fullNameID")
-const uname_register = document.querySelector("#unameID")
-const password_register = document.querySelector("#passID")
-const birthDay = document.querySelector("#birthDay")
-//Log in
-const login = document.querySelector("#login")
-const username = document.querySelector("#username")
-const password = document.querySelector("#password")
-//createProject and getProject
-const getProjectBtn = document.querySelector("#getProjectBtn")
-const listProject = document.querySelector("#listProject")
-    //project details
-    const projectName = document.querySelector("#projectName").value
-    const projectManager  = document.querySelector("#projectManager").value
-    const projectMembers = ['sura', 'segno', 'mere', 'kaleab']
-    const Deadline = document.querySelector("#projectDeadLine").value
-    const description = document.querySelector("#projectDescription").value
 
 
-getProjectBtn.addEventListener('click', (e) => {
-    console.log('event fired')
-    e.preventDefault();
-    let list = DB.getProjects();
-    
-})
+
+if(getProjectBtn){
+    getProjectBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        let list = DB.getProjects();
+        
+    })
+}
 
 //login
 if (login){
-login.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let result = DB.login(username.value, password.value)
-    console.log(result)
-})}
+    login.addEventListener('submit', (e) => {
+        e.preventDefault();
+        DB.login(username.value, password.value)
+            .then(result => ui.addLoginMessage(result))
+    })
+}
 //create account
 if (register){
 register.addEventListener('submit', (e) => {

@@ -7,9 +7,14 @@
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="assets/style/styler.css">
     <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script type='module' src="./assets/script/app.js" defer></script>
+    
 </head>
 <body>
-    <div class="hero">
+    <div class="hero">~
 
         <div class="form-box">
 
@@ -23,14 +28,18 @@
 
             
             <form id="login" class="input-group">
+                
                 <input id="username" type="text" class="input-field" placeholder="Username" required>
                 <input id="password" type="password" class="input-field" placeholder="Enter Password" required id="passID">
               
-                <span class="eye" onclick="myFunction()">
-                    <i id="hide1" class="fa fa-eye"></i>
-                    <i id="hide2" class="fa fa-eye-slash"></i>
+                <span class="eye" onclick="eyeFunction()">
+                    <i class="fa fa-eye seen" style="display: none;"></i>
+                    <i class="fa fa-eye-slash hidden"></i>   
                 </span>
-              
+
+                <div class="login_message">'Wrong Username or Password'</div>
+                <div class="ui active centered inline loader spinner" style="display:none"></div>
+
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
            <button type="submit" class="submit-btn" id="loginBtn">Log In</button>
 
@@ -49,9 +58,9 @@
                 
             
                 <input type="password" class="input-field" placeholder="Enter Password" required id="passID">
-                <span class="eye" onclick="myFunction()">
-                    <i id="hide1" class="fa fa-eye"></i>
-                    <i id="hide2" class="fa fa-eye-slash"></i>
+                <span class="eye" onclick="eyeFunction()">
+                    <i class="fa fa-eye seen"  style="display: none;></i>
+                    <i class="fa fa-eye-slash hidden"></i>
                     
                 </span>
                                
@@ -86,23 +95,26 @@
     </script>
 
     <script>
-        function myFunction(){
-            var x = document.getElementById("passID");
-            var y = document.getElementById("hide1");
-            var z = document.getElementById("hide2");
+        function eyeFunction(){
+            let password = document.querySelector("#password");
+            let seen = document.querySelector(".seen");
+            let hidden = document.querySelector(".hidden");
 
-            if(x.type === 'password'){
-                x.type="text";
-                y.style.display="block";
-                z.style.display="none";
+            
+            if(password.type === 'password'){
+                password.type="text";
+                hidden.style.display= "none";
+                seen.style.display="block";
             }
             else{
-                x.type ="password";
-                y.style.display= "none";
-                z.style.display="block";
+                password.type ="password";
+                hidden.style.display = "block";
+                seen.style.display = "none";
                 
 
             }
+
+
 
         }
 
