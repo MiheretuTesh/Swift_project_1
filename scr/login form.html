@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="assets/style/styler.css">
     <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -22,49 +23,42 @@
 
             
             <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="Username" required>
-                <input type="password" class="input-field" placeholder="Enter Password" required id="myInput">
+                <input id="username" type="text" class="input-field" placeholder="Username" required>
+                <input id="password" type="password" class="input-field" placeholder="Enter Password" required id="passID">
+              
                 <span class="eye" onclick="myFunction()">
                     <i id="hide1" class="fa fa-eye"></i>
                     <i id="hide2" class="fa fa-eye-slash"></i>
-                    
                 </span>
+              
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
-           <button type="submit" class="submit-btn">Log In</button>
+           <button type="submit" class="submit-btn" id="loginBtn">Log In</button>
+
+
+
             </form>
             <form id="register" class="input-group">
             
-                <input type="text" class="input-field" placeholder="Full name" required>
+                <input type="text" class="input-field" placeholder="Full name" id="fullNameID" required>
                 
-
+            
+                <input type="text" class="input-field" placeholder="Username" id="unameID" required>
           
             
-                <input type="text" class="input-field" placeholder="Username" required>
+                <input type="text" class="input-field" placeholder="Birthday" id="birthDay" required>
                 
             
-
-              
-                <input type="password" class="input-field" placeholder="Enter Password" required id="myInput">
+                <input type="password" class="input-field" placeholder="Enter Password" required id="passID">
                 <span class="eye" onclick="myFunction()">
                     <i id="hide1" class="fa fa-eye"></i>
                     <i id="hide2" class="fa fa-eye-slash"></i>
                     
                 </span>
-               
-            
-        
-                    
-                   
-           
-                
-                
+                               
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
-           <button type="submit" class="submit-btn">Register</button>
+           <button type="submit" class="submit-btn" id="registerBtn">Register</button>
 
-
-       
             </form>
-
 
         </div>
         
@@ -93,7 +87,7 @@
 
     <script>
         function myFunction(){
-            var x = document.getElementById("myInput");
+            var x = document.getElementById("passID");
             var y = document.getElementById("hide1");
             var z = document.getElementById("hide2");
 
