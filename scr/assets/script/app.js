@@ -26,31 +26,48 @@ const getUsersBtn = document.querySelector("#getUsersBtn")
 const listUser = document.querySelector("#listUser")
 //createProject and getProject
 const getProjectBtn = document.querySelector("#getProjectBtn")
-const createProjectBtn = document.querySelector("#createProjectBtn")
+const createProjectBtn = document.querySelector(".new-board")
 const listProject = document.querySelector("#listProject")
-    //project details
-    const projectName = document.querySelector("#projectName")
-    const projectManager  = document.querySelector("#projectManager")
-    const projectMembers = document.querySelector("#projectMembers")
-    const Deadline = document.querySelector("#projectDeadLine")
-    const description = document.querySelector("#projectDescription")
+const projectForm = document.querySelector('.addProjectForm');
 //create task
 const getTaskBtn = document.querySelector("#getTaskBtn")
 const createTaskBtn = document.querySelector("#createTaskBtn")
 const listTask = document.querySelector("#listTask")
-    //task details
-    const taskName = document.querySelector("#taskName")
-    const doneBy  = document.querySelector("#doneBy")
-    const assignedBy = document.querySelector("#assignedBy")
-    const underPorject = document.querySelector("#underPorject")
-    const tag = document.querySelector("#tag")
-    const taskDeadline = document.querySelector("#taskDeadline")
-    const taskDescription = document.querySelector("#taskDescription")
+//task details
+const taskName = document.querySelector("#taskName")
+const doneBy  = document.querySelector("#doneBy")
+const assignedBy = document.querySelector("#assignedBy")
+const underPorject = document.querySelector("#underPorject")
+const tag = document.querySelector("#tag")
+const taskDeadline = document.querySelector("#taskDeadline")
+const taskDescription = document.querySelector("#taskDescription")
 
 
+if(projectForm){
+    projectForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let inputs = [... e.explicitOriginalTarget];
+        // const projectName, projectMembers, deadline, description;
+        // let accountCreationBool = 
+        DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), 
+                        projectMembers.value, deadline.value, description.value);
+
+        
+
+    });
+}
+
+if(createProjectBtn){
+    createProjectBtn.addEventListener('click', e => {
+        e.preventDefault();
+        DB.getUsers().then(users => {
+            ui.addProject(users)
+        });
+    });
+}
 
 if(addTaskBtn){
-    console.log('fadkfalskfj')
+    console.log('Creating task ... ');
     addTaskBtn.addEventListener('click', e => ui.addTask());
 }
 
@@ -61,7 +78,6 @@ if(cardModalSave){
         ui.addCard(cardModalTitle.textContent);
     })
 }
-
 
 
 if(wrapper){
@@ -156,28 +172,30 @@ if (createProjectBtn){
     createProjectBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
-        let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
+        // let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
         // use accountCreationBool here, or pass it to another function 
 })}
 
 //get Projects
-getProjectBtn.addEventListener('click', (e) => {
-    console.log('event fired')
-    e.preventDefault();
-    DB.getProjects().then(projects => {
-    projects.forEach((project) =>  {
-        var li = document.createElement('li')
-        li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
-        listProject.appendChild(li)
-    })
-    });
-
-})       
+if(getProjectBtn){
+    getProjectBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        DB.getProjects().then(projects => {
+        projects.forEach((project) =>  {
+            var li = document.createElement('li')
+            li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`
+            listProject.appendChild(li)
+        })
+        });
+    
+    })    
+}   
 //create project
 if (createTaskBtn){
     createTaskBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
-        let taskCreationBool = 
+    
     })
 }

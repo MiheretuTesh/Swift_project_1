@@ -485,6 +485,13 @@ body {
   margin-right: .5rem;
 }
 
+.modal-inner-content .modal-left .modal-save {
+  background-color: #3ddb45;
+  padding: .2rem .5rem;
+  border-radius: 3px;
+  margin-right: .5rem;
+}
+
 .modal-inner-content .modal-right .modal-settings .modal-btn {
   display: -webkit-box;
   display: -ms-flexbox;

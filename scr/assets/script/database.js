@@ -46,16 +46,23 @@ export default class Database {
 
     //create project
     async createProject (projectName, projectManager, projectMembers, Deadline, description) {
-       await this.db.project.put({name: projectName, managedBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
-            return db.users;
-        }).then(function () {
-            console.log("Project created successfully!")
-            location.reload();
-            return true
-        }).catch(function(error) {
-            console.log("Check this error out: " + error);
-            return false
-        });
+       await this.db.project.put({
+                                    name: projectName, 
+                                    managedBy:projectManager, 
+                                    hasMembers:projectMembers, 
+                                    deadline:Deadline, 
+                                    Description:description, 
+                                    status:0
+            }).then (function(){
+                return db.users;
+            }).then(function () {
+                console.log("Project created successfully!")
+                location.reload();
+                return true
+            }).catch(function(error) {
+                console.log("Check this error out: " + error);
+                return false
+            });
     } 
 
     //get Projects
@@ -63,14 +70,26 @@ export default class Database {
         console.log('got here')
         let projectList = []
         await this.db.project.each( project => {
-           projectList.push([project.name, project.managedBy, project.hasMembers, project.deadline, project.Description, project.status])
-            })
+           projectList.push([project.name, 
+                            project.managedBy, 
+                            project.hasMembers, 
+                            project.deadline, 
+                            project.Description, 
+                            project.status])
+                            })
         return projectList
         }
 
     //create tasks
      async createTask () {
-        await this.db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underPorject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
+        await this.db.task.put({name:taskName, 
+            doneBy: doneBy, 
+            assignedBy: assignedBy, 
+            underProject: underProject, 
+            tag: tag, 
+            deadline: Deadline, 
+            description: description, 
+            status:0}).then (function(){
             return db.users;
         }).then(function (users) {
             console.log("Task created successfully!")
@@ -83,7 +102,16 @@ export default class Database {
     async getUsers(){
         let usersList = [];
         await this.db.users.each( user => {
-            usersList.push([user.username, user.fullName, user.password, user.birthDay, user.managerOf, user.memberOf, user.hasTasks])
+            usersList.push(
+                {
+                'userName' : user.username, 
+                'fullName': user.fullName, 
+                'password': user.password, 
+                'birthDay': user.birthDay, 
+                'managerOf': user.managerOf, 
+                'memberOf': user.memberOf, 
+                'hasTasks': user.hasTasks
+            });
         })   
     return usersList
     }

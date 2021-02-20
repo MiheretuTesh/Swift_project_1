@@ -2,14 +2,20 @@ export default class UI{
     constructor(){
         this.addTaskBtn = document.querySelector('.add-task');
         this.todos = document.querySelector('.todo-group');
-        this.modal = document.querySelector('#task-adding-modal');
+        this.taskModal = document.querySelector('#task-adding-modal');
+        this.projectModal = document.querySelector('#project-adding-modal');
         this.login = document.querySelector('#login');
     }
 
    
 
     addTask(){
-        this.modal.style.display = 'block';
+        this.taskModal.style.display = 'block';
+    }
+
+    addProject(listOfUsers){
+        this.projectModal.style.display = 'block';
+        this.generateCheckbox(listOfUsers);
     }
 
     
@@ -61,11 +67,18 @@ export default class UI{
 
 
     generateCheckbox(listOfUsers){
-        let div = document.createElement('div');
-        div.innerHTML += "<p>Select users from the following list</p><br>"
+        let checkboxes = `<p>Select users from the following list</p><br>`;
+        listOfUsers.forEach(user => {
+            let userName = user.userName;
+            checkboxes += `
+            <label for="${userName}">${userName}</label>
+            <input type="checkbox" id="${userName}" name="${userName}" value="${userName}"><br>
+            `;
+        });
 
-        console.log(listOfUsers)
-
+        let list = this.projectModal.querySelector('.users-list');
+        list.innerHTML = checkboxes;
+        
     }
 
 
