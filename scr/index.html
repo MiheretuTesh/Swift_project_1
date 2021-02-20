@@ -8,36 +8,26 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="./assets/style/main.css">
-    <title>Document</title>
+
+    <script type='module' src="./assets/script/app.js" defer></script>
+    <title>Swift</title>
     
 </head>
 <body> 
+
+    <div class="page-1">
+
     <nav id="nav" class="top-nav">
         <div class="navbar-1">
-            <div class="navbar-1-left">
+            <div class="navbar-1-left"> 
                 <ul>
-                    <!-- <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <svg width="20" height="20" role="presentation" focusable="false" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a1 1 0 011-1h2a1 1 0 
-                                011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 6a1 1 0 011-1h2a1 1 0 011 1v2a1 
-                                1 0 01-1 1H5a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 
-                                001-1V5a1 1 0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 
-                                1h-2a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1V5a1 1 
-                                0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zM5 
-                                16a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H5zm5 1a1 1 0 011-1h2a1 1 0 
-                                011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zm7-1a1 1 0 00-1 1v2a1 1 0 001 
-                                1h2a1 1 0 001-1v-2a1 1 0 00-1-1h-2z" fill="currentcolor">
-                                </path>
-                            </svg>
-                        </a>
-                    </li> -->
+                    
                     <li class="navbar-item">
                         <a href="" class="navbar-link">
                             <i class="fa fa-home"></i>
                         </a>
-                        
                     </li>
                     <li class="navbar-item">
                         <a href="" class="navbar-item board">
@@ -48,19 +38,6 @@
                     <li class="navbar-item navbar-item-search">
                         <input type="text" class="navbar-input">
                         <i class="search-area fa fa-search "></i>
-                       <!-- <span><svg class="search-svg" width="20" height="20" role="presentation" focusable="false" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a1 1 0 011-1h2a1 1 0 
-                                011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 6a1 1 0 011-1h2a1 1 0 011 1v2a1 
-                                1 0 01-1 1H5a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 
-                                001-1V5a1 1 0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 
-                                1h-2a1 1 0 01-1-1v-2zm7-7a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1V5a1 1 
-                                0 00-1-1h-2zm-1 7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zM5 
-                                16a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H5zm5 1a1 1 0 011-1h2a1 1 0 
-                                011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2zm7-1a1 1 0 00-1 1v2a1 1 0 001 
-                                1h2a1 1 0 001-1v-2a1 1 0 00-1-1h-2z" fill="currentcolor">
-                                </path>
-                            </svg> </span> -->
-                        <!-- <i class="fa fa-close"></i> -->
                     </li>
                 </ul>
             </div>
@@ -107,8 +84,8 @@
                             </div>
                         </li>
                     <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <p>Project Management</p>
+                        <a href="" class="navbar-link"  contenteditable="true">
+                            <p >Project Management</p>
                         </a>
                     </li>
                     <li class="navbar-item">
@@ -169,61 +146,152 @@
         </div>
     </nav>
     <main id="wrapper">
-        <div class="container">
+
+        <div class="container backlog-group">
             <div class="inner-container">
                 <div class="top-container">
                     <p>
-                        Project Resource
+                        Backlog
                     </p>
                 </div>
-                <div class="inner">
-                    <div class="inner-list">
-                        <div class="inner-top">
-
-                        </div>
-                        <p class="inner-text">
-                            Lorem ipsum dolor sit amet,
-                             consectetur adipisicing elit. 
-                             Suscipit laudantium quod harum 
-                             commodi recusandae ea facilis 
-                             expedita minima rem!
-                        </p>
-                        <div class="inner-bottom">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="inner">
-                    <div class="inner-list">
-                        <div class="inner-top">
-
-                        </div>
-                        <p class="inner-text">
-                            Lorem ipsum dolor sit amet,
-                             consectetur adipisicing elit. 
-                             Suscipit laudantium quod harum 
-                             commodi recusandae ea facilis 
-                             expedita minima rem!
-                        </p>
-                        <div class="inner-bottom">
-
-                        </div>
-                    </div>
-                </div>
+                
             </div>
-            <div class="add-task">
-                <div class="add-task-1">
-                   <i class="fa fa-plus" style="padding: .5rem;"></i>
-                    <p>Add a card</p>
-                </div>
-            </div>
+            
         </div>
-        <div class="add-new-list">
-            <i class="fa fa-plus" style="margin-right: .5rem;"></i>
-            <p>Add another list</p>
+
+        <div class="container todo-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        To-do
+                    </p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="container in-progress-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        In-progress
+                    </p>
+        
+                </div>
+            </div>    
+        </div>
+        
+        <div class="container done-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        Done
+                    </p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <button class="add-task" style="padding: .5rem; margin: 1rem;">
+            Add a card
+            <i class="fa fa-plus"></i>
+        </button>
+        
+
+        <!-- MODAL VIEW -->
+        <div id="task-adding-modal" class="modal">
+            <div class="modal-view">
+                <div class="modal-head">
+                    <h2 class="modal-heading" contenteditable="true" style="width: 100%;">New Task</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-inner-content">
+
+                <div class="modal-left">
+                    <div class="modal-content">
+                        <p  contenteditable="true" class="modal-txt">
+                            Enter your description here ... 
+                        </p>
+                        <div class="modal-text-editor">
+                            <a href="" class="modal-save">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-settings">
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Member</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Starting Date</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Due Date</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-arrow-right"></i>
+                            <p>Move</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Member</p>
+                        </a>
+                    </div>  
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <div class="modal-footer-heading">
+                        <i class="fa fa-tasks"></i>
+                        <p>Activity</p>
+                    </div>
+                    <div class="modal-footer-form">
+                        <i class="fa fa-user"></i>
+                        <input type="text" style="width: 80%; padding: .3rem;" placeholder="Write a comment">
+                    </div>
+                    <div class="modal-footer-form-submit">
+                        <input type="submit" style="margin-left: 1.5rem; padding: .3rem .5rem; margin-top: 1rem;">
+                    </div>
+                </div>
+            </div>
+            <!-- Modal content -->
         </div>
     </main>
-    <script type="module" src="./assets/script/ui.js"></script>
-    <script type="module" src="assets\script\app.js"></script>
+
+
+   
+    <script type='module' src="./assets/script/app.js"></script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("task-adding-modal");
+        
+        // Get the <span> element that closes the modal
+        var closeModal = document.getElementsByClassName("close")[0];
+        
+        
+        // When the user clicks on <span> (x), close the modal
+        closeModal.onclick = function() {
+          modal.style.display = "none";  
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+
+        </script>
+        <script src="https://use.fontawesome.com/d6c4e92d14.js"></script>
+    </div>
+   
 </body>
 </html>
+

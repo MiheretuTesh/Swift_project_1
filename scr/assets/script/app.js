@@ -1,5 +1,16 @@
+import UI from './ui.js';
 import Database from './database.js';
-const DB = new Database()
+const DB = new Database(),
+      ui = new UI();
+
+let wrapper = document.querySelector('#wrapper');
+let addTaskBtn = document.querySelector('.add-task');
+
+let cardModalTitle = document.querySelector('.modal-heading');
+let cardModalDescription = document.querySelector('.modal-txt');
+let cardModalSave = document.querySelector('.modal-save');
+
+
 //Create Account    
 const createAccountBtn = document.querySelector("#register")
 const fullName = document.querySelector("#fullNameID")
@@ -36,6 +47,82 @@ const listTask = document.querySelector("#listTask")
     const taskDeadline = document.querySelector("#taskDeadline")
     const taskDescription = document.querySelector("#taskDescription")
 
+
+
+if(addTaskBtn){
+    console.log('fadkfalskfj')
+    addTaskBtn.addEventListener('click', e => ui.addTask());
+}
+
+
+if(cardModalSave){
+    cardModalSave.addEventListener('click', e => {
+        e.preventDefault();
+        ui.addCard(cardModalTitle.textContent);
+    })
+}
+
+
+
+if(wrapper){
+    wrapper.addEventListener('click', e => {
+        if(e.target.classList.contains('add-new-list')){
+            ui.addList(e);
+            
+        }else if(e.target.classList.contains('')){
+            ui.addCard(e);
+        }else if(e.target.classList.contains('')){
+            ui.addCardConfirm(e);
+        }else if(e.target.classList.contains('')){
+            ui.addCardCancel(e);
+        }
+        
+    })
+
+    wrapper.addEventListener('dragover', e => {
+        e.preventDefault();
+        if(e.target.classList.contains('container')){
+            const afterElement = getDragAfterElement(e.target, e.clientY);
+            const draggable = document.querySelector('.dragging');
+            if(afterElement){
+                e.target.insertBefore(draggable, afterElement);
+            }else{
+                e.target.appendChild(draggable);
+            }
+        }
+    });
+    
+    wrapper.addEventListener('dragstart', e =>{
+        if(e.target.classList.contains('draggable')){
+            e.target.classList.add('dragging');
+        }
+    })
+    
+    wrapper.addEventListener('dragend', e => {
+        if(e.target.classList.contains('draggable')){
+            e.target.classList.remove('dragging');
+        }
+    })
+}
+
+
+let getDragAfterElement = (container, y) => {
+    const draggableElements = [... container.querySelectorAll('.draggable:not(.dragging)')];
+    
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        console.log(box)
+        const offSet = y - box.top - (box.height/2);
+        if(offSet < 0 && offSet > closest.offSet){
+            return {offSet: offSet, element: child};
+        }else{
+            return closest;
+        }
+    }, { offSet: Number.NEGATIVE_INFINITY }).element;
+}
+
+
+
 //create account
 if (createAccountBtn){
     createAccountBtn.addEventListener('submit', async (e) => {
@@ -44,27 +131,20 @@ if (createAccountBtn){
     })}
 //login
 if (login){
-login.addEventListener('submit', (e) => {
-    e.preventDefault();
-    DB.login(username.value, password.value).then(loginCheckBool => {
-        //use loginCheckBool here
-        console.log(loginCheckBool)
+    login.addEventListener('submit', (e) => {
+        e.preventDefault();
+        DB.login(username.value, password.value)
+            .then(result => ui.addLoginMessage(result))
     })
-    
-})}
+}
+
 //get users
 if (getUsersBtn){
-    let usersList = []
     getUsersBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
         DB.getUsers().then(users => {
-            users.forEach(user => {
-                var li = document.createElement('li')
-                li.innerHTML = `${user[0]} ${user[1]} ${user[2]} ${user[3]} ${user[4]} ${user[5]} ${user[6]}`
-                listUser.appendChild(li)
-            })
-
+            ui.generateUsersCheckbox(users);
         })            
     })
 }
@@ -76,7 +156,7 @@ if (createProjectBtn){
     createProjectBtn.addEventListener('click', async (e) => {
         console.log('event fired')
         e.preventDefault();
-        let projectCreationBool = await DB.createProject(projectName.value, projectManager.value, projectMembers.value, Deadline.value, description.value);
+        let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
         // use accountCreationBool here, or pass it to another function 
 })}
 //get Projects
