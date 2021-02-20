@@ -17,7 +17,7 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 800px;
+  height: 1800px;
 }
 
 .page-2 {
@@ -241,22 +241,22 @@ body {
           align-items: center;
 }
 
-.container-top::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-.container-top::-webkit-scrollbar-track {
+.containerop::-webkit-scrollbar-track {
   background: #EBECF0;
 }
 
 /* Handle */
-.container-top::-webkit-scrollbar-thumb {
+.container::-webkit-scrollbar-thumb {
   background: #c0bbbb;
 }
 
 /* Handle on hover */
-.container-top::-webkit-scrollbar-thumb:hover {
+.container::-webkit-scrollbar-thumb:hover {
   background: #dad6d6;
 }
 
@@ -265,16 +265,19 @@ body {
 }
 
 #wrapper {
-  overflow-x: scroll;
   overflow-y: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100%;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-#wrapper .container-top {
+#wrapper .container {
   width: 17rem;
-  background-color: #EBECF0;
+  background-color: #ebecf0;
   padding: .5rem;
   min-height: 10px;
   border-radius: 5px;
@@ -282,13 +285,16 @@ body {
   margin-top: 1rem;
   color: #203b6b;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  max-height: 440px;
+  min-height: 200px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   min-width: 15rem;
   overflow-y: scroll;
   bottom: 0;
 }
 
-#wrapper .container-top .inner {
+#wrapper .container .inner {
   background-color: #fff;
   padding: 1rem;
   margin-top: .5rem;
@@ -299,7 +305,7 @@ body {
   font-size: 14px;
 }
 
-#wrapper .container-top .add-task {
+#wrapper .container .add-task {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -309,7 +315,7 @@ body {
   cursor: pointer;
 }
 
-#wrapper .container-top .add-task .add-task-1 {
+#wrapper .container .add-task .add-task-1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -366,6 +372,13 @@ body {
 
 .add-task-dialog a {
   margin-top: 10rem;
+}
+
+.dragging {
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 .modal {

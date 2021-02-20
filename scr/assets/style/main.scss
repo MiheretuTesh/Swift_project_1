@@ -17,7 +17,7 @@ body{
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;  
-        height: 800px;
+        height: 1800px;
 }
 .page-2{
     background-color: #fff !important;
@@ -177,34 +177,39 @@ body{
 
     }
 }
-.container-top::-webkit-scrollbar {
+.container::-webkit-scrollbar {
     width: 10px;
   }
   
   /* Track */
-  .container-top::-webkit-scrollbar-track {
+  .containerop::-webkit-scrollbar-track {
     background: #EBECF0; 
   }
    
   /* Handle */
-  .container-top::-webkit-scrollbar-thumb {
+  .container::-webkit-scrollbar-thumb {
     background: rgb(192, 187, 187); 
   }
   
   /* Handle on hover */
-  .container-top::-webkit-scrollbar-thumb:hover {
+  .container::-webkit-scrollbar-thumb:hover {
     background: rgb(218, 214, 214); 
   }
 #wrapper::-webkit-scrollbar{
     width: 10rem;
 }
 #wrapper{
-    overflow-x: scroll;
+    // overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
-    .container-top{
+    height: 100%;
+    align-items: flex-start;
+
+    
+    
+    .container{
         width: 17rem;
-        background-color: #EBECF0;
+        background-color: rgb(235,236,240)  ;
         padding: .5rem;
         min-height: 10px;
         border-radius: 5px;
@@ -212,10 +217,12 @@ body{
         margin-top: 1rem;
         color: $text-color-2;
         font-family: $primary_font_family;
-        max-height: 440px;
+        min-height: 200px;
+        height: max-content;
         min-width: 15rem;
         overflow-y: scroll;
         bottom: 0;
+
         .inner{
             background-color: $white;
             padding: 1rem;
@@ -284,6 +291,14 @@ body{
         
     }
 }
+
+
+
+.dragging{
+    transform: scale(0.85);
+    cursor: grab;
+}
+
 // MODALS
 .modal {
     display: none; /* Hidden by default */
@@ -350,8 +365,7 @@ body{
             color: #172B4D;
             font-size: 14px;
         }
-        .modal-txt:hover{
-        }
+    
         .modal-txt:focus{
           background-color: #fff !important;
           cursor: auto;

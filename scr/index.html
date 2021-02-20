@@ -8,13 +8,10 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" /> -->
     <link rel="stylesheet" href="./assets/style/main.css">
 
-    <title>Document</title>
-    <style>
-
-    </style>
+    <script type='module' src="./assets/script/app.js" defer></script>
+    <title>Swift</title>
     
 </head>
 <body> 
@@ -23,8 +20,9 @@
 
     <nav id="nav" class="top-nav">
         <div class="navbar-1">
-            <div class="navbar-1-left">
+            <div class="navbar-1-left"> 
                 <ul>
+                    
                     <li class="navbar-item">
                         <a href="" class="navbar-link">
                             <i class="fa fa-home"></i>
@@ -147,131 +145,138 @@
         </div>
     </nav>
     <main id="wrapper">
-        <div class="container-top">
-            <div class="inner-container">
-                    <div class="top-container">
-                        <p contenteditable="true">
-                            Project Resource
-                        </p>
-                    </div>
-                    <div id="myBtn" class="inner">
-                        <div class="inner-list">
-                            <div class="inner-top">
-                            </div>
-                            <p  class="inner-text">
-                                Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. 
-                                Suscipit laudantium quod harum 
-                                commodi recusandae ea facilis 
-                                expedita minima rem!
-                            </p>
-                            <div class="inner-bottom">
-                            </div>
-                            <!-- MODAL VIEW -->
-                            <div id="myModal" class="modal">
-                                <div class="modal-view">
-                                    <div class="modal-head">
-                                        <h2 class="modal-heading" contenteditable="true" style="width: 100%;">sdvdsvsds</h2>
-                                        <span class="close">&times;</span>
-                                    </div>
-                                    <div class="modal-inner-content">
 
-                                    <div class="modal-left">
-                                        <div class="modal-content">
-                                            <p  contenteditable="true" class="modal-txt">
-                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                 Magnam deserunt pariatur ea maiores. Enim similique in
-                                                  voluptatibus, tenetur obcaecati esse harum sunt 
-                                                  aspernatur porro voluptates doloribus vitae pariatur 
-                                                  nihil debitis dolorum reiciendis iste quibusdam optio. 
-                                                  Eaque, assumenda officia? D
-                                                eserunt molestias ipsam culpa enim commodi quis illum 
-                                                aspernatur numquam cupiditate dolore.
-                                            </p>
-                                            <div class="modal-text-editor">
-                                                <a href="" class="save">Save</a>
-                                                <i class="fa fa-times"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-right">
-                                        <div class="modal-settings">
-                                            <a class="modal-btn">
-                                                <i class="fa fa-user"></i>
-                                                <p>Member</p>
-                                            </a>
-                                            <a class="modal-btn">
-                                                <i class="fa fa-user"></i>
-                                                <p>Starting Date</p>
-                                            </a>
-                                            <a class="modal-btn">
-                                                <i class="fa fa-user"></i>
-                                                <p>Due Date</p>
-                                            </a>
-                                            <a class="modal-btn">
-                                                <i class="fa fa-arrow-right"></i>
-                                                <p>Move</p>
-                                            </a>
-                                            <a class="modal-btn">
-                                                <i class="fa fa-user"></i>
-                                                <p>Member</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="modal-footer">
-                                        <div class="modal-footer-heading">
-                                            <i class="fa fa-tasks"></i>
-                                            <p>Activity</p>
-                                        </div>
-                                        <div class="modal-footer-form">
-                                            <i class="fa fa-user"></i>
-                                            <input type="text" style="width: 80%; padding: .3rem;" placeholder="Write a comment">
-                                        </div>
-                                        <div class="modal-footer-form-submit">
-                                            <input type="submit" style="margin-left: 1.5rem; padding: .3rem .5rem; margin-top: 1rem;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal content -->
-                            </div>
+        <div class="container backlog-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        Backlog
+                    </p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="container todo-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        To-do
+                    </p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="container in-progress-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        In-progress
+                    </p>
+        
+                </div>
+            </div>    
+        </div>
+        
+        <div class="container done-group">
+            <div class="inner-container">
+                <div class="top-container">
+                    <p>
+                        Done
+                    </p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <button class="add-task" style="padding: .5rem; margin: 1rem;">
+            Add a card
+            <i class="fa fa-plus"></i>
+        </button>
+        
+
+        <!-- MODAL VIEW -->
+        <div id="task-adding-modal" class="modal">
+            <div class="modal-view">
+                <div class="modal-head">
+                    <h2 class="modal-heading" contenteditable="true" style="width: 100%;">New Task</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-inner-content">
+
+                <div class="modal-left">
+                    <div class="modal-content">
+                        <p  contenteditable="true" class="modal-txt">
+                            Enter your description here ... 
+                        </p>
+                        <div class="modal-text-editor">
+                            <a href="" class="modal-save">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-settings">
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Member</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Starting Date</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Due Date</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-arrow-right"></i>
+                            <p>Move</p>
+                        </a>
+                        <a class="modal-btn">
+                            <i class="fa fa-user"></i>
+                            <p>Member</p>
+                        </a>
+                    </div>  
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <div class="modal-footer-heading">
+                        <i class="fa fa-tasks"></i>
+                        <p>Activity</p>
+                    </div>
+                    <div class="modal-footer-form">
+                        <i class="fa fa-user"></i>
+                        <input type="text" style="width: 80%; padding: .3rem;" placeholder="Write a comment">
+                    </div>
+                    <div class="modal-footer-form-submit">
+                        <input type="submit" style="margin-left: 1.5rem; padding: .3rem .5rem; margin-top: 1rem;">
                     </div>
                 </div>
             </div>
-            <div class="add-task">
-                <i class="fa fa-plus" style="padding: .5rem;"></i>
-                <p>Add a card</p>
-            </div>
-        </div>
-        <div class="add-new-list">
-            <i class="fa fa-plus" style="margin-right: .5rem;"></i>
-            <p>Add another list</p>
+            <!-- Modal content -->
         </div>
     </main>
+
+
    
     <script type='module' src="./assets/script/app.js"></script>
+
     <script>
         // Get the modal
-        var modal = document.getElementById("myModal");
-        
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        
-        // var btnText = document.getElementById("myBtn").innerHTML;
-        // document.getElementsByClassName("modal-txt").innerHTML = btnText;
-
+        var modal = document.getElementById("task-adding-modal");
         
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close");
+        var closeModal = document.getElementsByClassName("close")[0];
         
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-          modal.style.display = "block";
-        }
         
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-          modal.style.display = "none";
+        closeModal.onclick = function() {
+          modal.style.display = "none";  
         }
         
         // When the user clicks anywhere outside of the modal, close it
@@ -281,12 +286,6 @@
           }
         }
 
-        const value = document.querySelector(".modal-txt");
-        const addValue = document.querySelector(".modal-text-editor")
-        document.getElementsByClassName("modal-txt").addEventListener("focus", myFunction);
-        function myFunction() {
-        document.getElementsByClassName("modal-text-editor").style.display = "none";
-        }  
 
         </script>
         <script src="https://use.fontawesome.com/d6c4e92d14.js"></script>
