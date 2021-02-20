@@ -28,12 +28,24 @@ const listUser = document.querySelector("#listUser")
 const getProjectBtn = document.querySelector("#getProjectBtn")
 const createProjectBtn = document.querySelector("#createProjectBtn")
 const listProject = document.querySelector("#listProject")
-//project details
-const projectName = document.querySelector("#projectName")
-const projectManager  = document.querySelector("#projectManager")
-const projectMembers = document.querySelector("#projectMembers")
-const Deadline = document.querySelector("#projectDeadLine")
-const description = document.querySelector("#projectDescription")
+    //project details
+    const projectName = document.querySelector("#projectName")
+    const projectManager  = document.querySelector("#projectManager")
+    const projectMembers = document.querySelector("#projectMembers")
+    const Deadline = document.querySelector("#projectDeadLine")
+    const description = document.querySelector("#projectDescription")
+//create task
+const getTaskBtn = document.querySelector("#getTaskBtn")
+const createTaskBtn = document.querySelector("#createTaskBtn")
+const listTask = document.querySelector("#listTask")
+    //task details
+    const taskName = document.querySelector("#taskName")
+    const doneBy  = document.querySelector("#doneBy")
+    const assignedBy = document.querySelector("#assignedBy")
+    const underPorject = document.querySelector("#underPorject")
+    const tag = document.querySelector("#tag")
+    const taskDeadline = document.querySelector("#taskDeadline")
+    const taskDescription = document.querySelector("#taskDescription")
 
 
 
@@ -161,3 +173,11 @@ getProjectBtn.addEventListener('click', (e) => {
     });
 
 })       
+//create project
+if (createTaskBtn){
+    createTaskBtn.addEventListener('click', (e) => {
+        console.log('event fired')
+        e.preventDefault();
+        let taskCreationBool = 
+    })
+}
