@@ -30,7 +30,6 @@ const createProjectBtn = document.querySelector("#createProjectBtn")
 const listProject = document.querySelector("#listProject")
     //project details
     const projectName = document.querySelector("#projectName")
-    const projectManager  = document.querySelector("#projectManager")
     const projectMembers = document.querySelector("#projectMembers")
     const Deadline = document.querySelector("#projectDeadLine")
     const description = document.querySelector("#projectDescription")
@@ -176,6 +175,6 @@ if (createTaskBtn){
     createTaskBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
-        let taskCreationBool = 
+        //let taskCreationBool = 
     })
 }
