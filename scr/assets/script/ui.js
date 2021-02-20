@@ -85,7 +85,7 @@ export default class UI{
             fail.style.color = 'green';
             fail.textContent = successMsg;
             this.login.querySelector('.spinner').style.display = 'block'; 
-            setTimeout(() => window.open('dash_board.html', "_blank"), 2000)
+            setTimeout(() => window.open('dash_board.html', "_blank"), 1000)
 
         }else{
             fail.style.background = '#ffe0e0';
