@@ -33,8 +33,11 @@ if (createAccountBtn){
 if (login){
 login.addEventListener('submit', (e) => {
     e.preventDefault();
-    let result = DB.login(username.value, password.value)
-    console.log(result)
+    DB.login(username.value, password.value).then(loginCheckBool => {
+        //use loginCheckBool here
+        console.log(loginCheckBool)
+    })
+    
 })}
 //create project
 if (createProjectBtn){
@@ -50,14 +53,11 @@ getProjectBtn.addEventListener('click', (e) => {
     console.log('event fired')
     e.preventDefault();
     DB.getProjects().then(data => {
-    data[0].forEach((datum) =>  {
+    data.forEach((datum) =>  {
         var li = document.createElement('li')
         li.innerHTML = `${datum[0]} & ${datum[1]} & ${datum[2]} & ${datum[3]} & ${datum[4]} & ${datum[5]}`
         listProject.appendChild(li)
     })
-
-
-
     });
 
 })       
