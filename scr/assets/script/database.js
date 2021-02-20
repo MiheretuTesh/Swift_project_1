@@ -201,8 +201,8 @@ export default class Database {
     }
     
     //______________________________ get project(projectName)
-    // add member to a project
-    // remove member from a project
+    // ______________________________add member to a project
+    // ______________________________remove member from a project
     // complete a task
     // complete a project
     // when a project is opened, sessionStorage.setItem("currentProject", projectName)
