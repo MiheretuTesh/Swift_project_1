@@ -63,7 +63,9 @@ export default class UI{
     generateCheckbox(listOfUsers){
         let div = document.createElement('div');
         div.innerHTML += "<p>Select users from the following list</p><br>"
-        
+
+        console.log(listOfUsers)
+
     }
 
 
