@@ -486,13 +486,6 @@ body {
   margin-right: .5rem;
 }
 
-.modal-inner-content .modal-left .modal-save {
-  background-color: #3ddb45;
-  padding: .2rem .5rem;
-  border-radius: 3px;
-  margin-right: .5rem;
-}
-
 .modal-inner-content .modal-right .modal-settings .modal-btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -638,8 +631,8 @@ body {
   background-blend-mode: multiply;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .page-2 .contents .list-boards .boards p:first-child {
