@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +8,6 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  overflow-y: hidden;
 }
 
 .page-1 {
@@ -18,6 +18,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 1800px;
+  overflow-y: hidden;
 }
 
 .page-2 {
@@ -546,7 +547,7 @@ body {
 
 .page-2 .contents .contents_nav {
   height: 10rem;
-  background-color: #F4F5F7;
+  background-image: url("");
   border: 1px solid #DFE1E6;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -606,8 +607,8 @@ body {
   color: #fff;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (250px)[4];
-      grid-template-columns: repeat(4, 250px);
+  -ms-grid-columns: (300px)[4];
+      grid-template-columns: repeat(4, 300px);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   -webkit-box-pack: center;
@@ -616,49 +617,58 @@ body {
 }
 
 .page-2 .contents .list-boards .boards {
-  height: 6em;
-  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  height: 8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-image: url("https://images.unsplash.com/photo-1508615121316-fe792af62a63?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fGdyYWRpZW50JTIwY29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
   background-size: cover;
   background-position: center center;
   background-blend-mode: multiply;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
-.page-2 .contents .list-boards .boards p {
+.page-2 .contents .list-boards .boards p:first-child {
   font-size: 1.3rem;
   font-weight: 500;
   padding: .5rem;
 }
 
-.page-2 .contents .list-boards .list_of_projects .member_project {
-  display: -ms-grid;
-  display: grid;
-}
-
-.page-2 .contents .list-boards .list_of_projects .member_project .boards {
-  height: 6em;
-  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.page-2 .contents .list-boards .list_of_projects .member_project .boards p {
-  font-size: 1.3rem;
-  font-weight: 500;
+.page-2 .contents .list-boards .boards .bttom-block-description {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 30px;
   padding: .5rem;
+  font-family: "Akaya Kanadaka";
 }
 
-.page-2 .contents .list-members {
+.page-2 .contents .list-boards .boards:hover {
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.list-members {
   margin: auto;
   margin-top: 5rem;
   width: 70%;
 }
 
-.page-2 .contents .list-members .list_of_projects {
+.list-members .list_of_projects {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -671,7 +681,7 @@ body {
           flex-direction: column;
 }
 
-.page-2 .contents .list-members .list_of_projects .board-name {
+.list-members .list_of_projects .board-name {
   font-size: 20px;
   font-weight: 700;
 }
@@ -681,14 +691,20 @@ body {
   background-size: cover;
   background-position: center center;
   background-blend-mode: multiply;
-  background-color: rgba(240, 233, 233, 0.3);
+  background-color: #f5f6f7;
+  color: #172b4d;
   cursor: pointer;
+  border: none;
 }
 
 .new-board p {
   font-size: 1.3rem !important;
   font-weight: 500;
   padding: .5rem;
+}
+
+.new-board:focus {
+  outline: none;
 }
 
 .modal-1 {
@@ -755,8 +771,6 @@ body {
   border: none;
   width: 20rem;
   margin-right: .5rem;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
   outline: none;
 }
 

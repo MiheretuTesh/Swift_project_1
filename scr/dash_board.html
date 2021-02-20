@@ -14,7 +14,6 @@
     <script type='module' src="./assets/script/app.js" defer></script>
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="./assets/style/main.css">
-    <title>Dashboard</title>
 </head>
 <body>
     <div class="page-2">
@@ -67,7 +66,46 @@
         </nav>
 
         <main class="contents">
+            <!-- <div class="slider">
+                <div class="slides">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+
+
+                    <div class="slide first">
+                        <img src="https://images.unsplash.com/photo-1613367046430-fa9eab3014f1?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1613367046430-fa9eab3014f1?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1613367046430-fa9eab3014f1?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1613367046430-fa9eab3014f1?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="">
+                    </div>
+
+                    <div class="navigation-auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+                        <div class="auto-btn4"></div>
+
+                    </div>
+                </div>
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
+
+                </div>
+
+            </div> -->
                 <div class="contents_nav">
+
                     <ul class="nav-items">
                         <li class="nav-li" style="padding-left: 1rem; padding-right: 1rem;">
                             <a href="#" class="nav-a">Boards</a>
@@ -82,11 +120,39 @@
                 </div>
                 <div class="content">
                     <div class="list-boards">
-                        
+                        <div class="boards">
+                            <p>Project Management</p>
+                            <p class="bttom-block-description">This is description...</p>
+                        </div>
+                        <div class="boards">
+                            <p>Project Management</p>
+                            <p class="bttom-block-description">This is description...</p>
+                        </div>
+                        <div class="boards">
+                            <p>Project Management</p>
+                            <p class="bttom-block-description">This is description...</p>
+                        </div>
+                        <div class="boards">
+                            <p>Project Management</p>
+                            <p class="bttom-block-description">This is description...</p>
+                        </div>
                         <button class="new-board">
                             <i class="fa fa-plus"></i>
                             <p>Create new project</p>
                         </button>
+                        <div class="modal-1">
+                            <div class="modal-container">
+                            
+                                <div class="modal-inner-1">
+                                    <div class="modal-close">
+                                        <i class="fa fa-times"></i>
+                                    </div>
+                                    <h1>Create A Project</h1>
+                                    <input type="text" placeholder="Add board title">
+                                    <button class="btn-project">Create</button>
+                                </div>
+                            </div>
+                        </div>
                         
                     </div>
 
