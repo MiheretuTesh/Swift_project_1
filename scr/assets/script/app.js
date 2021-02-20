@@ -149,8 +149,6 @@ if (getUsersBtn){
     })
 }
 
-
-
 //create project
 if (createProjectBtn){
     createProjectBtn.addEventListener('click', async (e) => {

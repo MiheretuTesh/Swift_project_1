@@ -1,5 +1,5 @@
 //stuff to remember
-// string dont have to be stored in lower case. ignore case searches are possible
+// string doesnt have to be stored in lower case. ignore case searches are possible
 // I can add filter if you want. You guys design a filter checkbox and let me know. I'll write queries based on that
 
 
@@ -33,7 +33,7 @@ export default class Database {
     async login(usernameInput, passwordInput){
         let found = false;
         await this.db.users.each(user =>{
-            if (user.username == usernameInput && user.password == passwordInput){
+            if (user.username == usernameInput.toLowerCase() && user.password == passwordInput){
                 console.log('success')
                 found =  true;
                 sessionStorage.setItem("currentUser", usernameInput);
@@ -42,11 +42,9 @@ export default class Database {
         return found;
         
     }
-
-
     //create project
     async createProject (projectName, projectManager, projectMembers, Deadline, description) {
-       await this.db.project.put({name: projectName, managedBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
+       await this.db.project.put({name: projectName.toLowerCase(), managedBy:projectManager.toLowerCase(), hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
             return db.users;
         }).then(function () {
             console.log("Project created successfully!")
@@ -69,13 +67,8 @@ export default class Database {
         }
 
     //create tasks
-<<<<<<< Updated upstream
-     async createTask () {
-        await this.db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underPorject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
-=======
-     createTask () {
-        db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underPorject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
->>>>>>> Stashed changes
+     async createTask (name, doneBy, assignedBy, underProject, tag, Deadline, description) {
+        this.db.task.put({name:taskName, doneBy: doneBy, assignedBy: assignedBy, underProject: underProject, tag: tag, deadline: Deadline, description: description, status:0}).then (function(){
             return db.users;
         }).then(function (users) {
             console.log("Task created successfully!")
@@ -93,52 +86,69 @@ export default class Database {
     return usersList
     }
     
+    //get a user
+    async getUser(usernameInput){
+        foundUser = false;
+        let userInfo;
+        await this.db.users.each(user => {
+            if (user.username == usernameInput){
+                userInfo = {
+                    "username": user.username, 
+                    "fullName": user.fullName, 
+                    "password": user.password,
+                    "birthDay": user.birthDay,
+                    "managerOf": user.managerOf,
+                    "memberOf": user.memberOf, 
+                    "hasTasks": user.hasTasks
+                }
+                foundUser = true
+            }
+        })
+        if (foundUser) { return userInfo }
+        return foundUser
+    }
+
+    async getProject(projectNameInput){
+        foundProject = false;
+        let projectInfo;
+        await this.db.users.each(project => {
+            if (project.name == projectNameInput){ 
+                projectInfo = {  
+                    "name":project.name ,
+                    "managedBy":project.managedBy ,
+                    "hasMembers":project.hasMembers ,
+                    "deadline":project.deadline ,
+                    "description":project.description ,
+                    "status":project.status ,
+                }
+                foundProject = true
+            }
+        })
+        if (foundProject) {return projectInfo}
+        return foundProject
+    }
 
 
 
+    async addMember(usernameInput, projectNameInput){
+        
+    }
 
-
-}
-
-
-
-
-
-
-
-
-
-
-function login(){
-    //get username and password inputs
-    const usernameInput = document.querySelector("#username").value
-    const passwordInput = document.querySelector("#password").value
-    //check if account exitsts
-    db.users.where({username: usernameInput, password:passwordInput})   
     
-    //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
-    sessionStorage.setItem("currentUser", usernameInput)
-}
+    //______________________________ get project(projectName)
+    // add member to a project
+    // remove member from a project
+    // complete a task
+    // complete a project
+    // when a project is opened, sessionStorage.setItem("currentProject", projectName)
+    // change username
+    // change password
+    // leave project
+    // delete task
+    // delete project
+    // drop task
+    // progress
+
+}//end of curly brace
 
 
-function createAccount () {
-    // get username and password and attach an event listener
-    const fullName = document.querySelector("#fullNameID").value
-    const username = document.querySelector("#unameID").value
-    const password = document.querySelector("#passID").value
-    const birthDay = document.querySelector("#birthDay").value
-    
-    //
-    //convert all inputs into lower case here. 
-    //
-
-    // add account to database
-    db.users.put({fullName: fullName, username: username, password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] }).then (function(){
-        return db.users;
-    }).then(function () {
-        console.log("Account created successfully!")
-        location.reload();
-    }).catch(function(error) {   
-       alert ("Check this error out: " + error);
-    });
-}
