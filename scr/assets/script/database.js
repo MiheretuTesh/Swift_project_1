@@ -1,23 +1,18 @@
 //stuff to remember
-//User shouldnt enter date manually as a string.
-// for create project, I'd really appreciate it if the UI people could fetch me project members as an array, cause thats's 
-// it's stored. So the drop down should be selectable
-// I've already written a getUsers() code that fatches every user in the Database.
+// string dont have to be stored in lower case. ignore case searches are possible
 // I can add filter if you want. You guys design a filter checkbox and let me know. I'll write queries based on that
-// if you guys feel like the DB operations are sort of buggy, tell me
+
 
 
 export default class Database {
-
+    
     constructor(){
         this.db = new Dexie("swiftDB");
-
         this.db.version(1).stores({
             users: '++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks',
             project: '++id, name, managedBy, hasMembers, deadline, description, status',
             task: '++id, name, doneBy, assignedBy, underProject, tag, deadline, description, status' //tag: b, t, i, d
         });
-
         this.db.open();
     }
 
@@ -34,30 +29,45 @@ export default class Database {
         });
     }
     
-
+    //verfiy eistence of account and return a boolean
      login(usernameInput, passwordInput){
         this.db.users.each(user =>{
             console.log(user.username + 'hi'+ usernameInput)
             if (user.username == usernameInput && user.password == passwordInput){
                 console.log('success')
                 sessionStorage.setItem("currentUser", usernameInput)
+                return true
             }
             else {
                 console.log('incorrect credentials')
+                return false
             }
         })
     }
+    //create project
+      createProject (projectName, projectManager, projectMembers, Deadline, description) {
+        this.db.project.put({name: projectName, manageBy:projectManager, hasMembers:projectMembers, deadline:Deadline, Description:description, status:0}).then (function(){
+            return db.users;
+        }).then(function () {
+            console.log("Project created successfully!")
+            location.reload();
+        }).catch(function(error) {
+           alert ("Check this error out: " + error);
+        });
+    }
 
+    //get Projects
      getProjects() {
-        projectList = []
-         db.project.each( project => {
+         console.log('got here')
+        let projectList = []
+         this.db.project.each( project => {
             projectList.push([project.projectName,project.projectManager,project.projectMembers,project.deadline,project.description, project.status])
             })
         return projectList
         }
         
 
-}//last brace
+}//end of curly brace
 
 
 function createProject () {
