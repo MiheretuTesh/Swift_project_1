@@ -17,7 +17,7 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 800px;
+  height: 1800px;
 }
 
 .page-2 {
@@ -265,7 +265,6 @@ body {
 }
 
 #wrapper {
-  overflow-x: scroll;
   overflow-y: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -278,9 +277,7 @@ body {
 
 #wrapper .container {
   width: 17rem;
-  background-color: rgba(235, 236, 240, 0.8);
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
+  background-color: #ebecf0;
   padding: .5rem;
   min-height: 10px;
   border-radius: 5px;

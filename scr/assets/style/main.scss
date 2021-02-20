@@ -17,7 +17,7 @@ body{
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;  
-        height: 800px;
+        height: 1800px;
 }
 .page-2{
     background-color: #fff !important;
@@ -199,17 +199,17 @@ body{
     width: 10rem;
 }
 #wrapper{
-    overflow-x: scroll;
+    // overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
     height: 100%;
     align-items: flex-start;
 
-    }
+    
     
     .container{
         width: 17rem;
-        background-color: rgba(235,236,240, 0.5)  ;
+        background-color: rgb(235,236,240)  ;
         padding: .5rem;
         min-height: 10px;
         border-radius: 5px;
