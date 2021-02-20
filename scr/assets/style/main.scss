@@ -204,10 +204,12 @@ body{
     display: flex;
     height: 100%;
     align-items: flex-start;
+
+    }
     
     .container{
         width: 17rem;
-        background-color: #EBECF0;
+        background-color: rgba(235,236,240, 0.5)  ;
         padding: .5rem;
         min-height: 10px;
         border-radius: 5px;
@@ -220,6 +222,7 @@ body{
         min-width: 15rem;
         overflow-y: scroll;
         bottom: 0;
+
         .inner{
             background-color: $white;
             padding: 1rem;

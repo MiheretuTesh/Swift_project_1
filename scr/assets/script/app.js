@@ -4,6 +4,10 @@ let draggables = document.querySelectorAll('.draggable');
 let wrapper = document.querySelector('#wrapper');
 let addTaskBtn = document.querySelector('.add-task');
 
+let cardModalTitle = document.querySelector('.modal-heading');
+let cardModalDescription = document.querySelector('.modal-txt');
+let cardModalSave = document.querySelector('.modal-save');
+
 
 let ui = new UI();
 
@@ -12,6 +16,25 @@ if(addTaskBtn){
     console.log('fadkfalskfj')
     addTaskBtn.addEventListener('click', e => ui.addTask());
 }
+
+
+cardModalSave.addEventListener('click', e => {
+    e.preventDefault();
+    ui.addCard(cardModalTitle.textContent);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if(wrapper){
     wrapper.addEventListener('click', e => {

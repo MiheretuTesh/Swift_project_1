@@ -278,7 +278,9 @@ body {
 
 #wrapper .container {
   width: 17rem;
-  background-color: #EBECF0;
+  background-color: rgba(235, 236, 240, 0.8);
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
   padding: .5rem;
   min-height: 10px;
   border-radius: 5px;
