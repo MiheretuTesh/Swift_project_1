@@ -1,5 +1,6 @@
 @import "./_colors";
 @import "./_font";
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -433,7 +434,8 @@ body{
       .contents{
           .contents_nav{
             height: 10rem;
-            background-color: #F4F5F7;
+            background-image: url("");
+            // background-color: #F4F5F7;
             border: 1px solid #DFE1E6;
             display: flex;
             justify-content: center;
@@ -478,23 +480,42 @@ body{
             margin: auto;
             color: #fff;
             display: grid;
-            grid-template-columns: repeat(4, 250px);
+            grid-template-columns: repeat(4, 300px);
             grid-column-gap: 20px;
             grid-row-gap: 20px;
             justify-content: center;
             .boards{
-                height: 6em;
+                box-shadow: 10px 10px 20px rgba(0,0,0,0.5); 
+                height: 8em;
+                display: flex;
+                align-content: space-between;
+                justify-content: space-between;
+                flex-direction: column;
                 background-image: url("https://images.unsplash.com/photo-1508615121316-fe792af62a63?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fGdyYWRpZW50JTIwY29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
                 background-size: cover;
                 background-position: center center;
                 background-blend-mode: multiply;
                 background-color: rgba($color: #000000, $alpha: 0.3);
                 cursor: pointer;
-                p{
+                transition: 0.5s ease-in-out;
+                
+                p:first-child{
                     font-size: 1.3rem;
                     font-weight: 500;
                     padding: .5rem;
                 }
+                .bttom-block-description{
+                    background-color: rgba($color: #000000, $alpha: 0.5);
+                    height: 30px;
+                    padding: .5rem;
+                    font-family: "Akaya Kanadaka";
+
+                }
+            }
+            .boards:hover{
+                box-shadow: 10px 10px 20px rgba(0,0,0,0.3); 
+                transform: scale(1.05);
+                
             }
             .list_of_projects{
                 .member_project{
@@ -502,16 +523,18 @@ body{
                     
                       .boards{
                           height: 6em;
-                          background-image: url("https://unsplash.com/photos/sKuVjm0xyLY");
+                          background-image: url("https://unspash.com/photos/sKuVjm0xyLY");
                           background-size: cover;
                           background-position: center center;
                           background-blend-mode: multiply;
                           background-color: rgba($color: #000000, $alpha: 0.3);
                           cursor: pointer;
-                          p{
+                          p:first-child{
                               font-size: 1.3rem;
                               font-weight: 500;
                               padding: .5rem;
+                          }
+
                           }
                       }   
                 }
@@ -531,7 +554,6 @@ body{
         }
     }}
     }   
-      }
       .new-board{
         height: 6em;
         background-size: cover;
@@ -613,10 +635,65 @@ body{
         }
     }
 }
-<<<<<<< HEAD
 
 .dark-mode{
     
 }
-=======
->>>>>>> Swift_project_1/Physix
+
+// Slide view
+
+// .slider{
+//     width: 800px;
+//     height: 500px;
+//     // border-radius: 10px;
+//     overflow: hidden;
+//     .slides{
+//         width: 500px;
+//         height: 500px;
+//         display: flex;
+//         input{ 
+//             display: none;
+//         }
+//         .slide{
+//             widows: 20%;
+//             transition: 2s;
+//             img{
+//                 width: 800px;
+//                 height: 500px;
+//             } 
+//         }
+//     }
+//     .navigation-manual{
+//         position: absolute;
+//         width: 800px;
+//         margin-top: -40px;
+//         display: flex;
+//         justify-content: center;
+//         .manual-btn{
+//             border: 2px solid #4d99cc;
+//             padding: 5px;
+//             border-radius: 10px;
+//             cursor: pointer;
+//             transition: 1s;
+//         }
+//         .manual-btn:not(:last-child){
+//             margin-right: 40px;
+//         }
+//         .manual-btn:hover{
+//             background: #40D3DC;
+//         }
+//     }
+// }
+
+// #radio1:checked ~ .first{
+//     margin-left: 0px;
+// }
+// #radio2:checked ~ .first{
+//     margin-left: -160%;
+// }
+// #radio3:checked ~ .first{
+//     margin-left: -320%;
+// }
+// #radio4:checked ~ .first{
+//     margin-left: -480%;
+// }
