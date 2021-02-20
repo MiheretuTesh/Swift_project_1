@@ -32,15 +32,6 @@ const projectMembers = document.querySelector("#projectMembers")
 const Deadline = document.querySelector("#projectDeadLine")
 const description = document.querySelector("#projectDescription")
 
-//project details
-const projectName = document.querySelector("#projectName")
-const projectManager  = document.querySelector("#projectManager")
-const projectMembers = ['sura', 'segno', 'mere', 'kaleab']
-const Deadline = document.querySelector("#projectDeadLine")
-const description = document.querySelector("#projectDescription")
-
-
-
 
 
 if(addTaskBtn){
@@ -136,15 +127,6 @@ let getDragAfterElement = (container, y) => {
 
 
 
-if(getProjectBtn){
-    getProjectBtn.addEventListener('click', (e) => {
-        console.log('event fired')
-        e.preventDefault();
-        let list = DB.getProjects();
-        
-    })
-}
-
 //create account
 if (createAccountBtn){
     createAccountBtn.addEventListener('submit', (e) => {
@@ -159,31 +141,14 @@ if (login){
             .then(result => ui.addLoginMessage(result))
     })
 }
-//create account
-if (register){
-register.addEventListener('submit', (e) => {
-    e.preventDefault();
-    DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
-})}
+
+
 //create project
 if (createProjectBtn){
     createProjectBtn.addEventListener('click', (e) => {
         console.log('event fired')
         e.preventDefault();
-        let accountCreationBool = DB.createProject(projectName.value, projectManager.value, projectMembers.value, Deadline.value, description.value);
+        let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
         // use accountCreationBool here, or pass it to another function 
 })}
 
-//get Projects
-getProjectBtn.addEventListener('click', (e) => {
-    console.log('event fired')
-    e.preventDefault();
-    DB.getProjects().then(data => {
-    data.forEach((datum) =>  {
-        var li = document.createElement('li')
-        li.innerHTML = `${datum[0]} & ${datum[1]} & ${datum[2]} & ${datum[3]} & ${datum[4]} & ${datum[5]}`
-        listProject.appendChild(li)
-    })
-    });
-
-})       
