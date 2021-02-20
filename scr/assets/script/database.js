@@ -36,17 +36,18 @@ export default class Database {
     
 
      login(usernameInput, passwordInput){
-        //check if account exitsts
-        let count = 0;
-        this.db.users.where('username').equalsIgnoreCase(usernameInput).each(user => {
-            if (user.password == passwordInput) {
+        this.db.users.each(user =>{
+            console.log(user.username + 'hi'+ usernameInput)
+            if (user.username == usernameInput && user.password == passwordInput){
+                console.log('success')
                 sessionStorage.setItem("currentUser", usernameInput)
-                return true
             }
             else {
-                return false
+                console.log('incorrect credentials')
             }
         })
+
+
 
         //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
         
