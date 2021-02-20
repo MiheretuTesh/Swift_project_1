@@ -10,12 +10,21 @@ const birthDay = document.querySelector("#birthDay")
 const login = document.querySelector("#login")
 const username = document.querySelector("#username")
 const password = document.querySelector("#password")
+//createProject and getProject
+const getProjectBtn = document.querySelector("#getProjectBtn")
+const listProject = document.querySelector("#listProject")  
 
+getProjectBtn.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let list = DB.getProjects();
+    console.log(list)
+})
 
 //login
 login.addEventListener('submit', (e) => {
     e.preventDefault();
-    DB.login(username.value, password.value)
+    let result = DB.login(username.value, password.value)
+    console.log(result)
 })
 //create account
 register.addEventListener('submit', (e) => {
@@ -23,4 +32,8 @@ register.addEventListener('submit', (e) => {
     DB.createAccount(fullName.value,uname_register.value,password_register.value,birthDay.value);
 })
 
+//create project
 
+
+
+//get Projects

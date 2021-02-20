@@ -46,13 +46,16 @@ export default class Database {
                 console.log('incorrect credentials')
             }
         })
-
-
-
-        //if login is successful store in sessionStorage the current username for personalization of tasks, and projects
-        
     }
-    
+
+     getProjects() {
+        projectList = []
+         db.project.each( project => {
+            projectList.push([project.projectName,project.projectManager,project.projectMembers,project.deadline,project.description, project.status])
+            })
+        return projectList
+        }
+        
 
 }//last brace
 
@@ -100,11 +103,6 @@ function createTask () {
 }
 
 
-function getProjects() {
- db.project.each( project
-
- )
-}
 
 
 function getUsers(){
