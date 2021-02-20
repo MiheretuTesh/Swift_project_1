@@ -484,7 +484,7 @@ body{
             justify-content: center;
             .boards{
                 height: 6em;
-                background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+                background-image: url("https://images.unsplash.com/photo-1508615121316-fe792af62a63?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fGdyYWRpZW50JTIwY29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
                 background-size: cover;
                 background-position: center center;
                 background-blend-mode: multiply;
@@ -502,7 +502,7 @@ body{
                     
                       .boards{
                           height: 6em;
-                          background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+                          background-image: url("https://unsplash.com/photos/sKuVjm0xyLY");
                           background-size: cover;
                           background-position: center center;
                           background-blend-mode: multiply;
@@ -513,9 +513,7 @@ body{
                               font-weight: 500;
                               padding: .5rem;
                           }
-                      }
-                     
-                      
+                      }   
                 }
             }
       }
@@ -539,13 +537,19 @@ body{
         background-size: cover;
         background-position: center center;
         background-blend-mode: multiply;
-        background-color: rgba($color: #f0e9e9, $alpha: 0.3);
-        cursor: pointer;   
+        background-color: rgba($color: #F5F6F7, $alpha:1);
+        color: #172b4d;
+
+        cursor: pointer; 
+        border: none;
         p{
             font-size: 1.3rem !important;
             font-weight: 500;
             padding: .5rem;
-      }
+      } 
+    }
+    .new-board:focus{
+        outline: none;
     }
 .modal-1{
     display: none;
@@ -608,4 +612,8 @@ body{
             padding: .5rem;
         }
     }
+}
+
+.dark-mode{
+    
 }

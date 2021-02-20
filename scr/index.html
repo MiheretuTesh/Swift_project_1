@@ -9,7 +9,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/style/main.css">
-
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script type='module' src="./assets/script/app.js" defer></script>
     <title>Swift</title>
     
@@ -45,6 +45,11 @@
             </div>
             <div class="navbar-1-right">
                 <ul>
+                    <li class="navbar-item">
+                        <a href="" class="navbar-link">
+                            <i class="fa fa-moon"></i>
+                        </a>
+                    </li>
                     <li class="navbar-item">
                         <a href="" class="navbar-link">
                             <i class="fa fa-plus"></i>
@@ -268,7 +273,7 @@
 
     <script>
         // Get the modal
-        var modal = document.getElementById("task-adding-modal");
+        var closeModal = document.getElementById("task-adding-modal");
         
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close");
@@ -281,10 +286,13 @@
         
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
+          if (event.target == closeModal) {
+            closeModal.style.display = "none";
           }
         }
+
+        let darkBtn = document.querySelector(".fa-moon");
+        
 
 
         </script>

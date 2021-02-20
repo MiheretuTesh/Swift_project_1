@@ -608,7 +608,7 @@ body {
 
 .page-2 .contents .list-boards .boards {
   height: 6em;
-  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-image: url("https://images.unsplash.com/photo-1508615121316-fe792af62a63?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fGdyYWRpZW50JTIwY29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
   background-size: cover;
   background-position: center center;
   background-blend-mode: multiply;
@@ -629,7 +629,7 @@ body {
 
 .page-2 .contents .list-boards .list_of_projects .member_project .boards {
   height: 6em;
-  background-image: url("https://cdn.pixabay.com/photo/2020/12/10/10/17/jasper-national-park-5819878__340.jpg");
+  background-image: url("https://unsplash.com/photos/sKuVjm0xyLY");
   background-size: cover;
   background-position: center center;
   background-blend-mode: multiply;
@@ -672,14 +672,20 @@ body {
   background-size: cover;
   background-position: center center;
   background-blend-mode: multiply;
-  background-color: rgba(240, 233, 233, 0.3);
+  background-color: #f5f6f7;
+  color: #172b4d;
   cursor: pointer;
+  border: none;
 }
 
 .new-board p {
   font-size: 1.3rem !important;
   font-weight: 500;
   padding: .5rem;
+}
+
+.new-board:focus {
+  outline: none;
 }
 
 .modal-1 {
@@ -746,8 +752,6 @@ body {
   border: none;
   width: 20rem;
   margin-right: .5rem;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
   outline: none;
 }
 
