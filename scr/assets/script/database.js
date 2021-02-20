@@ -93,44 +93,7 @@ export default class Database {
 
 
 
-}//end of curly brace
-
-
-// function getTasks() {
-//     db.tasks.each(task => console.log(task))
-// }
-// //         const ul = document.querySelector("#listTasks")
-// //         var li = document.createElement('li')
-// //         li.innerHTML = `taskName1`// ${task.taskName}  doneBy ${task.doneBy} assignedBy ${task.assignedBy} underProject ${task.underProject} tag ${task.tag} Deadline ${task.Deadline} description ${task.description}`
-// //         ul.appendChild(li)
-// //     })
-// // }
-
-
-// //getUsers
-// const getUsersBtn = document.querySelector("#getUsersBtn")
-// if (getUsersBtn){
-// getUsersBtn.addEventListener('click', getUsers)
-// }
-
-// //create Project
-// const createProjectBtn = document.querySelector("#createProject")
-// if (createProjectBtn) {
-//     createProjectBtn.addEventListener('click', createProject)
-// }
-
-// //create Task
-// const createTaskBtn = document.querySelector("#createTaskBtn")
-// if (createTaskBtn) {
-//     createTaskBtn.addEventListener('click', createTask)
-// }
-
-// //get Tasks
-// const getTasksBtn = document.querySelector("#getTasksBtn")
-// if (getTasksBtn){
-//     getTasksBtn.addEventListener('click', getTasks)
-// }
-
+}
 
 
 
