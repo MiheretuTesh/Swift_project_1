@@ -129,6 +129,14 @@ if (wrapper) {
     });
 }
 
+if(ui.boardsContainer){
+    let board = ui.boardsContainer.querySelector('.boards');
+    board.addEventListener('click', e => {
+        console.log('board clicked')
+    });
+}
+
+
 let getDragAfterElement = (container, y) => {
     const draggableElements = [
         ...container.querySelectorAll(".draggable:not(.dragging)"),
@@ -154,21 +162,32 @@ let getDragAfterElement = (container, y) => {
 };
 
 
-
 //create account
 if (createAccountBtn) {
     createAccountBtn.addEventListener("submit", (e) => {
         e.preventDefault();
-        DB.createAccount(
-            fullName.value,
-            uname_register.value,
-            password_register.value,
-            birthDay.value
-        ).then(result => {
-            ui.addLoginMessage(result, 'signup')
-        });
+        DB.getUser(uname_register.value)
+            .then(exists => {
+                if(exists){
+                    ui.addLoginMessage(false, 'signup');
+                }else{
+                    DB.createAccount(
+                        fullName.value,
+                        uname_register.value,
+                        password_register.value,
+                        birthDay.value
+                    ).then(result => {
+                        ui.addLoginMessage(result, 'signup')
+                    });
+                }
+            })
+        
+
+        
+        
     });
 }
+
 //login
 if (login) {
     login.addEventListener("submit", (e) => {

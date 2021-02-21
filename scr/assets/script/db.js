@@ -40,7 +40,7 @@ export default class Database {
         return false;
       });
 
-      return false;
+      return result;
   }
 
   //verfiy eistence of account and return a boolean
@@ -81,23 +81,22 @@ export default class Database {
 
   //get user
   async getUser(usernameInput) {
-    let userInfo;
-    await this.db.users
+    let userInfo = await this.db.users
       .get({ username: usernameInput })
-      .then(
-        (user) =>
-          (userInfo = {
-            username: user.username,
-            fullName: user.fullName,
-            password: user.password,
-            birthDay: user.birthDay,
-            managerOf: user.managerOf,
-            memberOf: user.memberOf,
-            hasTasks: user.hasTasks,
-          })
-      )
+      .then(user => {
+        if(user) return {
+          'username': user.username,
+          'fullName': user.fullName,
+          'password': user.password,
+          'birthDay': user.birthDay,
+          'managerOf': user.managerOf,
+          'memberOf': user.memberOf,
+          'hasTasks': user.hasTasks,
+        }
+      })
       .catch((error) => {
-        console.log("Error performing get User operation: ", error);
+        console.log("Error performing get User operation:🥺 ", error);
+        return false;
       });
 
       return userInfo;
