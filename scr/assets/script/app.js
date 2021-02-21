@@ -215,7 +215,6 @@ if (getUsersBtn) {
     });
 }
 
-
 //get Projects
 if (getProjectBtn) {
     getProjectBtn.addEventListener("click", (e) => {
@@ -230,6 +229,7 @@ if (getProjectBtn) {
         });
     });
 }
+
 //create project
 if (createTaskBtn) {
     createTaskBtn.addEventListener('click', (e) => {
