@@ -12,22 +12,21 @@ let cardModalDescription = document.querySelector(".modal-txt");
 let cardModalSave = document.querySelector(".modal-save");
 
 //Create Account
-const createAccountBtn = document.querySelector("#register");
+const registerForm = document.querySelector("#register");
 const fullName = document.querySelector("#fullNameID");
 const uname_register = document.querySelector("#unameID");
-const password_register = document.querySelector("#passID");
+const password_register = document.querySelector("#registerPassword");
 const birthDay = document.querySelector("#birthDay");
 //Log in
 const login = document.querySelector("#login");
 const username = document.querySelector("#username");
-const password = document.querySelector("#password");
+const password = document.querySelector("#loginPassword");
 //get users
 const getUsersBtn = document.querySelector("#getUsersBtn");
 const listUser = document.querySelector("#listUser");
 //createProject and getProject
 const getProjectBtn = document.querySelector("#getProjectBtn")
 const createProjectBtn = document.querySelector(".new-board")
-const listProject = document.querySelector("#listProject")
 const projectForm = document.querySelector('.addProjectForm');
 //create task
 const getTaskBtn = document.querySelector("#getTaskBtn");
@@ -46,6 +45,8 @@ const taskDescription = document.querySelector("#taskDescription");
 if (projectForm) {
     projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        let currentUser = sessionStorage.getItem("currentUser");
+        console.log(currentUser);
 
         let inputs = [...e.explicitOriginalTarget];
 
@@ -58,7 +59,7 @@ if (projectForm) {
 
         DB.createProject(
             projectName.value,
-            sessionStorage.getItem("currentUser"),
+            currentUser,
             userNames,
             deadline.value,
             description.value
@@ -83,6 +84,8 @@ if (createProjectBtn) {
         DB.getUsers().then((users) => {
             ui.addProject(users);
         });
+        
+    
     });
 }
 
@@ -131,9 +134,11 @@ if (wrapper) {
 
 if(ui.boardsContainer){
     let board = ui.boardsContainer.querySelector('.boards');
-    board.addEventListener('click', e => {
-        console.log('board clicked')
-    });
+    if(board){
+        board.addEventListener('click', e => {
+            console.log('board clicked')
+        });
+    }
 }
 
 
@@ -163,8 +168,8 @@ let getDragAfterElement = (container, y) => {
 
 
 //create account
-if (createAccountBtn) {
-    createAccountBtn.addEventListener("submit", (e) => {
+if (registerForm) {
+    registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
         DB.getUser(uname_register.value)
             .then(exists => {
@@ -177,23 +182,24 @@ if (createAccountBtn) {
                         password_register.value,
                         birthDay.value
                     ).then(result => {
-                        ui.addLoginMessage(result, 'signup')
+                        ui.addLoginMessage(result, 'signup');
+                        sessionStorage.setItem("currentUser", username.value);
                     });
                 }
             })
-        
-
-        
-        
     });
 }
 
 //login
-if (login) {
+if(login) {
     login.addEventListener("submit", (e) => {
         e.preventDefault();
-        DB.login(username.value, password.value).then((result) =>
-            ui.addLoginMessage(result, 'login')
+        DB.login(username.value, password.value)
+            .then(result => {
+                ui.addLoginMessage(result, 'login');
+                sessionStorage.setItem("currentUser", username.value);
+
+            }
         );
     });
 }
@@ -209,15 +215,6 @@ if (getUsersBtn) {
     });
 }
 
-//create project
-if (createProjectBtn) {
-    createProjectBtn.addEventListener("click", (e) => {
-        console.log("event fired");
-        e.preventDefault();
-        // let accountCreationBool = DB.createProject(projectName.value, sessionStorage.getItem('currentUser'), projectMembers.value, Deadline.value, description.value);
-        // use accountCreationBool here, or pass it to another function
-    });
-}
 
 //get Projects
 if (getProjectBtn) {

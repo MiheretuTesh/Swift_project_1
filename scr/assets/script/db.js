@@ -32,7 +32,6 @@ export default class Database {
       })
       .then(() => {
         console.log("Account created successfully!😊");
-        sessionStorage.setItem("currentUser", username);
         return true;
       })
       .catch(error => {
@@ -53,7 +52,6 @@ export default class Database {
         user.password == passwordInput
       ) {
         console.log("Logging in successful!😊");
-        sessionStorage.setItem("currentUser", usernameInput);
         found = true;
       }
     });

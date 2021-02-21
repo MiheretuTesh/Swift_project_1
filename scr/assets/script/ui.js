@@ -87,14 +87,16 @@ addLoginMessage(isSuccess, loginRegister){
     let successMsg2 = 'Signing up Successful!';
 
 
+
     if(isSuccess){
         fail.style.background = 'rgb(158,255,161)';
         fail.style.color = 'green';
         fail.textContent = loginRegister === 'login'? successMsg: successMsg2;
         context.querySelector('.spinner').style.display = 'block'; 
         setTimeout(() => {
-          window.open('dash_board.html', "_blank");
-          window.close();
+          this.login.reset();
+          this.signup.reset();
+          window.open('dash_board.html', "_self");
         }, 2000)
 
     }else{
