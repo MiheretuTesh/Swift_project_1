@@ -5,6 +5,7 @@ export default class UI {
     this.taskModal = document.querySelector("#task-adding-modal");
     this.projectModal = document.querySelector("#project-adding-modal");
     this.login = document.querySelector("#login");
+    this.signup = document.querySelector('#register');
     this.submitButtonProject = document.querySelector(".submitProjectBtn");
     this.boardsContainer = document.querySelector(".list-boards");
   }
@@ -73,46 +74,31 @@ export default class UI {
     this.todos.appendChild(card);
   }
 
-  addLoginMessage(isSuccess) {
-    let fail = this.login.querySelector(".login_message");
-    fail.style.display = "block";
-    let errorMsg = "Wrong Username or Password";
-    let successMsg = "Login Successful!";
-    
-    if (isSuccess) {
-      fail.style.background = "rgb(158,255,161)";
-      fail.style.color = "green";
-      fail.textContent = successMsg;
-      this.login.querySelector(".spinner").style.display = "block";
-      setTimeout(() => window.open("dash_board.html", "_blank"), 2000);
-    } else {
-      fail.style.background = "#ffe0e0";
-      fail.style.color = "#ba3939";
-      fail.textContent = errorMsg;
-      this.login.querySelector(".spinner").style.display = "none";
-      setTimeout(() => (fail.style.display = "none"), 2000);
-    }
-  }
 
 
-    addLoginMessage(isSuccess){
-        let fail = this.login.querySelector('.login_message');
+
+    addLoginMessage(isSuccess, loginRegister){
+        let context = loginRegister === 'login'? this.login: this.signup;
+        let fail = loginRegister === 'login'? this.login.querySelector('.login_message'): this.signup.querySelector('.login_message');
         fail.style.display = 'block';
-        let errorMsg = 'Wrong Username or Password';
+        let errorMsg = 'Wrong Username or Password!';
+        let errorMsg2 = 'Signing up failed!';
         let successMsg = 'Login Successful!';
-        console.log(isSuccess)
+        let successMsg2 = 'Signing up Successful!';
+
+  
         if(isSuccess){
             fail.style.background = 'rgb(158,255,161)';
             fail.style.color = 'green';
-            fail.textContent = successMsg;
-            this.login.querySelector('.spinner').style.display = 'block'; 
-            setTimeout(() => window.open('dash_board.html', "_blank"), 1000)
+            fail.textContent = loginRegister === 'login'? successMsg: successMsg2;
+            context.querySelector('.spinner').style.display = 'block'; 
+            setTimeout(() => window.open('dash_board.html', "_blank"), 2000)
 
         }else{
             fail.style.background = '#ffe0e0';
             fail.style.color = '#ba3939';
-            fail.textContent = errorMsg;
-            this.login.querySelector('.spinner').style.display = 'none';
+            fail.textContent = loginRegister === 'login'? errorMsg: errorMsg2;
+            context.querySelector('.spinner').style.display = 'none';
             setTimeout(() => fail.style.display = 'none' , 2000)
         } 
         

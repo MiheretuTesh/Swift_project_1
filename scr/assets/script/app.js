@@ -165,7 +165,7 @@ if (createAccountBtn) {
             password_register.value,
             birthDay.value
         ).then(result => {
-            ui.addLoginMessage(result, 'register')
+            ui.addLoginMessage(result, 'signup')
         });
     });
 }

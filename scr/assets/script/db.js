@@ -32,6 +32,7 @@ export default class Database {
       })
       .then(() => {
         console.log("Account created successfully!😊");
+        sessionStorage.setItem("currentUser", username);
         return true;
       })
       .catch(error => {
@@ -39,23 +40,24 @@ export default class Database {
         return false;
       });
 
-      return result;
+      return false;
   }
 
   //verfiy eistence of account and return a boolean
   //FIXME:
   async login(usernameInput, passwordInput) {
-    let found = await this.db.users.each((user) => {
+    let found = false;
+    await this.db.users.each((user) => {
       if (
         user.username == usernameInput &&
         user.password == passwordInput
       ) {
         console.log("Logging in successful!😊");
         sessionStorage.setItem("currentUser", usernameInput);
-        return true;
+        found = true;
       }
-      return false;
     });
+
     if(!found) console.log("Logging in failed!🥺 ");
     return found;
   }

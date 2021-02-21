@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Login</title>
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="assets/style/styler.css">
     <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,7 +37,7 @@
                     <i class="fa fa-eye-slash hidden"></i>   
                 </span>
 
-                <div class="login_message">'Wrong Username or Password'</div>
+                <div class="login_message"></div>
                 <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
 
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
@@ -63,7 +63,10 @@
                     <i class="fa fa-eye-slash hidden"></i>
                     
                 </span>
-                               
+                
+                <div class="login_message"></div>
+                <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
+                
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
            <button type="submit" class="submit-btn" id="registerBtn">Register</button>
 
