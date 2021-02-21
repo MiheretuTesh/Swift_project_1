@@ -78,7 +78,7 @@ export default class UI {
     fail.style.display = "block";
     let errorMsg = "Wrong Username or Password";
     let successMsg = "Login Successful!";
-    console.log(isSuccess);
+    
     if (isSuccess) {
       fail.style.background = "rgb(158,255,161)";
       fail.style.color = "green";
