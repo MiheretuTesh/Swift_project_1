@@ -57,7 +57,7 @@ export default class Database {
       }
     });
     return found;
-  };
+  }
 
   //get users
   async getUsers() {
@@ -75,7 +75,7 @@ export default class Database {
     });
     return usersList;
   }
-  
+
   //get user
   async getUser(usernameInput) {
     let userInfo;
@@ -113,7 +113,7 @@ export default class Database {
     });
   }
 
-//_______________________________________OPERATIONS_ON_PROJECT_TABLE____________________________________________________
+  //_______________________________________OPERATIONS_ON_PROJECT_TABLE____________________________________________________
 
   //create project
   async createProject(
@@ -163,8 +163,11 @@ export default class Database {
     return projectList;
   }
 
-  async completeProject(projectNameInput){
-    this.db.project.where("name").equals(projectNameInput).modify({status:1});
+  async completeProject(projectNameInput) {
+    this.db.project
+      .where("name")
+      .equals(projectNameInput)
+      .modify({ status: 1 });
   }
   //_______________________________________OPERATOINS_ON_TASK_TABLE____________________________________________________
 
@@ -193,12 +196,12 @@ export default class Database {
       });
   }
 
-    //complete a task
-    async completeTask(taskNameInput) {
-      this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
-    }
+  //complete a task
+  async completeTask(taskNameInput) {
+    this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+  }
   //__________________________________________MISCELLANEOUS__OPERATOINS_____________________________________________________
-  
+
   // AddUserToProject consists of two operations: 1. Adding the project to the list of projects that user is a member of
   //                                              2. Adding the user the list of users that that project has as it's members
 
@@ -240,28 +243,22 @@ export default class Database {
         ismemberOf.push(projectNameInput);
         return ismemberOf;
       })
-      .then((ismemberOf) => { 
+      .then((ismemberOf) => {
         this.db.user
           .where("username")
           .equals(usernameInput)
           .modify({ memberOf: ismemberOf });
       });
   }
-
-
-
-  
-
 } //end of curly brace
 
-  
-  //TODO: when a project is opened, sessionStorage.setItem("currentProject", projectName)
-  //TODO: change username ... has to confirm password. 
-  //TODO: change password ... has to confirm password as well
-  //TODO: leave project   ... deleting projectName from user.memberOf, userName from project.hasMembers and redirecting to projects
-  //TODO: delete task     ... deleting taskName from user.hasTasks, 
-  //TODO: delete project
-  //TODO: drop task
-  //TODO: progress
-  //TODO: deadline should not be set in the past only into the future
-  //TODO: a new objectStore to store deleted items. Data's helpful for processing and growing
+//TODO: when a project is opened, sessionStorage.setItem("currentProject", projectName)
+//TODO: change username ... has to confirm password.
+//TODO: change password ... has to confirm password as well
+//TODO: leave project   ... deleting projectName from user.memberOf, userName from project.hasMembers and redirecting to projects
+//TODO: delete task     ... deleting taskName from user.hasTasks,
+//TODO: delete project
+//TODO: drop task
+//TODO: progress
+//TODO: deadline should not be set in the past only into the future
+//TODO: a new objectStore to store deleted items. Data's helpful for processing and growing
