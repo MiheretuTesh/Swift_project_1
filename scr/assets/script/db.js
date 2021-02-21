@@ -5,6 +5,7 @@
 export default class Database {
   constructor() {
     this.db = new Dexie("swiftDB");
+    //FIXME: add a new objectStore "deletedItems: m"
     this.db.version(1).stores({
       users:
         "++id, username, fullName, password, birthDay, managerOf, memberOf, hasTasks",
@@ -15,6 +16,7 @@ export default class Database {
     });
     this.db.open();
   }
+  //_______________________________________OPERATOINS_ON_USERS_TABLE____________________________________________________
 
   //create account in the database
   async createAccount(fullName, username, password, birthDay) {
@@ -55,8 +57,63 @@ export default class Database {
       }
     });
     return found;
+  };
+
+  //get users
+  async getUsers() {
+    let usersList = [];
+    await this.db.users.each((user) => {
+      usersList.push({
+        userName: user.username,
+        fullName: user.fullName,
+        password: user.password,
+        birthDay: user.birthDay,
+        managerOf: user.managerOf,
+        memberOf: user.memberOf,
+        hasTasks: user.hasTasks,
+      });
+    });
+    return usersList;
   }
-  s;
+  
+  //get user
+  async getUser(usernameInput) {
+    let userInfo;
+    await this.db.users
+      .get({ username: usernameInput })
+      .then(
+        (user) =>
+          (userInfo = {
+            username: user.username,
+            fullName: user.fullName,
+            password: user.password,
+            birthDay: user.birthDay,
+            managerOf: user.managerOf,
+            memberOf: user.memberOf,
+            hasTasks: user.hasTasks,
+          })
+      )
+      .catch(function (error) {
+        console.log("error performing get User operation");
+      });
+  }
+
+  // get project
+  async getProject(projectNameInput) {
+    let projectInfo;
+    await this.db.project.get({ name: projectNameInput }).then((project) => {
+      projectInfo = {
+        name: project.name,
+        managedBy: project.managedBy,
+        hasMembers: project.hasMembers,
+        deadline: project.deadline,
+        description: project.description,
+        status: project.status,
+      };
+    });
+  }
+
+//_______________________________________OPERATIONS_ON_PROJECT_TABLE____________________________________________________
 
   //create project
   async createProject(
@@ -106,6 +163,11 @@ export default class Database {
     return projectList;
   }
 
+  async completeProject(projectNameInput){
+    this.db.project.where("name").equals(projectNameInput).modify({status:1});
+  }
+  //_______________________________________OPERATOINS_ON_TASK_TABLE____________________________________________________
+
   //create tasks
   async createTask() {
     await this.db.task
@@ -131,62 +193,14 @@ export default class Database {
       });
   }
 
-  //get users
-  async getUsers() {
-    let usersList = [];
-    await this.db.users.each((user) => {
-      usersList.push({
-        userName: user.username,
-        fullName: user.fullName,
-        password: user.password,
-        birthDay: user.birthDay,
-        managerOf: user.managerOf,
-        memberOf: user.memberOf,
-        hasTasks: user.hasTasks,
-      });
-    });
-    return usersList;
-  }
-
-  //get user
-  async getUser(usernameInput) {
-    let userInfo;
-    await this.db.users
-      .get({ username: usernameInput })
-      .then(
-        (user) =>
-          (userInfo = {
-            username: user.username,
-            fullName: user.fullName,
-            password: user.password,
-            birthDay: user.birthDay,
-            managerOf: user.managerOf,
-            memberOf: user.memberOf,
-            hasTasks: user.hasTasks,
-          })
-      )
-      .catch(function (error) {
-        console.log("error performing get User operation");
-      });
-  }
-
-  // get project
-  async getProject(projectNameInput) {
-    let projectInfo;
-    await this.db.project.get({ name: projectNameInput }).then((project) => {
-      projectInfo = {
-        name: project.name,
-        managedBy: project.managedBy,
-        hasMembers: project.hasMembers,
-        deadline: project.deadline,
-        description: project.description,
-        status: project.status,
-      };
-    });
-  }
-
-  //add a member to a project consists of two operations: 1. Adding the project to the list of projects that user is a member of
-  //2.Addin the user the list of users that project has as it's members
+    //complete a task
+    async completeTask(taskNameInput) {
+      this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+    }
+  //__________________________________________MISCELLANEOUS__OPERATOINS_____________________________________________________
+  
+  // AddUserToProject consists of two operations: 1. Adding the project to the list of projects that user is a member of
+  //                                              2. Adding the user the list of users that that project has as it's members
 
   //Operation 1
   async addMemberToProject(projectNameInput, usernameInput) {
@@ -226,7 +240,7 @@ export default class Database {
         ismemberOf.push(projectNameInput);
         return ismemberOf;
       })
-      .then((ismemberOf) => {
+      .then((ismemberOf) => { 
         this.db.user
           .where("username")
           .equals(usernameInput)
@@ -234,24 +248,20 @@ export default class Database {
       });
   }
 
-  //complete a task
-  async completeTask(taskNameInput) {
-    await this.db.task.get({ name: taskNameInput }).then;
-    {
-    }
-    this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
-  }
-// 
-  //TODO: complete a task
-  //TODO: complete a project
+
+
+  
+
+} //end of curly brace
+
+  
   //TODO: when a project is opened, sessionStorage.setItem("currentProject", projectName)
-  //TODO: change username
-  //TODO: change password
-  //TODO: leave project
-  //TODO: delete task
+  //TODO: change username ... has to confirm password. 
+  //TODO: change password ... has to confirm password as well
+  //TODO: leave project   ... deleting projectName from user.memberOf, userName from project.hasMembers and redirecting to projects
+  //TODO: delete task     ... deleting taskName from user.hasTasks, 
   //TODO: delete project
   //TODO: drop task
   //TODO: progress
   //TODO: deadline should not be set in the past only into the future
-
-} //end of curly brace
+  //TODO: a new objectStore to store deleted items. Data's helpful for processing and growing
