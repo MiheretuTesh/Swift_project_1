@@ -76,6 +76,9 @@ if (projectForm) {
             ui.displayProjects(projects);
         });
     });
+
+    //TODO: change getting the projects from the whole projects table to the users' 2 fields   
+    //TODO: add the created project to the list of the the manager and the memebers
 }
 
 if (createProjectBtn) {
