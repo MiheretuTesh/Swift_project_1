@@ -568,7 +568,7 @@ body {
 .page-2 .contents .contents_nav ul {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (100px) [3];
+  /* -ms-grid-columns: (100px) [3]; */
   grid-template-columns: repeat(3, 100px);
 }
 
@@ -612,7 +612,7 @@ body {
   color: #fff;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (300px) [4];
+  /* -ms-grid-columns: (300px) [4]; */
   grid-template-columns: repeat(4, 300px);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
