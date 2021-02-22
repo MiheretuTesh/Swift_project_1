@@ -278,11 +278,11 @@ body {
 }
 .column {
   flex: 0 0 auto;
-  width: 340px;
+  width: 330px;
   height: 520px;
   background: #FFFFFF;
   box-sizing: border-box;
-  border-radius: 1px;
+  border-radius: 10px;
   margin-left: 40px;
   background-color: white;
 }
@@ -294,10 +294,13 @@ body {
   box-shadow: 0px 1px 6px #4786FF;
 }
 .column-title {
-  margin: 24px 0px 0px 24px;
+  padding: 24px 0px 0px 24px;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 24px;
+  padding-bottom: 23px;
+  background-color:  #d3d3d3 ;
+
 }
 .task {
   list-style-type: none;
@@ -308,7 +311,7 @@ body {
   border: 1px solid #EBEDF0;
   box-sizing: border-box;
   border-radius: 2px;
-  min-height: 80px;
+  min-height: 60px;
   width: 288px;
 }
 .task:nth-child(1) {
@@ -317,9 +320,9 @@ body {
 .task .task-content {
   margin: 16px 16px 0 16px;
   font-family: 'Lato';
-  font-weight: 400;
+  font-weight: 200;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 14px;
   color: #54585A;
 }
 .task:hover {
