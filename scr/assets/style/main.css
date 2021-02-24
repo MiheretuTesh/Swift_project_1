@@ -643,9 +643,10 @@ body {
 
 .page-2 .contents .list-boards .boards .bttom-block-description {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 30px;
-  padding: .5rem;
+  height: 0px;
   font-family: "Akaya Kanadaka";
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .page-2 .contents .list-boards .boards:hover {
@@ -653,6 +654,11 @@ body {
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.page-2 .contents .list-boards .boards:hover > .bttom-block-description {
+  height: 30px;
+  padding: .5rem;
 }
 
 .list-members {

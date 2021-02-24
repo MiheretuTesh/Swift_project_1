@@ -507,24 +507,20 @@ body{
                 }
                 .bttom-block-description{
                     background-color: rgba($color: #000000, $alpha: 0.5);
-                    height: 30px;
-                    padding: .5rem;
+                    height: 0px;
                     font-family: "Akaya Kanadaka";
-
+                    transition: 0.1s ease-in-out;
                 }
+                
             }
             .boards:hover{
                 box-shadow: 10px 10px 20px rgba(0,0,0,0.3); 
-                transform: scale(1.05);
-                
+                transform: scale(1.05);  
             }
-            // .list_of_projects{
-            //     .member_project{
-            //         display: grid;
-                    
-                     
-            //               }
-            //           }   
+            .boards:hover > .bttom-block-description{
+                height: 30px;
+                padding: .5rem;
+            }
                 }
             }
       }
@@ -649,6 +645,19 @@ body{
 //                 width: 800px;
 //                 height: 500px;
 //             } 
+//         }
+//         .navigation-auto{
+//             position: absolute;
+//             display: flex;
+//             width: 800px;
+//             justify-content: center;
+//             margin-top: 460px;
+//         }
+//         .navigation-auto:div{
+//             border: 2px solid #fff;
+//             padding: 5px;
+//             border-radius: 10px;
+//             transition: 1s;
 //         }
 //     }
 //     .navigation-manual{

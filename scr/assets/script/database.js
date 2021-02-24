@@ -16,6 +16,7 @@ export default class Database {
          this.db.open();
     }
 
+
     //create account in the database
      async createAccount (fullName, username, password, birthDay) {
         await this.db.users.put({fullName: fullName.toLowerCase(), username: username.toLowerCase(), password: password, birthDay: birthDay, managerOf: [], memberOf:[], hasTasks:[] })
@@ -28,6 +29,7 @@ export default class Database {
            console.log("Check out this error: " + error);
         });
     }
+
     
     //verfiy eistence of account and return a boolean
     async login(usernameInput, passwordInput){
@@ -42,6 +44,8 @@ export default class Database {
         return found;
         
     }
+
+
     //create project
     async createProject (projectName, projectManager, projectMembers, Deadline, description) {
        await this.db.project.put({
@@ -63,6 +67,7 @@ export default class Database {
             });
     } 
 
+
     //get Projects
      async getProjects() {
         console.log('got here')
@@ -77,6 +82,7 @@ export default class Database {
                             })
         return projectList;
         }
+
 
     //create tasks
      async createTask () {
@@ -96,6 +102,8 @@ export default class Database {
            alert ("Check this error out: " + error);
         });
     }
+
+
     //get users
     async getUsers(){
         let usersList = [];
@@ -114,6 +122,7 @@ export default class Database {
     return usersList
     }
     
+
     //get user
     async getUser(usernameInput){
         let userInfo;
@@ -131,6 +140,8 @@ export default class Database {
             console.log('error performing get User operation')
           });
     }
+
+
     // get project
     async getProject(projectNameInput){
         let projectInfo;
@@ -146,6 +157,8 @@ export default class Database {
             }
         })
     }
+
+
     //add a member to a project consists of two operations: 1. Adding the project to the list of projects that user is a member of
     //2.Addin the user the list of users that project has as it's members
 
@@ -170,10 +183,26 @@ export default class Database {
         })
     }
 
+    //operaiton 2
+    async addProjectToUser(usernameInput, projectNameInput){
+        let ismemberOf;
+        await this.db.users.get({username: usernameInput})
+        .then((user) => {
+            ismemberOf = user.memberOf;
+            return ismemberOf
+        })
+        .then((ismemberOf) => {
+            ismemberOf.push(projectNameInput)
+            return ismemberOf
+        })
+        .then((ismemberOf) => {
+            this.db.user.where("username").equals(usernameInput).modify({memberOf: ismemberOf})
+        })
+    }
     
     //______________________________ get project(projectName)
-    // add member to a project
-    // remove member from a project
+    // ______________________________add member to a project
+    // ______________________________remove member from a project
     // complete a task
     // complete a project
     // when a project is opened, sessionStorage.setItem("currentProject", projectName)
