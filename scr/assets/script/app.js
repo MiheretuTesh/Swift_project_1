@@ -57,6 +57,8 @@ if (projectForm) {
             .filter((user) => user.checked)
             .map((user) => user.value);
 
+        userNames.forEach(user => DB.addProjectToUser(user, projectName.value));
+
         DB.createProject(
             projectName.value,
             currentUser,
@@ -64,17 +66,27 @@ if (projectForm) {
             deadline.value,
             description.value
         ).then(() => {
-            DB.getProjects().then((projects) => ui.hideAddProject(projects));
+            DB.getProjects().then((projects) => {
+                ui.hideAddProject(projects)
+                location.reload();
+
+            });
         });
     });
 
+    
     document.addEventListener("DOMContentLoaded", (e) => {
         e.preventDefault();
+        const currentUser = sessionStorage.getItem('currentUser');
+
         DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
             let currentUser = sessionStorage.getItem('currentUser');
+
             projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
             ui.displayProjects(projects);
         });
+        
+        
     });
 
     //TODO: change getting the projects from the whole projects table to the users' 2 fields   
@@ -84,7 +96,10 @@ if (projectForm) {
 if (createProjectBtn) {
     createProjectBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        const currentUser = sessionStorage.getItem('currentUser');
         DB.getUsers().then((users) => {
+            users = users.filter(user => user.username!==currentUser);
+            console.log(users)
             ui.addProject(users);
         });
         
@@ -186,7 +201,7 @@ if (registerForm) {
                         birthDay.value
                     ).then(result => {
                         ui.addLoginMessage(result, 'signup');
-                        sessionStorage.setItem("currentUser", username.value);
+                        sessionStorage.setItem("currentUser", uname_register.value);
                     });
                 }
             })
