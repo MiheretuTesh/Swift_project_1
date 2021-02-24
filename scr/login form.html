@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Login</title>
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <link rel="stylesheet" href="assets/style/styler.css">
     <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,18 +30,18 @@
             <form id="login" class="input-group">
                 
                 <input id="username" type="text" class="input-field" placeholder="Username" required>
-                <input id="password" type="password" class="input-field" placeholder="Enter Password" required id="passID">
+                <input id="loginPassword"  type="password" class="input-field" placeholder="Enter Password" required id="passID">
               
-                <span class="eye" onclick="eyeFunction()">
-                    <i class="fa fa-eye seen" style="display: none;"></i>
-                    <i class="fa fa-eye-slash hidden"></i>   
+                <span class="eye" onclick="eyeFunction('login')">
+                    <i class="fa fa-eye loginSeen" style="display: none;"></i>
+                    <i class="fa fa-eye-slash loginHidden"></i>   
                 </span>
 
-                <div class="login_message">'Wrong Username or Password'</div>
+                <div class="login_message"></div>
                 <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
 
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
-           <button type="submit" class="submit-btn" id="loginBtn">Log In</button>
+                <button type="submit" class="submit-btn" id="loginBtn">Log In</button>
 
 
 
@@ -54,16 +54,19 @@
                 <input type="text" class="input-field" placeholder="Username" id="unameID" required>
           
             
-                <input type="text" class="input-field" placeholder="Birthday" id="birthDay" required>
+                <input type="date" class="input-field" placeholder="Birthday" id="birthDay" required>
                 
             
-                <input type="password" class="input-field" placeholder="Enter Password" required id="passID">
-                <span class="eye" onclick="eyeFunction()">
-                    <i class="fa fa-eye seen"  style="display: none;"></i>
-                    <i class="fa fa-eye-slash hidden"></i>
+                <input id="registerPassword" type="password" class="input-field" placeholder="Enter Password" required id="passID">
+                <span class="eye" onclick="eyeFunction('register')">
+                    <i class="fa fa-eye registerSeen"  style="display: none;"></i>
+                    <i class="fa fa-eye-slash registerHidden"></i>
                     
                 </span>
-                               
+                
+                <div class="login_message"></div>
+                <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
+                
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
            <button type="submit" class="submit-btn" id="registerBtn">Register</button>
 
@@ -95,23 +98,21 @@
     </script>
 
     <script>
-        function eyeFunction(){
-            let password = document.querySelector("#password");
-            let seen = document.querySelector(".seen");
-            let hidden = document.querySelector(".hidden");
-
             
+        function eyeFunction(target){
+            let password = target === 'login'? document.querySelector("#loginPassword"): document.querySelector("#registerPassword");
+            let seen = target === 'login'? document.querySelector(".loginSeen"): document.querySelector(".registerSeen");
+            let hidden = target === 'login'? document.querySelector(".loginHidden"): document.querySelector(".registerHidden");
+
             if(password.type === 'password'){
                 password.type="text";
-                hidden.style.display= "none";
-                seen.style.display="block";
+                hidden.style.display = "block";
+                seen.style.display = "none";
             }
             else{
                 password.type ="password";
-                hidden.style.display = "block";
-                seen.style.display = "none";
-                
-
+                hidden.style.display= "none";
+                seen.style.display="block";
             }
 
 

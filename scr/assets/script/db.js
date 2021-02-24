@@ -20,26 +20,26 @@ export default class Database {
 
   //create account in the database
   async createAccount(fullName, username, password, birthDay) {
-    await this.db.users
+    let result = await this.db.users
       .put({
         fullName: fullName.toLowerCase(),
-        username: username.toLowerCase(),
+        username: username,
         password: password,
         birthDay: birthDay,
         managerOf: [],
         memberOf: [],
         hasTasks: [],
       })
-      .then(function () {
-        return this.db.users;
+      .then(() => {
+        console.log("Account created successfully!😊");
+        return true;
       })
-      .then(function () {
-        console.log("Account created successfully!");
-        location.reload();
-      })
-      .catch(function (error) {
-        console.log("Check out this error: " + error);
+      .catch(error => {
+        console.log("Account creation failed:🥺 " + error);
+        return false;
       });
+
+      return result;
   }
 
   //verfiy eistence of account and return a boolean
@@ -48,14 +48,15 @@ export default class Database {
     let found = false;
     await this.db.users.each((user) => {
       if (
-        user.username == usernameInput.toLowerCase() &&
+        user.username == usernameInput &&
         user.password == passwordInput
       ) {
-        console.log("success");
+        console.log("Logging in successful!😊");
         found = true;
-        sessionStorage.setItem("currentUser", usernameInput);
       }
     });
+
+    if(!found) console.log("Logging in failed!🥺 ");
     return found;
   }
 
@@ -78,24 +79,25 @@ export default class Database {
 
   //get user
   async getUser(usernameInput) {
-    let userInfo;
-    await this.db.users
+    let userInfo = await this.db.users
       .get({ username: usernameInput })
-      .then(
-        (user) =>
-          (userInfo = {
-            username: user.username,
-            fullName: user.fullName,
-            password: user.password,
-            birthDay: user.birthDay,
-            managerOf: user.managerOf,
-            memberOf: user.memberOf,
-            hasTasks: user.hasTasks,
-          })
-      )
-      .catch(function (error) {
-        console.log("error performing get User operation");
+      .then(user => {
+        if(user) return {
+          'username': user.username,
+          'fullName': user.fullName,
+          'password': user.password,
+          'birthDay': user.birthDay,
+          'managerOf': user.managerOf,
+          'memberOf': user.memberOf,
+          'hasTasks': user.hasTasks,
+        }
+      })
+      .catch((error) => {
+        console.log("Error performing get User operation:🥺 ", error);
+        return false;
       });
+
+      return userInfo;
   }
 
   // get project
@@ -123,7 +125,7 @@ export default class Database {
     Deadline,
     description
   ) {
-    await this.db.project
+    let result = await this.db.project
       .put({
         name: projectName,
         managedBy: projectManager,
@@ -132,23 +134,20 @@ export default class Database {
         Description: description,
         status: 0,
       })
-      .then(function () {
-        return db.users;
-      })
-      .then(function () {
-        console.log("Project created successfully!");
-        location.reload();
+      .then(() => {
+        console.log("Project created successfully!😊");
         return true;
       })
-      .catch(function (error) {
-        console.log("Check this error out: " + error);
+      .catch(error => {
+        console.log("Creating project failed:🥺 " + error);
         return false;
       });
+
+      return result;
   }
 
   //get Projects
   async getProjects() {
-    console.log("got here");
     let projectList = [];
     await this.db.project.each((project) => {
       projectList.push({
@@ -173,7 +172,7 @@ export default class Database {
 
   //create tasks
   async createTask() {
-    await this.db.task
+    let result = await this.db.task
       .put({
         name: taskName,
         doneBy: doneBy,
@@ -184,16 +183,14 @@ export default class Database {
         description: description,
         status: 0,
       })
-      .then(function () {
-        return db.tasks;
+      .then(() => {
+        console.log("Task created successfully!😊");
+    
       })
-      .then(function (users) {
-        console.log("Task created successfully!");
-        location.reload();
-      })
-      .catch(function (error) {
-        alert("Check this error out: " + error);
+      .catch(error => {
+        console.log("Task creation failed!:🥺 " + error);
       });
+      return result;
   }
 
   //complete a task

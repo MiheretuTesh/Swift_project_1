@@ -561,6 +561,7 @@ body {
 .page-2 .contents .contents_nav ul {
   display: -ms-grid;
   display: grid;
+  /* -ms-grid-columns: (100px) [3]; */
   grid-template-columns: repeat(3, 100px);
 }
 
