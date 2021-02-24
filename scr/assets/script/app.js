@@ -79,13 +79,19 @@ if (projectForm) {
         e.preventDefault();
         const currentUser = sessionStorage.getItem('currentUser');
 
-        DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
-            let currentUser = sessionStorage.getItem('currentUser');
+        // DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
+        //     let currentUser = sessionStorage.getItem('currentUser');
 
-            projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
-            ui.displayProjects(projects);
-        });
+        //     projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
+        //     ui.displayProjects(projects);
+        // });
         
+        DB.getUser(currentUser).
+            then(data =>{ 
+                if(data.managerOf.length || data.memberOf.length){
+                    ui.displayProjects([... data.managerOf, data.memberOf]);
+                }
+            });
         
     });
 
@@ -98,7 +104,7 @@ if (createProjectBtn) {
         e.preventDefault();
         const currentUser = sessionStorage.getItem('currentUser');
         DB.getUsers().then((users) => {
-            users = users.filter(user => user.username!==currentUser);
+            users = users.filter(user => user.userName!==currentUser);
             console.log(users)
             ui.addProject(users);
         });
