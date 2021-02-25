@@ -103,16 +103,19 @@ export default class Database {
   // get project
   async getProject(projectNameInput) {
     let projectInfo;
-    await this.db.project.get({ name: projectNameInput }).then((project) => {
-      projectInfo = {
-        name: project.name,
-        managedBy: project.managedBy,
-        hasMembers: project.hasMembers,
-        deadline: project.deadline,
-        description: project.description,
-        status: project.status,
-      };
-    });
+    await this.db.project.get({ name: projectNameInput })
+      .then((project) => {
+        projectInfo = {
+          name: project.name,
+          managedBy: project.managedBy,
+          hasMembers: project.hasMembers,
+          deadline: project.deadline,
+          description: project.description,
+          status: project.status,
+        };
+    })
+    .catch(error => console.log('Error performing get Project operation:🥺 ', error));
+    return projectInfo;
   }
 
   //_______________________________________OPERATIONS_ON_PROJECT_TABLE____________________________________________________
@@ -205,7 +208,7 @@ export default class Database {
   //Operation 1
   async addMemberToProject(projectNameInput, usernameInput) {
     //fetch list containing members of that project
-    let projectMembers;
+    let projectMembers = [];
     await this.db.project
       .get({ name: projectNameInput })
       .then((project) => {
@@ -229,7 +232,7 @@ export default class Database {
 
   //operaiton 2
   async addProjectToUser(usernameInput, projectNameInput) {
-    let ismemberOf;
+    let ismemberOf = [];
     await this.db.users
       .get({ username: usernameInput })
       .then((user) => {
@@ -241,7 +244,7 @@ export default class Database {
         return ismemberOf;
       })
       .then((ismemberOf) => {
-        this.db.user
+        this.db.users
           .where("username")
           .equals(usernameInput)
           .modify({ memberOf: ismemberOf });

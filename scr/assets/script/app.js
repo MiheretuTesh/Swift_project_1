@@ -23,10 +23,9 @@ const username = document.querySelector("#username");
 const password = document.querySelector("#loginPassword");
 //get users
 const getUsersBtn = document.querySelector("#getUsersBtn");
-const listUser = document.querySelector("#listUser");
 //createProject and getProject
-const getProjectBtn = document.querySelector("#getProjectBtn")
-const createProjectBtn = document.querySelector(".new-board")
+const projectCard = document.querySelector('.boards');
+const createProjectBtn = document.querySelector(".new-board");
 const projectForm = document.querySelector('.addProjectForm');
 //create task
 const getTaskBtn = document.querySelector("#getTaskBtn");
@@ -57,7 +56,7 @@ if (projectForm) {
             .filter((user) => user.checked)
             .map((user) => user.value);
 
-        userNames.forEach(user => DB.addProjectToUser(user, projectName.value));
+        
 
         DB.createProject(
             projectName.value,
@@ -67,31 +66,39 @@ if (projectForm) {
             description.value
         ).then(() => {
             DB.getProjects().then((projects) => {
-                ui.hideAddProject(projects)
+                ui.hideAddProject(projects);
+                userNames.forEach(user => DB.addProjectToUser(user, projectName.value));
                 location.reload();
 
             });
         });
     });
-
     
+
     document.addEventListener("DOMContentLoaded", (e) => {
         e.preventDefault();
         const currentUser = sessionStorage.getItem('currentUser');
 
-        // DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
-        //     let currentUser = sessionStorage.getItem('currentUser');
+        DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
+            let currentUser = sessionStorage.getItem('currentUser');
 
-        //     projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
-        //     ui.displayProjects(projects);
-        // });
+            projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
+            ui.displayProjects(projects);
+        });
         
-        DB.getUser(currentUser).
-            then(data =>{ 
-                if(data.managerOf.length || data.memberOf.length){
-                    ui.displayProjects([... data.managerOf, data.memberOf]);
-                }
-            });
+        // DB.getUser(currentUser).
+        //     then(data =>{ 
+                
+        //         if(data.managerOf.length || data.memberOf.length){
+        //             const projects = [... data.managerOf, data.memberOf];
+        //             projects.map(project => {
+        //                 console.log(project)
+        //                 if(project) DB.getProject(project);
+        //             });
+        //             console.log(projects)
+        //             ui.displayProjects(projects);
+        //         }
+        //     });
         
     });
 
@@ -239,20 +246,7 @@ if (getUsersBtn) {
     });
 }
 
-//get Projects
-if (getProjectBtn) {
-    getProjectBtn.addEventListener("click", (e) => {
-        console.log("event fired");
-        e.preventDefault();
-        DB.getProjects().then((projects) => {
-            projects.forEach((project) => {
-                var li = document.createElement("li");
-                li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`;
-                listProject.appendChild(li);
-            });
-        });
-    });
-}
+
 
 //create project
 if (createTaskBtn) {
@@ -261,4 +255,12 @@ if (createTaskBtn) {
         e.preventDefault();
 
     })
+}
+
+if(projectCard){
+    console.log('h')
+    projectCard.addEventListener('click',e => {
+        // sessionStorage.setItem('currentProject', )
+        console.log(e)
+    });
 }
