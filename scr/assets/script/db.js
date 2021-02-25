@@ -108,11 +108,12 @@ export default class Database {
           managedBy: project.managedBy,
           hasMembers: project.hasMembers,
           deadline: project.deadline,
-          description: project.description,
+          description: project.Description,
           status: project.status,
         };
     })
     .catch(error => console.log('Error performing get Project operation:🥺 ', error));
+
     return projectInfo;
   }
 
@@ -160,13 +161,15 @@ export default class Database {
         isManagerOf.push(projectNameInput);
         return isManagerOf;
       })
-      .then((isManagerOf) => {
-        let res = await this.db.user
+      .then(async (isManagerOf) => {
+        let res = await this.db.users
           .where("username")
           .equals(usernameInput)
-          .modify({ memberOf: ismemberOf });
+          .modify({ managerOf: isManagerOf });
           return res
-      });
+      })
+      .then( err => console.log('Adding a project to a list of project managed by a user failed:🥺 ', err))
+      
   }
 
 
@@ -195,15 +198,14 @@ export default class Database {
   //_______________________________________OPERATOINS_ON_TASK_TABLE____________________________________________________
 
   //create tasks
-  async createTask() {
+  async createTask(taskName, doneBy, underProject, tag, deadline, description) {
     let result = await this.db.task
       .put({
         name: taskName,
         doneBy: doneBy,
-        assignedBy: assignedBy,
         underProject: underProject,
         tag: tag,
-        deadline: Deadline,
+        deadline: deadline,
         description: description,
         status: 0,
       })
@@ -219,6 +221,10 @@ export default class Database {
   //complete a task
   async completeTask(taskNameInput) {
     this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+  }
+
+  async updateTag(taskName, newTag){
+    this.db.task.where('name').equals(taskName).modify({tag: newTag});
   }
   //__________________________________________MISCELLANEOUS__OPERATOINS_____________________________________________________
 

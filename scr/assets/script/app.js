@@ -24,6 +24,7 @@ const password = document.querySelector("#loginPassword");
 //get users
 const getUsersBtn = document.querySelector("#getUsersBtn");
 //createProject and getProject
+const projectCards = document.querySelector('.list-boards');
 const projectCard = document.querySelector('.boards');
 const createProjectBtn = document.querySelector(".new-board");
 const projectForm = document.querySelector('.addProjectForm');
@@ -41,11 +42,32 @@ const taskDeadline = document.querySelector("#taskDeadline");
 const taskDescription = document.querySelector("#taskDescription");
 
 
+
+
+if(projectCards){
+    document.addEventListener('click', e => {
+        let target = e.target;
+        if(target.classList.contains('boards') || target.parentElement.classList.contains('boards')){
+            console.log(e.target)
+            let projectName;
+            if(target.tagName === 'DIV'){
+                projectName = target.firstElementChild.textContent;
+            }else if(target.classList.contains('bttom-block-description')){
+                projectName = target.previousElementSibling.textContent;
+            }else{
+                projectName = target.textContent;
+            }
+            sessionStorage.setItem('currentProject', projectName);
+            window.open('index.html', "_self");
+        }
+    });
+}
+
+
 if (projectForm) {
     projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
         let currentUser = sessionStorage.getItem("currentUser");
-        console.log(currentUser);
 
         let inputs = [...e.explicitOriginalTarget];
 
@@ -67,6 +89,7 @@ if (projectForm) {
         ).then(() => {
             DB.getProjects().then((projects) => {
                 ui.hideAddProject(projects);
+                DB.userManages(currentUser, projectName.value);
                 userNames.forEach(user => DB.addProjectToUser(user, projectName.value));
                 location.reload();
 
@@ -78,28 +101,25 @@ if (projectForm) {
     document.addEventListener("DOMContentLoaded", (e) => {
         e.preventDefault();
         const currentUser = sessionStorage.getItem('currentUser');
-
-        DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
-            let currentUser = sessionStorage.getItem('currentUser');
-
-            projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
-            ui.displayProjects(projects);
-        });
         
-        // DB.getUser(currentUser).
-        //     then(data =>{ 
-                
-        //         if(data.managerOf.length || data.memberOf.length){
-        //             const projects = [... data.managerOf, data.memberOf];
-        //             projects.map(project => {
-        //                 console.log(project)
-        //                 if(project) DB.getProject(project);
-        //             });
-        //             console.log(projects)
-        //             ui.displayProjects(projects);
-        //         }
-        //     });
+        let projects = [];
+        DB.getUser(currentUser).
+            then(data =>{ 
+                projects = [... data.managerOf, ... data.memberOf];
+                projects = projects.map(async project =>  {
+                    if(project) return await DB.getProject(project);     
+                });
+                return projects;
+            })
+            .then(projects => {
+                return Promise.all(projects)
+            })
+            .then( (projects) => {
+                let projs = projects.filter(project => project!==undefined);
+                console.log(projs)
+                ui.displayProjects(projs)});
         
+
     });
 
     //TODO: change getting the projects from the whole projects table to the users' 2 fields   
@@ -112,7 +132,6 @@ if (createProjectBtn) {
         const currentUser = sessionStorage.getItem('currentUser');
         DB.getUsers().then((users) => {
             users = users.filter(user => user.userName!==currentUser);
-            console.log(users)
             ui.addProject(users);
         });
         
@@ -121,7 +140,10 @@ if (createProjectBtn) {
 }
 
 if (addTaskBtn) {
-    console.log("Creating task ... ");
+    const currentUser = sessionStorage.getItem('currentUser');
+    DB.getUsers().then((users) => {
+        users = users.filter(user => user.userName!==currentUser);
+    });
     addTaskBtn.addEventListener("click", (e) => ui.addTask());
 }
 
@@ -129,6 +151,7 @@ if (cardModalSave) {
     cardModalSave.addEventListener("click", (e) => {
         e.preventDefault();
         ui.addCard(cardModalTitle.textContent);
+        DB.createTask()
         ui.hideAddTask();
         cardModalTitle.textContent = "New Task"
         cardModalDescription.textContent = "Enter your description here ... "

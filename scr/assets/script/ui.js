@@ -10,8 +10,10 @@ export default class UI {
     this.boardsContainer = document.querySelector(".list-boards");
   }
 
-  addTask() {
+  addTask(listOfUsers) {
     this.taskModal.style.display = "block";
+    this.generateCheckbox(listOfUsers);
+
   }
 
   hideAddTask() {
@@ -120,7 +122,9 @@ addLoginMessage(isSuccess, loginRegister){
             `;
     });
 
-    let list = this.projectModal.querySelector(".users-list");
-    list.innerHTML = checkboxes;
+    let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
+    let addProj = this.projectModal !== null ? this.projectModal.querySelector(".users-list"): null;
+    if(addProj) addProj.innerHTML = checkboxes;
+    if(addCard) addCard.innerHTML = checkboxes;
   }
 }
