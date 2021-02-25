@@ -144,6 +144,29 @@ export default class Database {
     return result;
   }
 
+  //add created project to user's managerOf field.
+  async userManages(usernameInput, projectNameInput) {
+    let isManagerOf;
+    let result = await this.db.users
+      .get({ username: usernameInput })
+      .then((user) => {
+        isManagerOf = user.managerOf;
+        return isManagerOf;
+      })
+      .then((isManagerOf) => {
+        isManagerOf.push(projectNameInput);
+        return isManagerOf;
+      })
+      .then((isManagerOf) => {
+        let res = await this.db.user
+          .where("username")
+          .equals(usernameInput)
+          .modify({ memberOf: ismemberOf });
+          return res
+      });
+  }
+
+
   //get Projects
   async getProjects() {
     let projectList = [];
