@@ -140,11 +140,12 @@ if (createProjectBtn) {
 }
 
 if (addTaskBtn) {
-    const currentUser = sessionStorage.getItem('currentUser');
-    DB.getUsers().then((users) => {
-        users = users.filter(user => user.userName!==currentUser);
-    });
-    addTaskBtn.addEventListener("click", (e) => ui.addTask());
+    const currentProject = sessionStorage.getItem('currentProject');
+    DB.getProject(currentProject).then( project => {
+        return [project.managedBy, ... project.hasMembers];
+    })
+    .then(projects => addTaskBtn.addEventListener("click", (e) => ui.addTask(projects)));
+    
 }
 
 if (cardModalSave) {

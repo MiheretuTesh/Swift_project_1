@@ -168,7 +168,7 @@ export default class Database {
           .modify({ managerOf: isManagerOf });
           return res
       })
-      .then( err => console.log('Adding a project to a list of project managed by a user failed:🥺 ', err))
+      .catch( err => console.log('Adding a project to a list of project managed by a user failed:🥺 ', err))
       
   }
 

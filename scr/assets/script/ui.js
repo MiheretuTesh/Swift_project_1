@@ -12,7 +12,7 @@ export default class UI {
 
   addTask(listOfUsers) {
     this.taskModal.style.display = "block";
-    this.generateCheckbox(listOfUsers);
+    this.generateRadioButtons(listOfUsers);
 
   }
 
@@ -56,7 +56,7 @@ export default class UI {
     }
 
 
-    addCard(title){
+  addCard(title){
         let html = `
                 <div class="inner-list">
                     <div class="inner-top">
@@ -79,52 +79,67 @@ export default class UI {
 
 
 
-addLoginMessage(isSuccess, loginRegister){
-    let context = loginRegister === 'login'? this.login: this.signup;
-    let fail = loginRegister === 'login'? this.login.querySelector('.login_message'): this.signup.querySelector('.login_message');
-    fail.style.display = 'block';
-    let errorMsg = 'Wrong Username or Password!';
-    let errorMsg2 = 'Signing up failed!';
-    let successMsg = 'Login Successful!';
-    let successMsg2 = 'Signing up Successful!';
+  addLoginMessage(isSuccess, loginRegister){
+      let context = loginRegister === 'login'? this.login: this.signup;
+      let fail = loginRegister === 'login'? this.login.querySelector('.login_message'): this.signup.querySelector('.login_message');
+      fail.style.display = 'block';
+      let errorMsg = 'Wrong Username or Password!';
+      let errorMsg2 = 'Signing up failed!';
+      let successMsg = 'Login Successful!';
+      let successMsg2 = 'Signing up Successful!';
 
 
 
-    if(isSuccess){
-        fail.style.background = 'rgb(158,255,161)';
-        fail.style.color = 'green';
-        fail.textContent = loginRegister === 'login'? successMsg: successMsg2;
-        context.querySelector('.spinner').style.display = 'block'; 
-        setTimeout(() => {
-          this.login.reset();
-          this.signup.reset();
-          window.open('dash_board.html', "_self");
-        }, 2000)
+      if(isSuccess){
+          fail.style.background = 'rgb(158,255,161)';
+          fail.style.color = 'green';
+          fail.textContent = loginRegister === 'login'? successMsg: successMsg2;
+          context.querySelector('.spinner').style.display = 'block'; 
+          setTimeout(() => {
+            this.login.reset();
+            this.signup.reset();
+            window.open('dash_board.html', "_self");
+          }, 2000)
 
-    }else{
-        fail.style.background = '#ffe0e0';
-        fail.style.color = '#ba3939';
-        fail.textContent = loginRegister === 'login'? errorMsg: errorMsg2;
-        context.querySelector('.spinner').style.display = 'none';
-        setTimeout(() => fail.style.display = 'none' , 2000)
-    } 
-    
-}
+      }else{
+          fail.style.background = '#ffe0e0';
+          fail.style.color = '#ba3939';
+          fail.textContent = loginRegister === 'login'? errorMsg: errorMsg2;
+          context.querySelector('.spinner').style.display = 'none';
+          setTimeout(() => fail.style.display = 'none' , 2000)
+      } 
+      
+  }
 
 
-    generateCheckbox(listOfUsers){
-        let checkboxes = `<p>Select users from the following list</p><br>`;
-        listOfUsers.forEach(user => {
-            let userName = user.userName;
-            checkboxes += `
+  generateCheckbox(listOfUsers){
+      let checkboxes = `<p>Select users from the following list</p><br>`;
+      listOfUsers.forEach(user => {
+          let userName = user.userName;
+          checkboxes += `
             <label for="${userName}">${userName}</label>
             <input type="checkbox" id="${userName}" name="${userName}" value="${userName}"><br>
-            `;
-    });
+          `;
+      });
+
+      // let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
+      let addProj = this.projectModal !== null ? this.projectModal.querySelector(".users-list"): null;
+      if(addProj) addProj.innerHTML = checkboxes;
+      // if(addCard) addCard.innerHTML = checkboxes;
+  }
+
+  generateRadioButtons(listOfUsers){
+    let radioButtons = `<p>Select a user for the selected task</p><br>`;
+    listOfUsers.forEach(userName => {
+      radioButtons += `
+        <input type="radio" id="${userName}" name="username" value="${userName}">
+        <label for="${userName}">${userName}</label><br>
+      `;
+    })
 
     let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
-    let addProj = this.projectModal !== null ? this.projectModal.querySelector(".users-list"): null;
-    if(addProj) addProj.innerHTML = checkboxes;
-    if(addCard) addCard.innerHTML = checkboxes;
+    console.log(this.taskModal)
+    if(addCard) addCard.innerHTML = radioButtons;
   }
+
 }
