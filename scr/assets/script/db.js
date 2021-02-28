@@ -34,12 +34,12 @@ export default class Database {
         console.log("Account created successfully!😊");
         return true;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Account creation failed:🥺 " + error);
         return false;
       });
 
-      return result;
+    return result;
   }
 
   //verfiy eistence of account and return a boolean
@@ -47,16 +47,13 @@ export default class Database {
   async login(usernameInput, passwordInput) {
     let found = false;
     await this.db.users.each((user) => {
-      if (
-        user.username == usernameInput &&
-        user.password == passwordInput
-      ) {
+      if (user.username == usernameInput && user.password == passwordInput) {
         console.log("Logging in successful!😊");
         found = true;
       }
     });
 
-    if(!found) console.log("Logging in failed!🥺 ");
+    if (!found) console.log("Logging in failed!🥺 ");
     return found;
   }
 
@@ -81,38 +78,43 @@ export default class Database {
   async getUser(usernameInput) {
     let userInfo = await this.db.users
       .get({ username: usernameInput })
-      .then(user => {
-        if(user) return {
-          'username': user.username,
-          'fullName': user.fullName,
-          'password': user.password,
-          'birthDay': user.birthDay,
-          'managerOf': user.managerOf,
-          'memberOf': user.memberOf,
-          'hasTasks': user.hasTasks,
-        }
+      .then((user) => {
+        if (user)
+          return {
+            username: user.username,
+            fullName: user.fullName,
+            password: user.password,
+            birthDay: user.birthDay,
+            managerOf: user.managerOf,
+            memberOf: user.memberOf,
+            hasTasks: user.hasTasks,
+          };
       })
       .catch((error) => {
         console.log("Error performing get User operation:🥺 ", error);
         return false;
       });
 
-      return userInfo;
+    return userInfo;
   }
 
   // get project
   async getProject(projectNameInput) {
     let projectInfo;
-    await this.db.project.get({ name: projectNameInput }).then((project) => {
-      projectInfo = {
-        name: project.name,
-        managedBy: project.managedBy,
-        hasMembers: project.hasMembers,
-        deadline: project.deadline,
-        description: project.description,
-        status: project.status,
-      };
-    });
+    await this.db.project.get({ name: projectNameInput })
+      .then((project) => {
+        projectInfo = {
+          name: project.name,
+          managedBy: project.managedBy,
+          hasMembers: project.hasMembers,
+          deadline: project.deadline,
+          description: project.Description,
+          status: project.status,
+        };
+    })
+    .catch(error => console.log('Error performing get Project operation:🥺 ', error));
+
+    return projectInfo;
   }
 
   //_______________________________________OPERATIONS_ON_PROJECT_TABLE____________________________________________________
@@ -138,13 +140,38 @@ export default class Database {
         console.log("Project created successfully!😊");
         return true;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Creating project failed:🥺 " + error);
         return false;
       });
 
-      return result;
+    return result;
   }
+
+  //add created project to user's managerOf field.
+  async userManages(usernameInput, projectNameInput) {
+    let isManagerOf;
+    let result = await this.db.users
+      .get({ username: usernameInput })
+      .then((user) => {
+        isManagerOf = user.managerOf;
+        return isManagerOf;
+      })
+      .then((isManagerOf) => {
+        isManagerOf.push(projectNameInput);
+        return isManagerOf;
+      })
+      .then(async (isManagerOf) => {
+        let res = await this.db.users
+          .where("username")
+          .equals(usernameInput)
+          .modify({ managerOf: isManagerOf });
+          return res
+      })
+      .catch( err => console.log('Adding a project to a list of project managed by a user failed:🥺 ', err))
+      
+  }
+
 
   //get Projects
   async getProjects() {
@@ -162,6 +189,22 @@ export default class Database {
     return projectList;
   }
 
+  async getTasks(projectName){
+    let taskList = [];
+    await this.db.task.each(task => {
+      taskList.push({
+        name: task.name,
+        doneBy: task.doneBy,
+        underProject: task.underProject,
+        tag: task.tag,
+        deadline: task.deadline,
+        description: task.description,
+        status: task.status, 
+      })
+    });
+    return taskList.filter(task => task.underProject == projectName);
+  }
+
   async completeProject(projectNameInput) {
     this.db.project
       .where("name")
@@ -171,31 +214,33 @@ export default class Database {
   //_______________________________________OPERATOINS_ON_TASK_TABLE____________________________________________________
 
   //create tasks
-  async createTask() {
+  async createTask(taskName, doneBy, underProject, tag, deadline, description) {
     let result = await this.db.task
       .put({
         name: taskName,
         doneBy: doneBy,
-        assignedBy: assignedBy,
         underProject: underProject,
         tag: tag,
-        deadline: Deadline,
+        deadline: deadline,
         description: description,
         status: 0,
       })
       .then(() => {
         console.log("Task created successfully!😊");
-    
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Task creation failed!:🥺 " + error);
       });
-      return result;
+    return result;
   }
 
   //complete a task
   async completeTask(taskNameInput) {
-    this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+    await this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+  }
+
+  async updateTag(taskName, newTag){
+    await this.db.task.where('name').equals(taskName).modify({tag: newTag});
   }
   //__________________________________________MISCELLANEOUS__OPERATOINS_____________________________________________________
 
@@ -205,7 +250,7 @@ export default class Database {
   //Operation 1
   async addMemberToProject(projectNameInput, usernameInput) {
     //fetch list containing members of that project
-    let projectMembers;
+    let projectMembers = [];
     await this.db.project
       .get({ name: projectNameInput })
       .then((project) => {
@@ -229,7 +274,7 @@ export default class Database {
 
   //operaiton 2
   async addProjectToUser(usernameInput, projectNameInput) {
-    let ismemberOf;
+    let ismemberOf = [];
     await this.db.users
       .get({ username: usernameInput })
       .then((user) => {
@@ -241,7 +286,7 @@ export default class Database {
         return ismemberOf;
       })
       .then((ismemberOf) => {
-        this.db.user
+        this.db.users
           .where("username")
           .equals(usernameInput)
           .modify({ memberOf: ismemberOf });

@@ -8,6 +8,13 @@ let cardModalTitle = document.querySelector('.modal-heading');
 let cardModalDescription = document.querySelector('.modal-txt');
 let cardModalSave = document.querySelector('.modal-save');
 
+<<<<<<< HEAD
+=======
+let cardModalTitle = document.querySelector(".modal-heading");
+let cardModalDescription = document.querySelector(".modal-txt");
+let cardModalSave = document.querySelector(".task-modal-save");
+const taskAddingModal = document.querySelector('#task-adding-modal');
+>>>>>>> Swift_project_1/UI-js-codes
 
 //Create Account
 const registerForm = document.querySelector("#register");
@@ -20,11 +27,16 @@ const login = document.querySelector("#login");
 const username = document.querySelector("#username");
 const password = document.querySelector("#loginPassword");
 //get users
+<<<<<<< HEAD
 const getUsersBtn = document.querySelector("#getUsersBtn")
 const listUser = document.querySelector("#listUser")
+=======
+const getUsersBtn = document.querySelector("#getUsersBtn");
+>>>>>>> Swift_project_1/UI-js-codes
 //createProject and getProject
-const getProjectBtn = document.querySelector("#getProjectBtn")
-const createProjectBtn = document.querySelector(".new-board")
+const projectCards = document.querySelector('.list-boards');
+const projectCard = document.querySelector('.boards');
+const createProjectBtn = document.querySelector(".new-board");
 const projectForm = document.querySelector('.addProjectForm');
 //create task
 const getTaskBtn = document.querySelector("#getTaskBtn")
@@ -39,13 +51,34 @@ const tag = document.querySelector("#tag");
 const taskDeadline = document.querySelector("#taskDeadline");
 const taskDescription = document.querySelector("#taskDescription");
 
+const currentProject = sessionStorage.getItem('currentProject');
+const currentUser = sessionStorage.getItem('currentUser');
+
+
+
+if(projectCards){
+    document.addEventListener('click', e => {
+        let target = e.target;
+        if(target.classList.contains('boards') || target.parentElement.classList.contains('boards')){
+            console.log(e.target)
+            let projectName;
+            if(target.tagName === 'DIV'){
+                projectName = target.firstElementChild.textContent;
+            }else if(target.classList.contains('bttom-block-description')){
+                projectName = target.previousElementSibling.textContent;
+            }else{
+                projectName = target.textContent;
+            }
+            sessionStorage.setItem('currentProject', projectName);
+            window.open('index.html', "_self");
+        }
+    });
+}
+
 
 if (projectForm) {
     projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        let currentUser = sessionStorage.getItem("currentUser");
-        console.log(currentUser);
-
         let inputs = [...e.explicitOriginalTarget];
 
         const [projectName, deadline] = [...inputs];
@@ -55,6 +88,8 @@ if (projectForm) {
             .filter((user) => user.checked)
             .map((user) => user.value);
 
+        
+
         DB.createProject(
             projectName.value,
             currentUser,
@@ -62,17 +97,39 @@ if (projectForm) {
             deadline.value,
             description.value
         ).then(() => {
-            DB.getProjects().then((projects) => ui.hideAddProject(projects));
+            DB.getProjects().then((projects) => {
+                ui.hideAddProject(projects);
+                DB.userManages(currentUser, projectName.value);
+                userNames.forEach(user => DB.addProjectToUser(user, projectName.value));
+                location.reload();
+
+            });
         });
     });
+    
 
-    document.addEventListener("DOMContentLoaded", (e) => {
+    document.addEventListener("DOMContentLoaded", e => {
         e.preventDefault();
-        DB.getProjects().then((projects) => {   // after getting all the projects, we should only show projects that the current user is in ie. managing or participating
-            let currentUser = sessionStorage.getItem('currentUser');
-            projects = projects.filter(project => project.managedBy === currentUser || project.members.includes(currentUser));
-            ui.displayProjects(projects);
-        });
+        const currentUser = sessionStorage.getItem('currentUser');
+        
+        let projects = [];
+        DB.getUser(currentUser).
+            then(data =>{ 
+                projects = [... data.managerOf, ... data.memberOf];
+                projects = projects.map(async project =>  {
+                    if(project) return await DB.getProject(project);     
+                });
+                return projects;
+            })
+            .then(projects => {
+                return Promise.all(projects)
+            })
+            .then( (projects) => {
+                let projs = projects.filter(project => project!==undefined);
+                console.log(projs)
+                ui.displayProjects(projs)});
+        
+
     });
 
     //TODO: change getting the projects from the whole projects table to the users' 2 fields   
@@ -83,6 +140,7 @@ if (createProjectBtn) {
     createProjectBtn.addEventListener("click", (e) => {
         e.preventDefault();
         DB.getUsers().then((users) => {
+            users = users.filter(user => user.userName!==currentUser);
             ui.addProject(users);
         });
         
@@ -91,25 +149,55 @@ if (createProjectBtn) {
 }
 
 if (addTaskBtn) {
-    console.log("Creating task ... ");
-    addTaskBtn.addEventListener("click", (e) => ui.addTask());
+    DB.getProject(currentProject).then( project => {
+        return [project.managedBy, ... project.hasMembers];
+    })
+    .then(projects => addTaskBtn.addEventListener("click", (e) => ui.addTask(projects)));
+    
 }
 
-if (cardModalSave) {
+if (taskAddingModal) {
     cardModalSave.addEventListener("click", (e) => {
         e.preventDefault();
-        ui.addCard(cardModalTitle.textContent);
-        ui.hideAddTask();
-        cardModalTitle.textContent = "New Task"
-        cardModalDescription.textContent = "Enter your description here ... "
+        const userListSelector = taskAddingModal.querySelector('.modal-content').querySelector('.users-list');
+        const taskName = cardModalTitle.textContent;
+        const inputs = taskAddingModal.querySelector('.modal-content').children
+        const deadline = inputs.item(3).value;
+        const description = inputs.item(6).value;
+        const tag = "To-do";
+ 
+
+        let userName = [... userListSelector.children]
+            .filter(tag => tag.tagName == "INPUT")
+            .filter(tag => tag.checked)
+            .map(tag => tag.value)[0]
+
+    
+        DB.createTask(taskName, userName, currentProject, tag, deadline, description)
+            .then(() => {
+                ui.addCard(taskName);
+                ui.hideAddTask();
+                cardModalTitle.textContent = "New Task"
+                cardModalDescription.textContent = "Enter your description here ... "
+            }).catch(err => console.log("Creating task failed(App.js)🥺: ", err));
     });
 
+    document.addEventListener('DOMContentLoaded', e => {
+        e.preventDefault();
+        DB.getTasks(currentProject)
+            .then(tasks => {
+                ui.displayTasks(tasks);
+        })
+    });
+    
 }
 
 if (wrapper) {
+    let draggedItem, draggedTo;
     wrapper.addEventListener("dragover", (e) => {
         e.preventDefault();
         if (e.target.classList.contains("container")) {
+            draggedTo = e.target
             const afterElement = getDragAfterElement(e.target, e.clientY);
             const draggable = document.querySelector(".dragging");
             if (afterElement) {
@@ -124,13 +212,20 @@ if (wrapper) {
         if (e.target.classList.contains("draggable")) {
             e.target.classList.add("dragging");
         }
+        draggedItem = e.target;
     });
 
     wrapper.addEventListener("dragend", (e) => {
         if (e.target.classList.contains("draggable")) {
             e.target.classList.remove("dragging");
         }
+        const taskName = draggedItem.querySelector('p').textContent.trim();
+        const tagName = draggedTo.children.item(0).querySelector('p').textContent.trim();
+        DB.updateTag(taskName, tagName);
     });
+
+    
+
 }
 
 if(ui.boardsContainer){
@@ -145,13 +240,12 @@ if(ui.boardsContainer){
 
 let getDragAfterElement = (container, y) => {
     const draggableElements = [
-        ...container.querySelectorAll(".draggable:not(.dragging)"),
+        ...container.querySelectorAll(".draggable:not(.dragging)")
     ];
 
     return draggableElements.reduce(
         (closest, child) => {
             const box = child.getBoundingClientRect();
-            console.log(box);
             const offSet = y - box.top - box.height / 2;
             if (offSet < 0 && offSet > closest.offSet) {
                 return {
@@ -184,7 +278,7 @@ if (registerForm) {
                         birthDay.value
                     ).then(result => {
                         ui.addLoginMessage(result, 'signup');
-                        sessionStorage.setItem("currentUser", username.value);
+                        sessionStorage.setItem("currentUser", uname_register.value);
                     });
                 }
             })
@@ -216,20 +310,7 @@ if (getUsersBtn) {
     });
 }
 
-//get Projects
-if (getProjectBtn) {
-    getProjectBtn.addEventListener("click", (e) => {
-        console.log("event fired");
-        e.preventDefault();
-        DB.getProjects().then((projects) => {
-            projects.forEach((project) => {
-                var li = document.createElement("li");
-                li.innerHTML = `${project[0]} & ${project[1]} & ${project[2]} & ${project[3]} & ${project[4]} & ${project[5]}`;
-                listProject.appendChild(li);
-            });
-        });
-    });
-}
+
 
 //create project
 if (createTaskBtn) {
@@ -239,3 +320,14 @@ if (createTaskBtn) {
 
     })
 }
+<<<<<<< HEAD
+=======
+
+if(projectCard){
+    console.log('h')
+    projectCard.addEventListener('click',e => {
+        // sessionStorage.setItem('currentProject', )
+        console.log(e)
+    });
+}
+>>>>>>> Swift_project_1/UI-js-codes
