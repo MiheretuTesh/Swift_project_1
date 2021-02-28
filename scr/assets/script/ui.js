@@ -1,76 +1,77 @@
 export default class UI {
-  constructor() {
-    this.addTaskBtn = document.querySelector(".add-task");
+	constructor() {
+		this.addTaskBtn = document.querySelector(".add-task");
 
-    this.todos = document.querySelector(".todo-group");
-    this.backlog = document.querySelector('.backlog-group');
-    this.inProgress = document.querySelector('.in-progress-group');
-    this.done = document.querySelector('.done-group');
+		this.todos = document.querySelector(".todo-group");
+		this.backlog = document.querySelector('.backlog-group');
+		this.inProgress = document.querySelector('.in-progress-group');
+		this.done = document.querySelector('.done-group');
 
-    this.taskModal = document.querySelector("#task-adding-modal");
-    this.projectModal = document.querySelector("#project-adding-modal");
-    this.login = document.querySelector("#login");
-    this.signup = document.querySelector('#register');
-    this.submitButtonProject = document.querySelector(".submitProjectBtn");
-    this.boardsContainer = document.querySelector(".list-boards");
-  }
+		this.taskModal = document.querySelector("#task-adding-modal");
+		this.projectModal = document.querySelector("#project-adding-modal");
+		this.login = document.querySelector("#login");
+		this.signup = document.querySelector('#register');
+		this.submitButtonProject = document.querySelector(".submitProjectBtn");
+		this.boardsContainer = document.querySelector(".list-boards");
+	}
 
-  addTask(listOfUsers) {
-    this.taskModal.style.display = "block";
-    this.generateRadioButtons(listOfUsers);
+	addTask(listOfUsers) {
+		this.taskModal.style.display = "block";
+		this.generateRadioButtons(listOfUsers);
 
-  }
+	}
 
-  hideAddTask() {
-    this.taskModal.style.display = "none";
-  }
+	hideAddTask() {
+		this.taskModal.style.display = "none";
+	}
 
-  hideAddProject(projects) {
-    this.submitButtonProject.disabled = "true";
-    this.projectModal.querySelector(".spinner").style.display = "block";
-    // location.reload()
+	hideAddProject(projects) {
+		this.submitButtonProject.disabled = "true";
+		this.projectModal.querySelector(".spinner").style.display = "block";
+		// location.reload()
 
-    setTimeout(() => {
-      this.submitButtonProject.removeAttribute("disabled");
-      this.projectModal.style.display = "none";
-      this.projectModal.querySelector(".spinner").style.display = "none";
-      this.displayProjects(projects);
-    }, 1000);
-  }
+		setTimeout(() => {
+			this.submitButtonProject.removeAttribute("disabled");
+			this.projectModal.style.display = "none";
+			this.projectModal.querySelector(".spinner").style.display = "none";
+			this.displayProjects(projects);
+		}, 1000);
+	}
 
-  addProject(listOfUsers) {
-    this.projectModal.querySelector(
-      ".projectManager"
-    ).textContent = `(managed by ${sessionStorage.getItem("currentUser")})`;
-    this.projectModal.style.display = "block";
-    this.generateCheckbox(listOfUsers);
-  }
+	addProject(listOfUsers) {
+		this.projectModal.querySelector(
+			".projectManager"
+		).textContent = `(managed by ${sessionStorage.getItem("currentUser")})`;
+		this.projectModal.style.display = "block";
+		this.generateCheckbox(listOfUsers);
+	}
 
-  displayProjects(projects) {
-    let html = ``;
-    projects.forEach((project) => {
-      html += `<div class="boards">
+	displayProjects(projects) {
+		let html = ``;
+		projects.forEach((project) => {
+			html += `<div class="boards">
             <p>${project.name}</p>
             <p class="bttom-block-description">${project.description}</p>
         </div>`
-        });
-
-        
-        this.boardsContainer.querySelector('.new-board').insertAdjacentHTML('beforebegin',html);
-  }
+		});
 
 
-	displayTasks(tasks){
-		let html = ``, card;
+		this.boardsContainer.querySelector('.new-board').insertAdjacentHTML('beforebegin', html);
+	}
+
+
+	displayTasks(tasks) {
+		let html = ``,
+			card;
 
 		tasks.forEach(task => {
 			card = document.createElement("div");
 			card.classList.add("inner", "draggable");
 			let doneBy = task.doneBy;
-			if(task.doneBy == sessionStorage.getItem('currentUser')){
+			if (task.doneBy == sessionStorage.getItem('currentUser')) {
 				card.setAttribute("draggable", "true");
 				card.style.border = "0.1em solid  #7CB9E8";
-				doneBy = ""; 
+				doneBy = "";
 			}
 
 			html = `
@@ -85,28 +86,28 @@ export default class UI {
 
 			card.innerHTML = html;
 
-			switch(task.tag.trim()){
-				case "To-do" : 
+			switch (task.tag.trim()) {
+				case "To-do":
 					this.todos.appendChild(card);
 					break;
-				case "Backlog" :
+				case "Backlog":
 					this.backlog.appendChild(card);
 					break;
-				case "In-progress" :
+				case "In-progress":
 					this.inProgress.appendChild(card);
 					break;
-				case "Done" :
+				case "Done":
 					this.done.appendChild(card);
-			
+
 			}
 
-			
+
 		})
-  }
+	}
 
 
 
-	addCard(title){
+	addCard(title) {
 		let html = `
 				<div class="inner-list">
 					<div class="inner-top">
@@ -119,19 +120,19 @@ export default class UI {
 					</div>
 				</div>`;
 
-	let card = document.createElement("div");
-	card.classList.add("inner", "draggable");
-	card.setAttribute("draggable", "true");
-	card.innerHTML = html;
-	this.todos.appendChild(card);
+		let card = document.createElement("div");
+		card.classList.add("inner", "draggable");
+		card.setAttribute("draggable", "true");
+		card.innerHTML = html;
+		this.todos.appendChild(card);
 	}
 
 
 
 
-	addLoginMessage(isSuccess, loginRegister){
-		let context = loginRegister === 'login'? this.login: this.signup;
-		let fail = loginRegister === 'login'? this.login.querySelector('.login_message'): this.signup.querySelector('.login_message');
+	addLoginMessage(isSuccess, loginRegister) {
+		let context = loginRegister === 'login' ? this.login : this.signup;
+		let fail = loginRegister === 'login' ? this.login.querySelector('.login_message') : this.signup.querySelector('.login_message');
 		fail.style.display = 'block';
 		let errorMsg = 'Wrong Username or Password!';
 		let errorMsg2 = 'Signing up failed!';
@@ -140,29 +141,29 @@ export default class UI {
 
 
 
-		if(isSuccess){
+		if (isSuccess) {
 			fail.style.background = 'rgb(158,255,161)';
 			fail.style.color = 'green';
-			fail.textContent = loginRegister === 'login'? successMsg: successMsg2;
-			context.querySelector('.spinner').style.display = 'block'; 
+			fail.textContent = loginRegister === 'login' ? successMsg : successMsg2;
+			context.querySelector('.spinner').style.display = 'block';
 			setTimeout(() => {
-			this.login.reset();
-			this.signup.reset();
-			window.open('dash_board.html', "_self");
+				this.login.reset();
+				this.signup.reset();
+				window.open('dash_board.html', "_self");
 			}, 2000)
 
-		}else{
+		} else {
 			fail.style.background = '#ffe0e0';
 			fail.style.color = '#ba3939';
-			fail.textContent = loginRegister === 'login'? errorMsg: errorMsg2;
+			fail.textContent = loginRegister === 'login' ? errorMsg : errorMsg2;
 			context.querySelector('.spinner').style.display = 'none';
-			setTimeout(() => fail.style.display = 'none' , 2000)
-		} 
-		
+			setTimeout(() => fail.style.display = 'none', 2000)
+		}
+
 	}
 
 
-	generateCheckbox(listOfUsers){
+	generateCheckbox(listOfUsers) {
 		let checkboxes = `<p>Select users from the following list</p><br>`;
 		listOfUsers.forEach(user => {
 			let userName = user.userName;
@@ -173,22 +174,22 @@ export default class UI {
 		});
 
 		// let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
-		let addProj = this.projectModal !== null ? this.projectModal.querySelector(".users-list"): null;
-		if(addProj) addProj.innerHTML = checkboxes;
+		let addProj = this.projectModal !== null ? this.projectModal.querySelector(".users-list") : null;
+		if (addProj) addProj.innerHTML = checkboxes;
 		// if(addCard) addCard.innerHTML = checkboxes;
 	}
 
-	generateRadioButtons(listOfUsers){
-	let radioButtons = `<p>Select a user for the selected task</p><br>`;
-	listOfUsers.forEach(userName => {
-		radioButtons += `
+	generateRadioButtons(listOfUsers) {
+		let radioButtons = `<p>Select a user for the selected task</p><br>`;
+		listOfUsers.forEach(userName => {
+			radioButtons += `
 		<input type="radio" id="${userName}" name="username" value="${userName}">
 		<label for="${userName}">${userName}</label><br>
 		`;
-	})
+		})
 
-	let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
-	if(addCard) addCard.innerHTML = radioButtons;
+		let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list") : null;
+		if (addCard) addCard.innerHTML = radioButtons;
 	}
 
-	}
+}
