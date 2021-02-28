@@ -9,7 +9,8 @@ let addTaskBtn = document.querySelector(".add-task");
 
 let cardModalTitle = document.querySelector(".modal-heading");
 let cardModalDescription = document.querySelector(".modal-txt");
-let cardModalSave = document.querySelector(".modal-save");
+let cardModalSave = document.querySelector(".task-modal-save");
+const taskAddingModal = document.querySelector('#task-adding-modal');
 
 //Create Account
 const registerForm = document.querySelector("#register");
@@ -41,6 +42,8 @@ const tag = document.querySelector("#tag");
 const taskDeadline = document.querySelector("#taskDeadline");
 const taskDescription = document.querySelector("#taskDescription");
 
+const currentProject = sessionStorage.getItem('currentProject');
+const currentUser = sessionStorage.getItem('currentUser');
 
 
 
@@ -67,8 +70,6 @@ if(projectCards){
 if (projectForm) {
     projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        let currentUser = sessionStorage.getItem("currentUser");
-
         let inputs = [...e.explicitOriginalTarget];
 
         const [projectName, deadline] = [...inputs];
@@ -129,7 +130,6 @@ if (projectForm) {
 if (createProjectBtn) {
     createProjectBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const currentUser = sessionStorage.getItem('currentUser');
         DB.getUsers().then((users) => {
             users = users.filter(user => user.userName!==currentUser);
             ui.addProject(users);
@@ -140,7 +140,6 @@ if (createProjectBtn) {
 }
 
 if (addTaskBtn) {
-    const currentProject = sessionStorage.getItem('currentProject');
     DB.getProject(currentProject).then( project => {
         return [project.managedBy, ... project.hasMembers];
     })
@@ -148,22 +147,46 @@ if (addTaskBtn) {
     
 }
 
-if (cardModalSave) {
+if (taskAddingModal) {
     cardModalSave.addEventListener("click", (e) => {
         e.preventDefault();
-        ui.addCard(cardModalTitle.textContent);
-        DB.createTask()
-        ui.hideAddTask();
-        cardModalTitle.textContent = "New Task"
-        cardModalDescription.textContent = "Enter your description here ... "
+        const userListSelector = taskAddingModal.querySelector('.modal-content').querySelector('.users-list');
+        const taskName = cardModalTitle.textContent;
+        const inputs = taskAddingModal.querySelector('.modal-content').children
+        const deadline = inputs.item(3).value;
+        const description = inputs.item(6).value;
+        const tag = "To-do";
+ 
+
+        let userName = [... userListSelector.children]
+            .filter(tag => tag.tagName == "INPUT")
+            .filter(tag => tag.checked)
+            .map(tag => tag.value)[0]
+
+    
+        DB.createTask(taskName, userName, currentProject, tag, deadline, description)
+            .then(() => {
+                ui.addCard(taskName);
+                ui.hideAddTask();
+                cardModalTitle.textContent = "New Task"
+                cardModalDescription.textContent = "Enter your description here ... "
+            }).catch(err => console.log("Creating task failed(App.js)🥺: ", err));
     });
 
+    // wrapper.addEventListener('DOMContentLoaded', e => {
+    //     DB.getTasks(tasks => {
+    //         ui.drawTasks(currentProject, tasks);
+    //     })
+    // });
+    
 }
 
 if (wrapper) {
+    let draggedItem, draggedTo;
     wrapper.addEventListener("dragover", (e) => {
         e.preventDefault();
         if (e.target.classList.contains("container")) {
+            draggedTo = e.target
             const afterElement = getDragAfterElement(e.target, e.clientY);
             const draggable = document.querySelector(".dragging");
             if (afterElement) {
@@ -178,13 +201,20 @@ if (wrapper) {
         if (e.target.classList.contains("draggable")) {
             e.target.classList.add("dragging");
         }
+        draggedItem = e.target;
     });
 
     wrapper.addEventListener("dragend", (e) => {
         if (e.target.classList.contains("draggable")) {
             e.target.classList.remove("dragging");
         }
+        const taskName = draggedItem.querySelector('p').textContent.trim();
+        const tagName = draggedTo.children.item(0).querySelector('p').textContent.trim();
+        DB.updateTag(taskName, tagName);
     });
+
+    
+
 }
 
 if(ui.boardsContainer){
@@ -205,7 +235,6 @@ let getDragAfterElement = (container, y) => {
     return draggableElements.reduce(
         (closest, child) => {
             const box = child.getBoundingClientRect();
-            console.log(box);
             const offSet = y - box.top - box.height / 2;
             if (offSet < 0 && offSet > closest.offSet) {
                 return {

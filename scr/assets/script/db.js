@@ -189,6 +189,22 @@ export default class Database {
     return projectList;
   }
 
+  async getTasks(projectName){
+    let taskList = [];
+    await this.db.task.get({underProject: projectName}).each(task => {
+      taskList.push({
+        name: task.name,
+        doneBy: task.doneBy,
+        underProject: task.underProject,
+        tag: task.tag,
+        deadline: task.deadline,
+        description: task.description,
+        status: task.status, 
+      })
+    });
+    return taskList;
+  }
+
   async completeProject(projectNameInput) {
     this.db.project
       .where("name")
@@ -220,11 +236,11 @@ export default class Database {
 
   //complete a task
   async completeTask(taskNameInput) {
-    this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
+    await this.db.task.where("name").equals(taskNameInput).modify({ status: 1 });
   }
 
   async updateTag(taskName, newTag){
-    this.db.task.where('name').equals(taskName).modify({tag: newTag});
+    await this.db.task.where('name').equals(taskName).modify({tag: newTag});
   }
   //__________________________________________MISCELLANEOUS__OPERATOINS_____________________________________________________
 

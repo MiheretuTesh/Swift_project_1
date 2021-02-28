@@ -138,7 +138,6 @@ export default class UI {
     })
 
     let addCard = this.taskModal !== null ? this.taskModal.querySelector(".users-list"): null;
-    console.log(this.taskModal)
     if(addCard) addCard.innerHTML = radioButtons;
   }
 
