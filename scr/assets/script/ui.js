@@ -13,6 +13,8 @@ export default class UI {
 		this.signup = document.querySelector('#register');
 		this.submitButtonProject = document.querySelector(".submitProjectBtn");
 		this.boardsContainer = document.querySelector(".list-boards");
+		this.taskInfoModal = document.querySelector('#task-info-modal');
+	
 	}
 
 	addTask(listOfUsers) {
@@ -125,6 +127,7 @@ export default class UI {
 		card.setAttribute("draggable", "true");
 		card.innerHTML = html;
 		this.todos.appendChild(card);
+		location.reload();
 	}
 
 
@@ -192,4 +195,16 @@ export default class UI {
 		if (addCard) addCard.innerHTML = radioButtons;
 	}
 
+
+	taskInfo(task){
+		console.log(task)
+		this.taskInfoModal.querySelector('.task-title-info').innerHTML = task.name;
+		this.taskInfoModal.querySelector('.task-tag-info').innerHTML = task.tag;
+		this.taskInfoModal.querySelector('.task-desc-info').innerHTML = task.description
+		this.taskInfoModal.querySelector('.deadline-info').innerHTML = task.deadline;
+		this.taskInfoModal.querySelector('.info-done-by').innerHTML = `<i class="fa fa-user"></i> ${task.doneBy}`;
+		this.taskInfoModal.querySelector('.project-name').innerHTML = `<i class="fa fa-project-diagram"></i> ${task.underProject}`;
+		this.taskInfoModal.style.display = 'block';
+
+	}
 }
