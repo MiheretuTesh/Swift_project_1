@@ -66,7 +66,12 @@ export default class UI {
 		tasks.forEach(task => {
 			card = document.createElement("div");
 			card.classList.add("inner", "draggable");
-			card.setAttribute("draggable", "true");
+			let doneBy = task.doneBy;
+			if(task.doneBy == sessionStorage.getItem('currentUser')){
+				card.setAttribute("draggable", "true");
+				card.style.border = "0.1em solid  #7CB9E8";
+				doneBy = ""; 
+			}
 
 			html = `
 				<div class="inner-list">
@@ -74,6 +79,7 @@ export default class UI {
 					<p class="inner-text">
 						${task.name}
 					</p>
+					<span style="font-size: 0.9em; color: #848F87">${doneBy} </span>
 					<div class="inner-bottom"></div>
 				</div>`;
 

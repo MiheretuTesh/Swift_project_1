@@ -231,7 +231,7 @@ if(ui.boardsContainer){
 
 let getDragAfterElement = (container, y) => {
     const draggableElements = [
-        ...container.querySelectorAll(".draggable:not(.dragging)"),
+        ...container.querySelectorAll(".draggable:not(.dragging)")
     ];
 
     return draggableElements.reduce(
