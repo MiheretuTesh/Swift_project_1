@@ -99,7 +99,7 @@ if (projectForm) {
     });
     
 
-    document.addEventListener("DOMContentLoaded", (e) => {
+    document.addEventListener("DOMContentLoaded", e => {
         e.preventDefault();
         const currentUser = sessionStorage.getItem('currentUser');
         
@@ -173,11 +173,13 @@ if (taskAddingModal) {
             }).catch(err => console.log("Creating task failed(App.js)🥺: ", err));
     });
 
-    // wrapper.addEventListener('DOMContentLoaded', e => {
-    //     DB.getTasks(tasks => {
-    //         ui.drawTasks(currentProject, tasks);
-    //     })
-    // });
+    document.addEventListener('DOMContentLoaded', e => {
+        e.preventDefault();
+        DB.getTasks(currentProject)
+            .then(tasks => {
+                ui.displayTasks(tasks);
+        })
+    });
     
 }
 

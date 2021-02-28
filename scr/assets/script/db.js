@@ -191,7 +191,7 @@ export default class Database {
 
   async getTasks(projectName){
     let taskList = [];
-    await this.db.task.get({underProject: projectName}).each(task => {
+    await this.db.task.each(task => {
       taskList.push({
         name: task.name,
         doneBy: task.doneBy,
@@ -202,7 +202,7 @@ export default class Database {
         status: task.status, 
       })
     });
-    return taskList;
+    return taskList.filter(task => task.underProject == projectName);
   }
 
   async completeProject(projectNameInput) {
