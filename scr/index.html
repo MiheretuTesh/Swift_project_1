@@ -22,23 +22,10 @@
     <nav id="nav" class="top-nav">
         <div class="navbar-1">
             <div class="navbar-1-left"> 
+                
                 <ul>
-                    
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-home"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item board">
-                            <i class="fa fa-clipboard"></i>
-                            <p>Boards</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item navbar-item-search">
-                        <input type="text" class="navbar-input">
-                        <i class="search-area fa fa-search "></i>
-                    </li>
+                    <p class="project_title" style="color: white; font-size: 2em; margin-right: 1em;">Project Management</p>
+          
                 </ul>
             </div>
             <div class="navbar-1-center">
@@ -46,19 +33,11 @@
             </div>
             <div class="navbar-1-right">
                 <ul>
+
                     <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-moon"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item">
-                            <i class="fa fa-bell"></i>
+                        <a href="./dash_board.html" class="navbar-item board">
+                            <i class="fa fa-clipboard"></i>
+                            <p>Boards</p>
                         </a>
                     </li>
                     <li class="navbar-item login">
@@ -67,88 +46,12 @@
                                 <!-- <p>MT</p> -->
                         </a>
                     </li>
+
+                    
                 </ul>
             </div>
         </div>
-        <div class="navbar-2">
-            <div class="navbar-2-left">
-                <div>
-                    <ul>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link ">
-                                <i class="fa fa-bars"></i>
-                                <p class="bord leaks">Board</p>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="board-list">
-                                <input type="text">
-                                <ul>
-                                    <li>wefwff</li>
-                                    <li>wedwefwf</li>
-                                </ul>
-                            </div>
-                        </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link"  contenteditable="true">
-                            <p >Project Management</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item">
-                            <i class="far fa-star"></i>
-                        </a>
-                    </li>
-                </ul>
-                </div>
-                <div>
-                    <ul>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <p>NoteBook Coders</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link login">
-                            <p>MT</p>
-                        </a>
-                        <a href="" class="navbar-link login">
-                            <p>MT</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <p>Invite</p>
-                        </a>
-                    </li>  
-                </ul>
-                </div>
-            </div>
-            <div class="navbar-2-right">
-                <div>
-                    <ul class="navbar-right">
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">
-                                <p>
-                                    Butler
-                                </p>
-                            </a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">   
-                                <p>
-                                    ... Show Menu
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
     </nav>
     <main id="wrapper">
 
@@ -200,7 +103,7 @@
             
         </div>
 
-        <button class="add-task" style="padding: .5rem; margin: 1rem;">
+        <button class="add-task" style="padding: .5rem; margin: 1rem; border-radius: 1em; color: rgb(10, 131, 24);">
             Add a card
             <i class="fa fa-plus"></i>
         </button>
@@ -208,54 +111,28 @@
 
         <!-- MODAL VIEW -->
         <div id="task-adding-modal" class="modal">
-            <div class="modal-view">
+            <div class="modal-view" style="height: auto; width: 30%; border-radius: 1em">
                 <div class="modal-head">
                     <h2 class="modal-heading" contenteditable="true" style="width: 100%;">New Task</h2>
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-inner-content">
 
-                <div class="modal-left">
+                <div class="modal-left" style="width: 60%; height: max-content; ">
                     <div class="modal-content">
                         <div class="users-list"></div>
                         <br>
                         <label for="deadline">Deadline: </label>
                         <input type="date" id="deadline"><br><br>
-                        <!-- <label for="task-desc">Task Description
-
-                        </label> -->
-                        <textarea class="modal-txt" id="task-desc" placeholder="Enter task description here ..."></textarea>
+                        
+                        <textarea class="modal-txt" id="task-desc" placeholder="Enter task description here ..." style="padding: 0.5em;"></textarea>
                         <div class="modal-text-editor">
                             <a href="" class="task-modal-save">Save</a>
                         </div>
                     </div>
                 </div>
                 <div class="modal-right">
-                    <div class="modal-settings">
-                        <div class="container">
-                            <span class="modal-btn">
-                                <i class="fa fa-user"></i>
-                                <p>Members</p>
-                            </span>
-                            <ul class="info-modal-members"></ul>
-                        </div>
-                        <span class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Starting Date</p>
-                        </span>
-                        <span class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Due Date</p>
-                        </span>
-                        <span class="modal-btn">
-                            <i class="fa fa-arrow-right"></i>
-                            <p>Move</p>
-                        </span>
-                        <span class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Member</p>
-                        </span>
-                    </div>  
+                    
                 </div>
             </div>
             </div>
@@ -266,14 +143,14 @@
 
         <!-- MODAL VIEW -->
         <div id="task-info-modal" class="modal">
-            <div class="modal-view" style="height: max-content; margin-top: 6%;">
+            <div class="modal-view" style="height: max-content; width: 50%; border-radius: 1em;">
                 <div class="modal-head">
                     <h2 class="modal-heading" style="width: 100%;">Task Info</h2>
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-inner-content">
 
-                <div class="modal-left">
+                <div class="modal-left" style="width: 30em; margin-left: 4em;">
                     <div class="modal-content">
                         <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
                             <span style="width: max-content">
