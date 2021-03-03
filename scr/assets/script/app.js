@@ -35,16 +35,13 @@ const getTaskBtn = document.querySelector("#getTaskBtn")
 const createTaskBtn = document.querySelector("#createTaskBtn")
 const listTask = document.querySelector("#listTask")
 //task details
-const taskName = document.querySelector("#taskName");
-const doneBy = document.querySelector("#doneBy");
-const assignedBy = document.querySelector("#assignedBy");
-const underPorject = document.querySelector("#underPorject");
-const tag = document.querySelector("#tag");
-const taskDeadline = document.querySelector("#taskDeadline");
-const taskDescription = document.querySelector("#taskDescription");
+
+
+
 
 const currentProject = sessionStorage.getItem('currentProject');
 const currentUser = sessionStorage.getItem('currentUser');
+
 
 
 
@@ -305,19 +302,26 @@ if (getUsersBtn) {
 
 
 
+
 //create project
-if (createTaskBtn) {
-    createTaskBtn.addEventListener('click', (e) => {
-        console.log('event fired')
-        e.preventDefault();
-
-    })
-}
-
-if(projectCard){
-    console.log('h')
-    projectCard.addEventListener('click',e => {
-        // sessionStorage.setItem('currentProject', )
-        console.log(e)
+if (addTaskBtn) {
+    wrapper.addEventListener('click', e => {
+        if(e.target.classList.contains('inner') || e.target.classList.contains('inner-list') || e.target.parentElement.classList.contains('inner-list')){
+            
+            let target;
+            if(e.target.classList.contains('inner')){
+                target = e.target;
+            }else if(e.target.classList.contains('inner-list')){
+                target = e.target.parentElement
+            }else if(e.target.parentElement.classList.contains('inner-list')){
+                target = e.target.parentElement.parentElement;
+            }
+            let taskName = target.querySelector('.inner-text').textContent.trim();
+            
+            DB.getTask(taskName)
+                .then(task => ui.taskInfo(task))
+            
+        }
     });
 }
+

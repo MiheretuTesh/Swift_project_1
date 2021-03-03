@@ -22,23 +22,10 @@
     <nav id="nav" class="top-nav">
         <div class="navbar-1">
             <div class="navbar-1-left"> 
+                
                 <ul>
-                    
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-home"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item board">
-                            <i class="fa fa-clipboard"></i>
-                            <p>Boards</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item navbar-item-search">
-                        <input type="text" class="navbar-input">
-                        <i class="search-area fa fa-search "></i>
-                    </li>
+                    <p class="project_title" style="color: white; font-size: 2em; margin-right: 1em;">Project Management</p>
+          
                 </ul>
             </div>
             <div class="navbar-1-center">
@@ -46,19 +33,11 @@
             </div>
             <div class="navbar-1-right">
                 <ul>
+
                     <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-moon"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item">
-                            <i class="fa fa-bell"></i>
+                        <a href="./dash_board.html" class="navbar-item board">
+                            <i class="fa fa-clipboard"></i>
+                            <p>Boards</p>
                         </a>
                     </li>
                     <li class="navbar-item login">
@@ -67,88 +46,12 @@
                                 <!-- <p>MT</p> -->
                         </a>
                     </li>
+
+                    
                 </ul>
             </div>
         </div>
-        <div class="navbar-2">
-            <div class="navbar-2-left">
-                <div>
-                    <ul>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link ">
-                                <i class="fa fa-bars"></i>
-                                <p class="bord leaks">Board</p>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="board-list">
-                                <input type="text">
-                                <ul>
-                                    <li>wefwff</li>
-                                    <li>wedwefwf</li>
-                                </ul>
-                            </div>
-                        </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link"  contenteditable="true">
-                            <p >Project Management</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-item">
-                            <i class="far fa-star"></i>
-                        </a>
-                    </li>
-                </ul>
-                </div>
-                <div>
-                    <ul>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <p>NoteBook Coders</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link login">
-                            <p>MT</p>
-                        </a>
-                        <a href="" class="navbar-link login">
-                            <p>MT</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">
-                            <p>Invite</p>
-                        </a>
-                    </li>  
-                </ul>
-                </div>
-            </div>
-            <div class="navbar-2-right">
-                <div>
-                    <ul class="navbar-right">
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">
-                                <p>
-                                    Butler
-                                </p>
-                            </a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-link">   
-                                <p>
-                                    ... Show Menu
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
     </nav>
     <main id="wrapper">
 
@@ -200,7 +103,7 @@
             
         </div>
 
-        <button class="add-task" style="padding: .5rem; margin: 1rem;">
+        <button class="add-task" style="padding: .5rem; margin: 1rem; border-radius: 1em; color: rgb(10, 131, 24);">
             Add a card
             <i class="fa fa-plus"></i>
         </button>
@@ -208,66 +111,114 @@
 
         <!-- MODAL VIEW -->
         <div id="task-adding-modal" class="modal">
-            <div class="modal-view">
+            <div class="modal-view" style="height: auto; width: 30%; border-radius: 1em">
                 <div class="modal-head">
                     <h2 class="modal-heading" contenteditable="true" style="width: 100%;">New Task</h2>
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-inner-content">
 
-                <div class="modal-left">
+                <div class="modal-left" style="width: 60%; height: max-content; ">
                     <div class="modal-content">
                         <div class="users-list"></div>
                         <br>
                         <label for="deadline">Deadline: </label>
                         <input type="date" id="deadline"><br><br>
-                        <!-- <label for="task-desc">Task Description
-
-                        </label> -->
-                        <textarea class="modal-txt" id="task-desc" placeholder="Enter task description here ..."></textarea>
+                        
+                        <textarea class="modal-txt" id="task-desc" placeholder="Enter task description here ..." style="padding: 0.5em;"></textarea>
                         <div class="modal-text-editor">
                             <a href="" class="task-modal-save">Save</a>
                         </div>
                     </div>
                 </div>
                 <div class="modal-right">
-                    <div class="modal-settings">
-                        <a class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Member</p>
-                        </a>
-                        <a class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Starting Date</p>
-                        </a>
-                        <a class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Due Date</p>
-                        </a>
-                        <a class="modal-btn">
-                            <i class="fa fa-arrow-right"></i>
-                            <p>Move</p>
-                        </a>
-                        <a class="modal-btn">
-                            <i class="fa fa-user"></i>
-                            <p>Member</p>
-                        </a>
-                    </div>  
+                    
                 </div>
             </div>
-                <!-- <div class="modal-footer">
-                    <div class="modal-footer-heading">
-                        <i class="fa fa-tasks"></i>
-                        <p>Activity</p>
+            </div>
+            <!-- Modal content -->
+        </div>
+
+
+
+        <!-- MODAL VIEW -->
+        <div id="task-info-modal" class="modal">
+            <div class="modal-view" style="height: max-content; width: 50%; border-radius: 1em;">
+                <div class="modal-head">
+                    <h2 class="modal-heading" style="width: 100%;">Task Info</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-inner-content">
+
+                <div class="modal-left" style="width: 30em; margin-left: 4em;">
+                    <div class="modal-content">
+                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
+                            <span style="width: max-content">
+                                <p style="font-weight: bold; font-size: 1.5em; ">Title</p>
+                            </span>
+                            <span class="task-title-info">Project Title</span>
+                        </div>
+
+                        <div style="height: fit-content; min-height: 0; width: 10em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
+                            <span style="width: max-content">
+                                <p style="font-weight: bold; font-size: 1.5em; ">
+                                    <i class="fa fa-tags" style="font-size: 0.6em;"></i> 
+                                    Tag
+                                </p>
+                            </span>
+                            <span class="task-tag-info" style="max-height: 5em; overflow-y: auto; display: block">
+                            Tag Name</span>
+                        </div>
+
+                        <div style="height: fit-content; min-height: 0; width: 20em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
+                            <span style="width: max-content">
+                                <p style="font-weight: bold; font-size: 1.5em; ">
+                                    <i class="fa fa-comment" style="font-size: 0.6em;"></i> 
+                                    Description
+                                </p>
+                            </span>
+                            <span class="task-desc-info" style="max-height: 5em; overflow-y: auto; display: block">
+                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime molestiae facere veritatis quidem fugit quas fugiat voluptate. Perspiciatis minus magnam fugiat, explicabo atque minima quasi quidem recusandae modi incidunt quas ducimus earum officia! Dolores voluptas ratione sequi, mollitia, esse illo illum neque deleniti aspernatur quisquam id excepturi minima molestiae. Ullam</span>
+                        </div>
+
+                        <div style="height: fit-content; min-height: 0; width: 10em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
+                            <span style="width: max-content">
+                                <p style="font-weight: bold; font-size: 1.5em; ">
+                                    <i class="fa fa-calendar-alt" style="font-size: 0.6em;"></i> 
+                                    Deadline
+                                </p>
+                            </span>
+                            <span class="deadline-info">12/3/2021</span>
+                        </div>
                     </div>
-                    <div class="modal-footer-form">
-                        <i class="fa fa-user"></i>
-                        <input type="text" style="width: 80%; padding: .3rem;" placeholder="Write a comment">
-                    </div>
-                    <div class="modal-footer-form-submit">
-                        <input type="submit" style="margin-left: 1.5rem; padding: .3rem .5rem; margin-top: 1rem;">
-                    </div>
-                </div> -->
+                </div>
+                <div class="modal-right">
+                    <div class="modal-settings">
+                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em;">
+                            <span class="modal-btn" style="margin: 0;">
+                                <p style="font-weight: bold; font-size: 1.5em; width: 10em;">
+                                    Assigned To
+                                </p>
+                            </span>
+                            <p class="info-done-by"><i class="fa fa-user"></i> Meheretu</p>
+
+                        </div>
+
+                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
+                            <span class="modal-btn" style="margin: 0;">
+                                <p style="font-weight: bold; font-size: 1.5em; ">
+                                    Project
+                                </p>
+                            </span>
+                            <p class="project-name"><i class="fa fa-project-diagram"></i> project name</p>
+
+                        </div>
+                        
+                        
+                    </div>  
+                    
+                </div>
+            </div>
             </div>
             <!-- Modal content -->
         </div>
@@ -279,21 +230,27 @@
 
     <script>
         // Get the modal
-        var closeModal = document.getElementById("task-adding-modal");
+        var modal = document.getElementById("task-adding-modal");
+        var infoModal = document.getElementById("task-info-modal");
         
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close");
+        var closeModal = document.getElementsByClassName("close")
         
         
         // When the user clicks on <span> (x), close the modal
-        closeModal.onclick = function() {
-          modal.style.display = "none";  
+        closeModal[0].onclick = function() {
+          modal.style.display = "none";
+        }
+
+        closeModal[1].onclick = function() {
+          infoModal.style.display = "none";  
         }
         
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-          if (event.target == closeModal) {
-            closeModal.style.display = "none";
+          if (event.target == modal || event.target == infoModal) {
+            modal.style.display = "none";
+            infoModal.style.display = "none";
           }
         }
 
