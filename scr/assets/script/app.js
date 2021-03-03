@@ -8,13 +8,10 @@ let cardModalTitle = document.querySelector('.modal-heading');
 let cardModalDescription = document.querySelector('.modal-txt');
 let cardModalSave = document.querySelector('.modal-save');
 
-<<<<<<< HEAD
-=======
 let cardModalTitle = document.querySelector(".modal-heading");
 let cardModalDescription = document.querySelector(".modal-txt");
 let cardModalSave = document.querySelector(".task-modal-save");
 const taskAddingModal = document.querySelector('#task-adding-modal');
->>>>>>> Swift_project_1/UI-js-codes
 
 //Create Account
 const registerForm = document.querySelector("#register");
@@ -27,12 +24,7 @@ const login = document.querySelector("#login");
 const username = document.querySelector("#username");
 const password = document.querySelector("#loginPassword");
 //get users
-<<<<<<< HEAD
-const getUsersBtn = document.querySelector("#getUsersBtn")
-const listUser = document.querySelector("#listUser")
-=======
 const getUsersBtn = document.querySelector("#getUsersBtn");
->>>>>>> Swift_project_1/UI-js-codes
 //createProject and getProject
 const projectCards = document.querySelector('.list-boards');
 const projectCard = document.querySelector('.boards');
@@ -87,6 +79,7 @@ if (projectForm) {
         userNames = userNames
             .filter((user) => user.checked)
             .map((user) => user.value);
+
 
         
 
@@ -320,8 +313,6 @@ if (createTaskBtn) {
 
     })
 }
-<<<<<<< HEAD
-=======
 
 if(projectCard){
     console.log('h')
@@ -330,4 +321,3 @@ if(projectCard){
         console.log(e)
     });
 }
->>>>>>> Swift_project_1/UI-js-codes
