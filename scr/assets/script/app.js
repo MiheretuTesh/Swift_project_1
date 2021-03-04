@@ -379,3 +379,13 @@ if (addTaskBtn) {
     });
 }
 
+
+
+if(document.querySelector('.logout-icon')){
+    document.querySelector('.logout-icon').addEventListener('click', e => {
+        if(window.confirm("You are loggin out, are you sure?")){
+            window.open('./login_form.html', 'self');
+        }
+
+    })
+}
