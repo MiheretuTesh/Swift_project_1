@@ -1,267 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-    <link rel="stylesheet" href="./assets/style/main.css">
-    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-    <script type='module' src="./assets/script/app.js" defer></script>
-    <title>Swift</title>
-    
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Swift -Project Management</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+
 </head>
-<body> 
 
-    <div class="page-1">
+<body>
 
-    <nav id="nav" class="top-nav">
-        <div class="navbar-1">
-            <div class="navbar-1-left"> 
-                
-                <ul>
-                    <p class="project_title" style="color: white; font-size: 2em; margin-right: 1em;">Project Management</p>
-          
-                </ul>
-            </div>
-            <div class="navbar-1-center">
-                
-            </div>
-            <div class="navbar-1-right">
-                <ul>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
 
-                    <li class="navbar-item">
-                        <a href="./dash_board.html" class="navbar-item board">
-                            <i class="fa fa-clipboard"></i>
-                            <p>Boards</p>
-                        </a>
-                    </li>
-                    <li class="navbar-item login">
-                        <a href="" class="navbar-link">
-                            <i class="fa fa-user"></i>
-                                <!-- <p>MT</p> -->
-                        </a>
-                    </li>
+      <h1 class="logo mr-auto"><a href="index.html">Swift</a></h1>
+      <!-- image logo optional -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-                    
-                </ul>
-            </div>
-        </div>
-        
-    </nav>
-    <main id="wrapper">
-
-        <div class="container backlog-group">
-            <div class="inner-container">
-                <div class="top-container">
-                    <p>
-                        Backlog
-                    </p>
-                </div>
-                
-            </div>
-            
-        </div>
-
-        <div class="container todo-group">
-            <div class="inner-container">
-                <div class="top-container">
-                    <p>
-                        To-do
-                    </p>
-                </div>
-                
-            </div>
-
-        </div>
-
-
-        <div class="container in-progress-group">
-            <div class="inner-container">
-                <div class="top-container">
-                    <p>
-                        In-progress
-                    </p>
-        
-                </div>
-            </div>    
-        </div>
-        
-        <div class="container done-group">
-            <div class="inner-container">
-                <div class="top-container">
-                    <p>
-                        Done
-                    </p>
-                </div>
-                
-            </div>
-            
-        </div>
-
-        <button class="add-task" style="padding: .5rem; margin: 1rem; border-radius: 1em; color: rgb(10, 131, 24);">
-            Add a card
-            <i class="fa fa-plus"></i>
-        </button>
-        
-
-        <!-- MODAL VIEW -->
-        <div id="task-adding-modal" class="modal">
-            <div class="modal-view" style="height: auto; width: 30%; border-radius: 1em">
-                <div class="modal-head">
-                    <h2 class="modal-heading" contenteditable="true" style="width: 100%;">New Task</h2>
-                    <span class="close">&times;</span>
-                </div>
-                <div class="modal-inner-content">
-
-                <div class="modal-left" style="width: 60%; height: max-content; ">
-                    <div class="modal-content">
-                        <div class="users-list"></div>
-                        <br>
-                        <label for="deadline">Deadline: </label>
-                        <input type="date" id="deadline"><br><br>
-                        
-                        <textarea class="modal-txt" id="task-desc" placeholder="Enter task description here ..." style="padding: 0.5em;"></textarea>
-                        <div class="modal-text-editor">
-                            <a href="" class="task-modal-save">Save</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-right">
-                    
-                </div>
-            </div>
-            </div>
-            <!-- Modal content -->
-        </div>
-
-
-
-        <!-- MODAL VIEW -->
-        <div id="task-info-modal" class="modal">
-            <div class="modal-view" style="height: max-content; width: 50%; border-radius: 1em;">
-                <div class="modal-head">
-                    <h2 class="modal-heading" style="width: 100%;">Task Info</h2>
-                    <span class="close">&times;</span>
-                </div>
-                <div class="modal-inner-content">
-
-                <div class="modal-left" style="width: 30em; margin-left: 4em;">
-                    <div class="modal-content">
-                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
-                            <span style="width: max-content">
-                                <p style="font-weight: bold; font-size: 1.5em; ">Title</p>
-                            </span>
-                            <span class="task-title-info">Project Title</span>
-                        </div>
-
-                        <div style="height: fit-content; min-height: 0; width: 10em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
-                            <span style="width: max-content">
-                                <p style="font-weight: bold; font-size: 1.5em; ">
-                                    <i class="fa fa-tags" style="font-size: 0.6em;"></i> 
-                                    Tag
-                                </p>
-                            </span>
-                            <span class="task-tag-info" style="max-height: 5em; overflow-y: auto; display: block">
-                            Tag Name</span>
-                        </div>
-
-                        <div style="height: fit-content; min-height: 0; width: 20em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
-                            <span style="width: max-content">
-                                <p style="font-weight: bold; font-size: 1.5em; ">
-                                    <i class="fa fa-comment" style="font-size: 0.6em;"></i> 
-                                    Description
-                                </p>
-                            </span>
-                            <span class="task-desc-info" style="max-height: 5em; overflow-y: auto; display: block">
-                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime molestiae facere veritatis quidem fugit quas fugiat voluptate. Perspiciatis minus magnam fugiat, explicabo atque minima quasi quidem recusandae modi incidunt quas ducimus earum officia! Dolores voluptas ratione sequi, mollitia, esse illo illum neque deleniti aspernatur quisquam id excepturi minima molestiae. Ullam</span>
-                        </div>
-
-                        <div style="height: fit-content; min-height: 0; width: 10em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
-                            <span style="width: max-content">
-                                <p style="font-weight: bold; font-size: 1.5em; ">
-                                    <i class="fa fa-calendar-alt" style="font-size: 0.6em;"></i> 
-                                    Deadline
-                                </p>
-                            </span>
-                            <span class="deadline-info">12/3/2021</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-right">
-                    <div class="modal-settings">
-                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em;">
-                            <span class="modal-btn" style="margin: 0;">
-                                <p style="font-weight: bold; font-size: 1.5em; width: 10em;">
-                                    Assigned To
-                                </p>
-                            </span>
-                            <p class="info-done-by"><i class="fa fa-user"></i> Meheretu</p>
-
-                        </div>
-
-                        <div style="height: fit-content; min-height: 0; width: 12em; background-color: #eaecef; padding: 0.5em 2em; border-radius: 1em; margin-top: 1em;">
-                            <span class="modal-btn" style="margin: 0;">
-                                <p style="font-weight: bold; font-size: 1.5em; ">
-                                    Project
-                                </p>
-                            </span>
-                            <p class="project-name"><i class="fa fa-project-diagram"></i> project name</p>
-
-                        </div>
-                        
-                        
-                    </div>  
-                    
-                </div>
-            </div>
-            </div>
-            <!-- Modal content -->
-        </div>
-    </main>
-
-
-   
-    <script type='module' src="./assets/script/app.js"></script>
-
-    <script>
-        // Get the modal
-        var modal = document.getElementById("task-adding-modal");
-        var infoModal = document.getElementById("task-info-modal");
-        
-        // Get the <span> element that closes the modal
-        var closeModal = document.getElementsByClassName("close")
-        
-        
-        // When the user clicks on <span> (x), close the modal
-        closeModal[0].onclick = function() {
-          modal.style.display = "none";
-        }
-
-        closeModal[1].onclick = function() {
-          infoModal.style.display = "none";  
-        }
-        
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-          if (event.target == modal || event.target == infoModal) {
-            modal.style.display = "none";
-            infoModal.style.display = "none";
-          }
-        }
-
-        let darkBtn = document.querySelector(".fa-moon");
-        
-
-
-        </script>
-        <script src="https://use.fontawesome.com/d6c4e92d14.js"></script>
+     
+      <a href="login form.html" class="scrollto" class="nav-menu d-none d-lg-block">Log In</a>
+      <a href="login form.html" class="get-started-btn scrollto">Sign Up</a>
     </div>
-   
-</body>
-</html>
+  </header><!-- End Header -->
 
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>We bring all the best tools to You</h1>
+          <h2>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is taken care of by swift.</h2>
+          <div class="d-lg-flex">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control rounded" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class=" btn-secondary get-started-btn scrollto" type="button">Sign Up For Free</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="assets/img/why-us.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+  <section id="why-us" class="why-us section-bg">
+    <div class="container-fluid" data-aos="fade-up">
+
+      <div class="row">
+        <div class="col-lg-5 align-items-stretch order-lg-1 img" style='background-image: url("assets/img/color.jpg");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+
+        <div class="col-lg-7 d-flex flex-column  justify-content-center align-items-stretch  order-2 order-lg-1">
+
+          <div class="content">
+            <h3>Working with any <strong>TEAM</strong></h3>
+            <p>
+              Whether it's for work, a side project or even the next family vacation, swift helps your team stay organized.
+            </p>
+          </div>
+
+          <div class="accordion-list">
+            <ul>
+              <li>
+                <a data-toggle="collapse" class="collapse" href="#accordion-list-1"><span>01</span> Cards contain everything you need <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-1" class="collapse show" data-parent=".accordion-list">
+                  <p>
+                    Every task you add comes with endless features to help you organize and manage your team and personal projects.
+                  </p>
+                </div>
+              </li>
+
+         
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+    <section id="why-us" class="why-us section-bg">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="content">
+              <h3>Information at glance</h3>
+              <p>
+                Dive into the details by adding comments, attachments, due dates, and  and more dirctely to swift
+                more dirctely to dwift cards. Callaborate on projects from beginning to tge end.
+              </p>
+            </div>
+
+            <div class="accordion-list">
+              <ul>
+                <li>
+                  <a data-toggle="collapse" class="collapse" href="#accordion-list-1"><span>01</span> Who can use Swift?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-1" class="collapse show" data-parent=".accordion-list">
+                    <p>
+                     Despite increasing number of usage from the developers community swift is also useful for your granny.
+                    </p>
+                  </div>
+                </li>
+
+               
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+        </div>
+      </div>
+    </section>
+       
+    <!-- ======= Why Us Section ======= -->
+    
+      <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>What we have in stock for you</p>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4><a href="">Tasks</a></h4>
+              <p>Create tasks easily and collaborate on different project at ease.</p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4><a href="">Detailed Summary</a></h4>
+              <p>Depending on the project link files and other resources to quickly remember where you stopped</p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4><a href="">Secure your projects</a></h4>
+              <p>Only permission granted user will be able to join your board.</p>
+            </div>
+          </div>
+
+       
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+ 
+
+  
+
+    
+   
+
+  
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Subscribe to get updates </p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Swift</h3>
+           <p>
+              AAiT <br>
+              Kebena , Addis Ababa<br>
+             Ethiopia <br><br>
+              <strong>Phone:</strong> +251 91231321<br>
+              <strong>Email:</strong> info@eswift.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+         
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Project Management</a></li>
+             
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>We are social</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Swift</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      
+        Designed by <a href="#">Notebook Coders</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
