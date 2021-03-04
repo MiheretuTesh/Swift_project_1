@@ -41,7 +41,11 @@ const listTask = document.querySelector("#listTask")
 
 const currentProject = sessionStorage.getItem('currentProject');
 const currentUser = sessionStorage.getItem('currentUser');
+const userNameDisplay = document.querySelector('.user-name-display');
 
+if(userNameDisplay){
+    userNameDisplay.textContent = `Welcome back ${currentUser}`
+}
 
 
 
@@ -59,7 +63,7 @@ if(projectCards){
                 projectName = target.textContent;
             }
             sessionStorage.setItem('currentProject', projectName);
-            window.open('index.html', "_self");
+            window.open('project.html', "_self");
         }
     });
 }
@@ -77,8 +81,21 @@ if (projectForm) {
             .filter((user) => user.checked)
             .map((user) => user.value);
 
-
+        let dateArr = deadline.value.split('-');
+        let deadlineDayObj = new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
         
+
+        if(deadlineDayObj.getTime() < new Date().getTime() || userNames.length == 0 || description.value == ''){
+            ui.addProjectMessage(false);
+            return;
+        }
+
+        DB.getProject(projectName.value).then(data => {
+            if(data){
+                ui.addProjectMessage(false);
+                return;
+            }
+        });
 
         DB.createProject(
             projectName.value,
@@ -94,6 +111,8 @@ if (projectForm) {
                 location.reload();
 
             });
+        }).then(_ => {
+            ui.addProjectMessage(true);
         });
     });
     
@@ -116,7 +135,6 @@ if (projectForm) {
             })
             .then( (projects) => {
                 let projs = projects.filter(project => project!==undefined);
-                console.log(projs)
                 ui.displayProjects(projs)});
         
 
@@ -254,11 +272,19 @@ let getDragAfterElement = (container, y) => {
 
 //create account
 if (registerForm) {
+    
     registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
+
+        let dateArr = birthDay.value.split('-');
+        let birthDayObj = new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
+        let age = Math.floor((new Date().getTime() - birthDayObj.getTime())/31536000000);
+
         DB.getUser(uname_register.value)
             .then(exists => {
                 if(exists){
+                    ui.addLoginMessage(false, 'signup');
+                }else if(age<13){
                     ui.addLoginMessage(false, 'signup');
                 }else{
                     DB.createAccount(
@@ -271,6 +297,8 @@ if (registerForm) {
                         sessionStorage.setItem("currentUser", uname_register.value);
                     });
                 }
+                
+                
             })
     });
 }
