@@ -90,21 +90,26 @@
                         
                         <form class="addProjectForm">
                             <label class="modalLabel" for="projectName">Project Name: </label><br>
-                            <input class="modalLabel" type="text" id="projectName" name="projectName"><br>
+                            <input class="modalLabel" type="text" id="projectName" name="projectName" required><br>
                             <label class="modalLabel" for="deadlineForm">Deadline: </label><br>
-                            <input class="modalLabel" type="date" id="deadlineForm" name="deadlineForm ">
+                            <input class="modalLabel" type="date" id="deadlineForm" name="deadlineForm" required>
 
                             <div class="users-list"></div>
                             
                             <label class="modalLabel" for="deadlineForm">Description: </label><br>
                             <textarea cols="50" rows="4"></textarea><br><br>
 
-                            <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
-
                             
                             <input class="submitProjectBtn" type="submit" value="Add">
+
+
                         </form>
+
+                        <div class="ui active centered inline loader spinner" style="display:none; margin-top: 1em;"></div>
                         
+                        
+                            <div class="project_message">
+                            </div>
                         
                     </div>
                 </div>
