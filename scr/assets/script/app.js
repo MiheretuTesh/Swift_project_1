@@ -40,7 +40,11 @@ const listTask = document.querySelector("#listTask");
 
 const currentProject = sessionStorage.getItem('currentProject');
 const currentUser = sessionStorage.getItem('currentUser');
+const userNameDisplay = document.querySelector('.user-name-display');
 
+if(userNameDisplay){
+    userNameDisplay.textContent = `Welcome back ${currentUser}`
+}
 
 
 
@@ -58,7 +62,7 @@ if(projectCards){
                 projectName = target.textContent;
             }
             sessionStorage.setItem('currentProject', projectName);
-            window.open('index.html', "_self");
+            window.open('project.html', "_self");
         }
     });
 }
@@ -76,7 +80,14 @@ if (projectForm) {
             .filter((user) => user.checked)
             .map((user) => user.value);
 
+        let dateArr = deadline.value.split('-');
+        let deadlineDayObj = new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
         
+
+        if(deadlineDayObj.getTime() < new Date().getTime() || userNames.length == 0 || description.value == ''){
+            ui.addProjectMessage(false);
+            return;
+        }
 
         DB.createProject(
             projectName.value,
@@ -92,6 +103,8 @@ if (projectForm) {
                 location.reload();
 
             });
+        }).then(_ => {
+            ui.addProjectMessage(true);
         });
     });
     

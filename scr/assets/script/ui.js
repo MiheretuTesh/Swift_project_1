@@ -14,6 +14,8 @@ export default class UI {
 		this.submitButtonProject = document.querySelector(".submitProjectBtn");
 		this.boardsContainer = document.querySelector(".list-boards");
 		this.taskInfoModal = document.querySelector('#task-info-modal');
+		this.projectMsg = document.querySelector('.project_message');
+		this.addProjForm = document.querySelector('.addProjectForm');
 	
 	}
 
@@ -160,6 +162,36 @@ export default class UI {
 			fail.style.color = '#ba3939';
 			fail.textContent = loginRegister === 'login' ? errorMsg : errorMsg2;
 			context.querySelector('.spinner').style.display = 'none';
+			setTimeout(() => fail.style.display = 'none', 2000)
+		}
+
+	}
+
+	addProjectMessage(isSuccess) {
+		let context;
+		let fail = context = this.projectMsg;
+		fail.style.display = 'block';
+		let errorMsg = 'Failed to create project!';
+		let successMsg = 'Project reated Successfully!';
+
+
+
+		if (isSuccess) {
+			fail.style.background = 'rgb(158,255,161)';
+			fail.style.color = 'green';
+			fail.textContent = successMsg ;
+			this.projectModal.querySelector('.spinner').style.display = 'block';
+			setTimeout(() => {
+				this.login.reset();
+				this.addProjectForm.querySelector('.spinner').style.display = 'none';
+			}, 2000)
+
+		} else {
+			fail.style.background = '#ffe0e0';
+			fail.style.color = '#ba3939';
+			this.projectModal.querySelector('.spinner').style.display = 'none';
+			fail.textContent = errorMsg;
+
 			setTimeout(() => fail.style.display = 'none', 2000)
 		}
 
