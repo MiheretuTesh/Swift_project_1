@@ -41,11 +41,16 @@ const listTask = document.querySelector("#listTask");
 const currentProject = sessionStorage.getItem('currentProject');
 const currentUser = sessionStorage.getItem('currentUser');
 const userNameDisplay = document.querySelector('.user-name-display');
+const projectNameDisplay = document.querySelector('.project_title');
 
 if(userNameDisplay){
     userNameDisplay.textContent = `Welcome back ${currentUser}`
 }
 
+if(projectNameDisplay){
+    projectNameDisplay.textContent = `${currentProject}`
+
+}
 
 
 if(projectCards){
