@@ -252,11 +252,19 @@ let getDragAfterElement = (container, y) => {
 
 //create account
 if (registerForm) {
+    
     registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
+
+        let dateArr = birthDay.value.split('-');
+        let birthDayObj = new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
+        let age = Math.floor((new Date().getTime() - birthDayObj.getTime())/31536000000);
+
         DB.getUser(uname_register.value)
             .then(exists => {
                 if(exists){
+                    ui.addLoginMessage(false, 'signup');
+                }else if(age<13){
                     ui.addLoginMessage(false, 'signup');
                 }else{
                     DB.createAccount(
@@ -269,6 +277,8 @@ if (registerForm) {
                         sessionStorage.setItem("currentUser", uname_register.value);
                     });
                 }
+                
+                
             })
     });
 }

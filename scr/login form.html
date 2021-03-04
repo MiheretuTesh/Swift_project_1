@@ -46,15 +46,16 @@
 
 
             </form>
-            <form id="register" class="input-group">
             
+            <form id="register" class="input-group">
+
+                
                 <input type="text" class="input-field" placeholder="Full name" id="fullNameID" required>
                 
             
                 <input type="text" class="input-field" placeholder="Username" id="unameID" required>
           
-            
-                <input type="date" class="input-field" placeholder="Birthday" id="birthDay" required>
+                <input type="text" class="input-field" placeholder="Birthday" id="birthDay" onfocus="(this.type='date')" required>
                 
             
                 <input id="registerPassword" type="password" class="input-field" placeholder="Enter Password" required id="passID">
@@ -69,6 +70,7 @@
                 
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
            <button type="submit" class="submit-btn" id="registerBtn">Register</button>
+
 
             </form>
 
