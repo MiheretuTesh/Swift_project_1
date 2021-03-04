@@ -104,17 +104,14 @@ export default class Database {
 				name: projectNameInput
 			})
 			.then((project) => {
-				if(project){
-					projectInfo = {
-						name: project.name,
-						managedBy: project.managedBy,
-						hasMembers: project.hasMembers,
-						deadline: project.deadline,
-						description: project.Description,
-						status: project.status,
-					};
-				}
-				return;
+				projectInfo = {
+					name: project.name,
+					managedBy: project.managedBy,
+					hasMembers: project.hasMembers,
+					deadline: project.deadline,
+					description: project.Description,
+					status: project.status,
+				};
 			})
 			.catch(error => console.log('Error performing get Project operation:🥺 ', error));
 
