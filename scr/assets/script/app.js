@@ -89,6 +89,13 @@ if (projectForm) {
             return;
         }
 
+        DB.getProject(projectName.value).then(data => {
+            if(data){
+                ui.addProjectMessage(false);
+                return;
+            }
+        });
+
         DB.createProject(
             projectName.value,
             currentUser,
@@ -127,7 +134,6 @@ if (projectForm) {
             })
             .then( (projects) => {
                 let projs = projects.filter(project => project!==undefined);
-                console.log(projs)
                 ui.displayProjects(projs)});
         
 
