@@ -193,6 +193,27 @@ if (taskAddingModal) {
         e.preventDefault();
         DB.getTasks(currentProject)
             .then(tasks => {
+                
+                let numOfTasks = tasks.length;
+                let percentage = 0;
+                tasks.forEach(task => {
+                    if(task.tag === "In-progress" || task.tag === "Done"){
+                        percentage += 100 / numOfTasks;
+                        console.log('percent ', percentage);
+                    }else if(task.tag === "Backlog"){
+                        percentage -= 100 / numOfTasks;
+                    }
+                })
+
+                console.log(percentage);
+
+                if(percentage < 0){
+                    percentage = 0;
+                }else if(percentage > 100){
+                    percentage = 100;
+                }
+
+                ui.updateProgressBar(percentage);
                 ui.displayTasks(tasks);
         })
     });
@@ -229,6 +250,7 @@ if (wrapper) {
         const taskName = draggedItem.querySelector('p').textContent.trim();
         const tagName = draggedTo.children.item(0).querySelector('p').textContent.trim();
         DB.updateTag(taskName, tagName);
+        location.reload();
     });
 
     
