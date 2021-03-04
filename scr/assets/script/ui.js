@@ -239,4 +239,32 @@ export default class UI {
 		this.taskInfoModal.style.display = 'block';
 
 	}
+
+	updateProgressBar(percent){
+		let bar = document.querySelector('#myBar');
+		bar.textContent = Math.trunc(percent) + '%';
+		bar.style.width = `${Math.trunc(percent)}%`;
+		if(Math.trunc(percent) === 0){
+			bar.style.width = `10%`;
+
+		}
+
+
+		let color;
+		if(Math.trunc(percent) >= 90){
+			bar.style.color = 'white';
+			color = "#4CAF50"
+		}else if(Math.trunc(percent) >= 70){
+			bar.style.color = 'white';
+			color = "#8C19FF"
+		}else if(Math.trunc(percent) >= 30){
+			color = "#E6E600"
+			bar.style.color = 'black';
+		}else if(Math.trunc(percent) >= 0){
+			bar.style.color = 'white';
+			color = "#E62600"
+		}
+		bar.style.backgroundColor = color;
+	}
+
 }

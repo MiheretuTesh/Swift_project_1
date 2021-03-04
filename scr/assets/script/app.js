@@ -41,11 +41,16 @@ const listTask = document.querySelector("#listTask");
 const currentProject = sessionStorage.getItem('currentProject');
 const currentUser = sessionStorage.getItem('currentUser');
 const userNameDisplay = document.querySelector('.user-name-display');
+const projectNameDisplay = document.querySelector('.project_title');
 
 if(userNameDisplay){
     userNameDisplay.textContent = `Welcome back ${currentUser}`
 }
 
+if(projectNameDisplay){
+    projectNameDisplay.textContent = `${currentProject}`
+
+}
 
 
 if(projectCards){
@@ -193,6 +198,27 @@ if (taskAddingModal) {
         e.preventDefault();
         DB.getTasks(currentProject)
             .then(tasks => {
+                
+                let numOfTasks = tasks.length;
+                let percentage = 0;
+                tasks.forEach(task => {
+                    if(task.tag === "In-progress" || task.tag === "Done"){
+                        percentage += 100 / numOfTasks;
+                        console.log('percent ', percentage);
+                    }else if(task.tag === "Backlog"){
+                        percentage -= 100 / numOfTasks;
+                    }
+                })
+
+                console.log(percentage);
+
+                if(percentage < 0){
+                    percentage = 0;
+                }else if(percentage > 100){
+                    percentage = 100;
+                }
+
+                ui.updateProgressBar(percentage);
                 ui.displayTasks(tasks);
         })
     });
@@ -229,6 +255,7 @@ if (wrapper) {
         const taskName = draggedItem.querySelector('p').textContent.trim();
         const tagName = draggedTo.children.item(0).querySelector('p').textContent.trim();
         DB.updateTag(taskName, tagName);
+        location.reload();
     });
 
     
